@@ -1,520 +1,70 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="dark">
-    <title>Zanes Startseite</title>
-    <style>
-        /* 🔒 强制锁定黑暗模式样式 */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                color-scheme: dark;
-            }
-        
-            body {
-                background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%) !important;
-                color: #e0e0e0 !important;
-            }
-        
-            .search-input,
-            .search-select {
-                background: rgba(0, 0, 0, 0.3) !important;
-                color: #ffffff !important;
-                border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            }
-        
-            .bookmark-section {
-                background: rgba(0, 0, 0, 0.3) !important;
-                border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            }
-        
-            .bookmark-item {
-                background: rgba(255, 255, 255, 0.05) !important;
-                border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-            min-height: 100vh;
-            color: #e0e0e0;
-            overflow-x: hidden;
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            animation: float 25s infinite linear;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .logo {
-            font-size: 3rem;
-            font-weight: 200;
-            color: #ffffff;
-            margin-bottom: 2rem;
-            letter-spacing: -2px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .search-container {
-            position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .search-wrapper {
-            flex: 1;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1.2rem 1.8rem;
-            font-size: 1.1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            color: #ffffff;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        .search-selector {
-            position: relative;
-            min-width: 140px;
-        }
-
-        .search-select {
-            width: 100%;
-            padding: 1.2rem 1rem;
-            font-size: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            color: #ffffff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            outline: none;
-            appearance: none;
-            text-align: center;
-        }
-
-        .search-select option {
-            background: #1a1a1a;
-            color: #ffffff;
-            padding: 0.5rem;
-        }
-
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .search-input:focus {
-            border-color: rgba(255, 255, 255, 0.4);
-            background: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15), 0 0 60px rgba(255, 255, 255, 0.05);
-        }
-
-        .search-select:focus {
-            border-color: rgba(255, 255, 255, 0.4);
-            background: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15), 0 0 60px rgba(255, 255, 255, 0.05);
-        }
-
-        .search-button {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .search-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.2), 0 0 80px rgba(255, 255, 255, 0.1);
-        }
-
-        .search-select:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15), 0 0 60px rgba(255, 255, 255, 0.08);
-        }
-
-        .bookmarks {
-            margin-top: 4rem;
-        }
-
-        .bookmark-section {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .bookmark-section:hover {
-            background: rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
-
-        .add-bookmark, .toggle-sort {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .add-bookmark:hover, .toggle-sort:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: scale(1.08);
-            box-shadow: 0 0 35px rgba(255, 255, 255, 0.2), 0 0 70px rgba(255, 255, 255, 0.1);
-        }
-
-        .toggle-sort.active {
-            background: rgba(100, 255, 100, 0.2);
-            border-color: rgba(100, 255, 100, 0.4);
-        }
-
-        .bookmark-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .bookmark-grid.sorting {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .bookmark-item {
-            display: flex;
-            align-items: center;
-            padding: 1.2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            text-decoration: none;
-            color: #e0e0e0;
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: grab;
-        }
-
-        .bookmark-item:active {
-            cursor: grabbing;
-        }
-
-        .bookmark-item.sortable {
-            cursor: grab;
-        }
-
-        .bookmark-item.sortable:active {
-            cursor: grabbing;
-        }
-
-        .bookmark-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 50px rgba(255, 255, 255, 0.1);
-        }
-
-        .bookmark-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .bookmark-info h3 {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 0.3rem;
-            color: #ffffff;
-        }
-
-        .bookmark-info p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .remove-bookmark {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            border: none;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 0.8rem;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .bookmark-item:hover .remove-bookmark {
-            display: flex;
-        }
-
-        .remove-bookmark:hover {
-            background: rgba(255, 50, 50, 0.4);
-            color: #ffffff;
-            box-shadow: 0 0 20px rgba(255, 50, 50, 0.3);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 400px;
-            width: 90%;
-            backdrop-filter: blur(20px);
-        }
-
-        .modal h3 {
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        .modal input {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            color: #ffffff;
-            outline: none;
-        }
-
-        .modal input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-        }
-
-        .modal button {
-            padding: 0.6rem 1.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
-        }
-
-        .modal button.cancel:hover {
-            background: rgba(255, 50, 50, 0.3);
-            box-shadow: 0 0 25px rgba(255, 50, 50, 0.2);
-        }
-
-        .modal button.cancel {
-            background: rgba(255, 50, 50, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 2rem 1rem;
-            }
-
-            .logo {
-                font-size: 2.2rem;
-            }
-
-            .search-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .search-wrapper {
-                width: 100%;
-            }
-
-            .search-selector {
-                width: 100%;
-                min-width: unset;
-            }
-
-            .search-input {
-                padding: 1rem 1.4rem;
-                font-size: 1rem;
-            }
-
-            .bookmark-section {
-                padding: 1.8rem;
-            }
-
-            .bookmark-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .section-header {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-
-            .section-header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .dragging {
-            opacity: 0.5;
-            transform: rotate(5deg);
-            z-index: 100;
-        }
-
-        .drag-over {
-            border: 2px dashed rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.1);
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- 锁定黑暗模式 -->
+  <meta name="color-scheme" content="dark"/>
+  <meta name="supported-color-schemes" content="dark"/>
+  <title>Zanes Startseite</title>
+  <style>
+    /* ---------- 基础样式 ---------- */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{height:100%;color-scheme:dark}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 50%,#1a1a1a 100%);
+      color:#e0e0e0;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    .particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+    .particle{
+      position:absolute;background:rgba(255,255,255,.4);border-radius:50%;
+      animation:float 25s infinite linear;box-shadow:0 0 10px rgba(255,255,255,.3)
+    }
+    @keyframes float{
+      0%{transform:translateY(100vh) translateX(0) rotate(0deg);opacity:0}
+      10%{opacity:1}90%{opacity:1}
+      100%{transform:translateY(-100px) translateX(100px) rotate(360deg);opacity:0}
+    }
+    .container{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:3rem 2rem}
+    .header{text-align:center;margin-bottom:4rem}
+    .logo{font-size:3rem;font-weight:200;color:#fff;margin-bottom:2rem;letter-spacing:-2px}
+    .search-container{max-width:700px;margin:0 auto;display:flex;gap:1rem;align-items:center}
+    .search-wrapper{flex:1;position:relative}
+    .search-input{width:100%;padding:1.2rem 1.8rem;font-size:1.1rem;border:1px solid rgba(255,255,255,.2);border-radius:50px;background:rgba(0,0,0,.3);color:#fff;transition:.3s;outline:none}
+    .search-selector{min-width:140px}
+    .search-select{width:100%;padding:1.2rem 1rem;font-size:1rem;border:1px solid rgba(255,255,255,.2);border-radius:50px;background:rgba(0,0,0,.3);color:#fff;cursor:pointer;appearance:none;text-align:center}
+    .search-button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);padding:.8rem 1.5rem;border-radius:25px;cursor:pointer;transition:.3s}
+    .search-button:hover{background:rgba(255,255,255,.25);transform:translateY(-50%) scale(1.05)}
+    .bookmarks{margin-top:4rem}
+    .bookmark-section{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2.5rem;transition:.3s}
+    .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+    .section-title{font-size:1.5rem;font-weight:300;color:#fff}
+    .add-bookmark,.toggle-sort{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);padding:.5rem 1rem;border-radius:20px;cursor:pointer;font-size:.9rem;transition:.3s}
+    .bookmark-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+    .bookmark-item{display:flex;align-items:center;padding:1.2rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:15px;text-decoration:none;color:#e0e0e0;transition:.3s;position:relative}
+    .bookmark-item:hover{background:rgba(255,255,255,.15);transform:translateY(-4px)}
+    .bookmark-icon{width:45px;height:45px;background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.1));border:1px solid rgba(255,255,255,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-right:1rem;color:#fff;font-weight:600;font-size:1.1rem}
+    .bookmark-info h3{font-size:1.1rem;font-weight:500;margin-bottom:.3rem;color:#fff}
+    .bookmark-info p{font-size:.9rem;color:rgba(255,255,255,.6)}
+    .remove-bookmark{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);border:none;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:.8rem;display:none;align-items:center;justify-content:center}
+    .bookmark-item:hover .remove-bookmark{display:flex}
+    .remove-bookmark:hover{background:rgba(255,50,50,.4);color:#fff}
+    .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);align-items:center;justify-content:center;z-index:1000}
+    .modal-content{background:rgba(0,0,0,.9);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:2rem;max-width:400px;width:90%}
+    .modal h3{color:#fff;margin-bottom:1.5rem;font-weight:300}
+    .modal input{width:100%;padding:.8rem;margin-bottom:1rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;outline:none}
+    .modal-buttons{display:flex;gap:1rem;justify-content:flex-end}
+    .modal button{padding:.6rem 1.2rem;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;transition:.3s}
+    .modal button.cancel{background:rgba(255,50,50,.2)}
+    .modal button:hover{background:rgba(255,255,255,.25)}
+    @media(max-width:768px){.search-container{flex-direction:column}.bookmark-grid{grid-template-columns:1fr}}
+    .fade-in{animation:fadeIn 1s ease-out}@keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  </style>
 </head>
+
 <body>
   <div class="particles" id="particles"></div>
 
@@ -523,7 +73,7 @@
       <h1 class="logo">Zanes Startseite</h1>
       <div class="search-container">
         <div class="search-wrapper">
-          <input type="text" class="search-input" placeholder="Suchbegriff eingeben..." id="searchInput">
+          <input type="text" class="search-input" id="searchInput" placeholder="Suchbegriff eingeben...">
           <button class="search-button" id="searchButton">Suchen</button>
         </div>
         <div class="search-selector">
@@ -543,7 +93,6 @@
         <div class="section-header">
           <h2 class="section-title">Meine Lesezeichen</h2>
           <div>
-            <button class="toggle-sort" id="toggleSortBtn">Anordnen</button>
             <button class="add-bookmark" id="addBookmarkBtn">+ Hinzufügen</button>
           </div>
         </div>
@@ -552,6 +101,7 @@
     </div>
   </div>
 
+  <!-- Add Bookmark Modal -->
   <div class="modal" id="addBookmarkModal">
     <div class="modal-content">
       <h3>Neues Lesezeichen hinzufügen</h3>
@@ -565,214 +115,113 @@
     </div>
   </div>
 
-    <script>
-      const bookmarkGrid = document.getElementById('bookmarkGrid');
-    
-      let isSorting = false;
-      let draggedItem = null;
-    
-      function saveBookmarks() {
-        const bookmarks = Array.from(bookmarkGrid.children).map(item => ({
-          name: item.getAttribute('data-name'),
-          url: item.getAttribute('data-url'),
-          desc: item.getAttribute('data-desc')
-        }));
-        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-      }
-    
-      function loadBookmarks() {
-        const data = localStorage.getItem('bookmarks');
-        const bookmarks = data ? JSON.parse(data) : [
+  <script>
+    /* ---------- 粒子背景 ---------- */
+    function createParticles() {
+      const container = document.getElementById('particles');
+      setInterval(() => {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 3 + 1.5;
+        p.style.width = p.style.height = size + 'px';
+        p.style.left = Math.random() * window.innerWidth + 'px';
+        p.style.opacity = Math.random() * 0.6 + 0.3;
+        p.style.animationDuration = Math.random() * 8 + 20 + 's';
+        p.style.animationDelay = Math.random() * 3 + 's';
+        container.appendChild(p);
+        setTimeout(() => p.remove(), 30000);
+      }, 200);
+    }
+
+    /* ---------- 搜索 ---------- */
+    const searchUrls = {
+      bilibili: 'https://search.bilibili.com/all?keyword=',
+      google: 'https://www.google.com/search?q=',
+      youtube: 'https://www.youtube.com/results?search_query=',
+      zhihu: 'https://www.zhihu.com/search?type=content&q=',
+      edge: 'https://www.bing.com/search?q='
+    };
+    document.getElementById('searchButton').addEventListener('click', () => {
+      const q = encodeURIComponent(document.getElementById('searchInput').value.trim());
+      const engine = document.getElementById('searchEngine').value;
+      if (q) window.open(searchUrls[engine] + q, '_blank');
+    });
+    document.getElementById('searchInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('searchButton').click();
+    });
+
+    /* ---------- 书签持久化 ---------- */
+    const STORAGE_KEY = 'zane_startpage_bookmarks';
+    function loadBookmarks() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
           { name: 'Bilibili', url: 'https://www.bilibili.com', desc: 'Video-Community' },
           { name: 'YouTube', url: 'https://www.youtube.com', desc: 'Video-Plattform' },
           { name: 'GitHub', url: 'https://github.com', desc: 'Code-Repository' },
           { name: 'Google Translate', url: 'https://translate.google.com', desc: 'Übersetzungsdienst' }
         ];
-        bookmarkGrid.innerHTML = '';
-        bookmarks.forEach(data => appendBookmark(data));
-      }
-    
-      function appendBookmark({ name, url, desc }) {
-        const initials = name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
-        const item = document.createElement('a');
-        item.href = url;
-        item.target = "_blank";
-        item.className = 'bookmark-item';
-        item.setAttribute('data-name', name);
-        item.setAttribute('data-url', url);
-        item.setAttribute('data-desc', desc);
-        item.draggable = isSorting;
-        item.innerHTML = `
+      } catch { return []; }
+    }
+    function saveBookmarks(list) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+    function renderBookmarks() {
+      const list = loadBookmarks();
+      const grid = document.getElementById('bookmarkGrid');
+      grid.innerHTML = '';
+      list.forEach((bm, idx) => {
+        const initials = bm.name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+        const a = document.createElement('a');
+        a.href = bm.url;
+        a.target = '_blank';
+        a.className = 'bookmark-item';
+        a.innerHTML = `
           <div class="bookmark-icon">${initials}</div>
           <div class="bookmark-info">
-            <h3>${name}</h3>
-            <p>${desc}</p>
+            <h3>${bm.name}</h3>
+            <p>${bm.desc}</p>
           </div>
-          <button class="remove-bookmark" onclick="removeBookmark(event, this)">×</button>
+          <button class="remove-bookmark" data-index="${idx}">×</button>
         `;
-        bookmarkGrid.appendChild(item);
-        if (isSorting) enableDragAndDrop();  // 新增后立刻支持排序
-      }
-    
-      function addBookmark() {
-        const name = document.getElementById('bookmarkName').value.trim();
-        const url = document.getElementById('bookmarkUrl').value.trim();
-        const desc = document.getElementById('bookmarkDesc').value.trim();
-        if (!name || !url) return alert('Bitte Name und URL eingeben!');
-        appendBookmark({ name, url, desc });
-        closeModal();
-        saveBookmarks();
-      }
-    
-      function removeBookmark(e, btn) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (confirm('Lesezeichen wirklich entfernen?')) {
-          btn.parentElement.remove();
-          saveBookmarks();
-        }
-      }
-    
-      function toggleSorting() {
-        isSorting = !isSorting;
-        const btn = document.getElementById('toggleSortBtn');
-        btn.textContent = isSorting ? '✓ Fertig' : 'Anordnen';
-        btn.classList.toggle('active', isSorting);
-        bookmarkGrid.classList.toggle('sorting', isSorting);
-        Array.from(bookmarkGrid.children).forEach(item => {
-          item.draggable = isSorting;
-          item.classList.toggle('sortable', isSorting);
-        });
-        isSorting ? enableDragAndDrop() : disableDragAndDrop();
-        if (!isSorting) saveBookmarks();
-      }
-    
-      function enableDragAndDrop() {
-        Array.from(bookmarkGrid.children).forEach(item => {
-          item.addEventListener('dragstart', handleDragStart);
-          item.addEventListener('dragend', handleDragEnd);
-          item.addEventListener('dragover', handleDragOver);
-          item.addEventListener('dragenter', handleDragEnter);
-          item.addEventListener('dragleave', handleDragLeave);
-          item.addEventListener('drop', handleDrop);
-        });
-      }
-    
-      function disableDragAndDrop() {
-        Array.from(bookmarkGrid.children).forEach(item => {
-          item.removeEventListener('dragstart', handleDragStart);
-          item.removeEventListener('dragend', handleDragEnd);
-          item.removeEventListener('dragover', handleDragOver);
-          item.removeEventListener('dragenter', handleDragEnter);
-          item.removeEventListener('dragleave', handleDragLeave);
-          item.removeEventListener('drop', handleDrop);
-        });
-      }
-    
-      function handleDragStart(e) {
-        draggedItem = this;
-        this.classList.add('dragging');
-        e.dataTransfer.effectAllowed = 'move';
-      }
-    
-      function handleDragEnd() {
-        this.classList.remove('dragging');
-        Array.from(bookmarkGrid.children).forEach(item => item.classList.remove('drag-over'));
-      }
-    
-      function handleDragOver(e) {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-      }
-    
-      function handleDragEnter() {
-        this.classList.add('drag-over');
-      }
-    
-      function handleDragLeave() {
-        this.classList.remove('drag-over');
-      }
-    
-      function handleDrop(e) {
-        e.stopPropagation();
-        if (draggedItem !== this) {
-          const children = Array.from(bookmarkGrid.children);
-          const from = children.indexOf(draggedItem);
-          const to = children.indexOf(this);
-          if (from < to) {
-            bookmarkGrid.insertBefore(draggedItem, this.nextSibling);
-          } else {
-            bookmarkGrid.insertBefore(draggedItem, this);
-          }
-          saveBookmarks();  // ✅ 拖拽后立即保存顺序
-        }
-      }
-    
-      function openModal() {
-        document.getElementById('addBookmarkModal').style.display = 'flex';
-        document.getElementById('bookmarkName').focus();
-      }
-    
-      function closeModal() {
-        document.getElementById('addBookmarkModal').style.display = 'none';
-        document.getElementById('bookmarkName').value = '';
-        document.getElementById('bookmarkUrl').value = '';
-        document.getElementById('bookmarkDesc').value = '';
-      }
-    
-      document.getElementById('addBookmarkBtn').addEventListener('click', openModal);
-      document.getElementById('toggleSortBtn').addEventListener('click', toggleSorting);
-      document.getElementById('addBookmarkModal').addEventListener('click', e => {
-        if (e.target === e.currentTarget) closeModal();
+        grid.appendChild(a);
       });
-    
-      document.addEventListener('keydown', e => {
-        if (e.key === '/' && e.target !== searchInput) {
-          e.preventDefault();
-          searchInput.focus();
-        }
-        if (e.key === 'Escape') closeModal();
-      });
-    
-      document.getElementById('searchButton').addEventListener('click', () => {
-        const q = encodeURIComponent(searchInput.value.trim());
-        if (q) {
-          const url = {
-            bilibili: 'https://search.bilibili.com/all?keyword=',
-            google: 'https://www.google.com/search?q=',
-            youtube: 'https://www.youtube.com/results?search_query=',
-            zhihu: 'https://www.zhihu.com/search?type=content&q=',
-            edge: 'https://www.bing.com/search?q='
-          }[document.getElementById('searchEngine').value] + q;
-          window.open(url, '_blank');
-        }
-      });
-    
-      searchInput.addEventListener('keypress', e => {
-        if (e.key === 'Enter') document.getElementById('searchButton').click();
-      });
-    
-      function createParticles() {
-        const p = document.getElementById('particles');
-        function add() {
-          const d = document.createElement('div');
-          d.className = 'particle';
-          const size = Math.random() * 3 + 1.5;
-          d.style.width = d.style.height = size + 'px';
-          d.style.left = Math.random() * window.innerWidth + 'px';
-          d.style.opacity = Math.random() * 0.6 + 0.3;
-          d.style.animationDuration = (Math.random() * 8 + 20) + 's';
-          d.style.animationDelay = Math.random() * 3 + 's';
-          p.appendChild(d);
-          setTimeout(() => d.remove(), 30000);
-        }
-        setInterval(add, 200);
-      }
-    
-      createParticles();
-      loadBookmarks();
-      searchInput.focus();
-    </script>
-
+    }
+    function addBookmark() {
+      const name = document.getElementById('bookmarkName').value.trim();
+      const url = document.getElementById('bookmarkUrl').value.trim();
+      const desc = document.getElementById('bookmarkDesc').value.trim();
+      if (!name || !url) return alert('Name und URL angeben!');
+      const list = loadBookmarks();
+      list.push({ name, url, desc });
+      saveBookmarks(list);
+      renderBookmarks();
+      closeModal();
+    }
+    function removeBookmark(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!confirm('Löschen?')) return;
+      const idx = e.target.dataset.index;
+      const list = loadBookmarks();
+      list.splice(idx, 1);
+      saveBookmarks(list);
+      renderBookmarks();
+    }
+    function openModal() {
+      document.getElementById('addBookmarkModal').style.display = 'flex';
+      document.getElementById('bookmarkName').focus();
+    }
+    function closeModal() {
+      document.getElementById('addBookmarkModal').style.display = 'none';
+      ['bookmarkName', 'bookmarkUrl', 'bookmarkDesc'].forEach(id => document.getElementById(id).value = '');
+    }
+    /* 初始化 */
+    createParticles();
+    renderBookmarks();
+    document.getElementById('addBookmarkBtn').addEventListener('click', openModal);
+    document.getElementById('addBookmarkModal').addEventListener('click', e => e.target === e.currentTarget && closeModal());
+    document.addEventListener('keydown', e => e.key === 'Escape' && closeModal());
+    document.addEventListener('click', e => e.target.matches('.remove-bookmark') && removeBookmark(e));
+  </script>
 </body>
 </html>
