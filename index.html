@@ -569,6 +569,7 @@
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
     const searchEngine = document.getElementById('searchEngine');
+    const bookmarkGrid = document.getElementById('bookmarkGrid');
 
     const searchUrls = {
       bilibili: 'https://search.bilibili.com/all?keyword=',
@@ -592,8 +593,6 @@
     searchInput.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') performSearch();
     });
-
-    const bookmarkGrid = document.getElementById('bookmarkGrid');
 
     function getInitials(name) {
       return name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
@@ -630,6 +629,8 @@
       bookmarkItem.setAttribute('data-url', url);
       bookmarkItem.setAttribute('data-desc', desc);
       bookmarkItem.draggable = isSorting;
+      if (isSorting) bookmarkItem.classList.add('sortable');
+
       bookmarkItem.innerHTML = `
         <div class="bookmark-icon">${initials}</div>
         <div class="bookmark-info">
@@ -638,7 +639,17 @@
         </div>
         <button class="remove-bookmark" onclick="removeBookmark(event, this)">×</button>
       `;
+
       bookmarkGrid.appendChild(bookmarkItem);
+
+      if (isSorting) {
+        bookmarkItem.addEventListener('dragstart', handleDragStart);
+        bookmarkItem.addEventListener('dragend', handleDragEnd);
+        bookmarkItem.addEventListener('dragover', handleDragOver);
+        bookmarkItem.addEventListener('dragenter', handleDragEnter);
+        bookmarkItem.addEventListener('dragleave', handleDragLeave);
+        bookmarkItem.addEventListener('drop', handleDrop);
+      }
     }
 
     function addBookmark() {
@@ -649,7 +660,6 @@
       appendBookmark({ name, url, desc });
       closeModal();
       saveBookmarks();
-      if (isSorting) enableDragAndDrop();
     }
 
     function removeBookmark(event, button) {
@@ -731,9 +741,7 @@
 
     function handleDragEnd() {
       this.classList.remove('dragging');
-      Array.from(bookmarkGrid.children).forEach(item => {
-        item.classList.remove('drag-over');
-      });
+      Array.from(bookmarkGrid.children).forEach(item => item.classList.remove('drag-over'));
     }
 
     function handleDragOver(e) {
