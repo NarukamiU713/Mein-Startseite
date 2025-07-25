@@ -516,344 +516,293 @@
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
+  <div class="particles" id="particles"></div>
 
-    <div class="container fade-in">
-        <div class="header">
-            <h1 class="logo">Zanes Startseite</h1>
-            <div class="search-container">
-                <div class="search-wrapper">
-                    <input type="text" class="search-input" placeholder="Suchbegriff eingeben..." id="searchInput">
-                    <button class="search-button" id="searchButton">Suchen</button>
-                </div>
-                <div class="search-selector">
-                    <select class="search-select" id="searchEngine">
-                        <option value="bilibili">Bilibili</option>
-                        <option value="google">Google</option>
-                        <option value="youtube">YouTube</option>
-                        <option value="zhihu">Zhihu</option>
-                        <option value="edge">Edge</option>
-                    </select>
-                </div>
-            </div>
+  <div class="container fade-in">
+    <div class="header">
+      <h1 class="logo">Zanes Startseite</h1>
+      <div class="search-container">
+        <div class="search-wrapper">
+          <input type="text" class="search-input" placeholder="Suchbegriff eingeben..." id="searchInput">
+          <button class="search-button" id="searchButton">Suchen</button>
         </div>
-
-        <div class="bookmarks">
-            <div class="bookmark-section">
-                <div class="section-header">
-                    <h2 class="section-title">Meine Lesezeichen</h2>
-                    <div>
-                        <button class="toggle-sort" id="toggleSortBtn">Anordnen</button>
-                        <button class="add-bookmark" id="addBookmarkBtn">+ Hinzufügen</button>
-                    </div>
-                </div>
-                <div class="bookmark-grid" id="bookmarkGrid">
-                    <!-- Default bookmarks -->
-                    <a href="https://www.bilibili.com" class="bookmark-item" data-name="Bilibili" data-url="https://www.bilibili.com" data-desc="Video-Community">
-                        <div class="bookmark-icon">B</div>
-                        <div class="bookmark-info">
-                            <h3>Bilibili</h3>
-                            <p>Video-Community</p>
-                        </div>
-                        <button class="remove-bookmark" onclick="removeBookmark(event, this)">×</button>
-                    </a>
-                    <a href="https://www.youtube.com" class="bookmark-item" data-name="YouTube" data-url="https://www.youtube.com" data-desc="Video-Plattform">
-                        <div class="bookmark-icon">YT</div>
-                        <div class="bookmark-info">
-                            <h3>YouTube</h3>
-                            <p>Video-Plattform</p>
-                        </div>
-                        <button class="remove-bookmark" onclick="removeBookmark(event, this)">×</button>
-                    </a>
-                    <a href="https://github.com" class="bookmark-item" data-name="GitHub" data-url="https://github.com" data-desc="Code-Repository">
-                        <div class="bookmark-icon">GH</div>
-                        <div class="bookmark-info">
-                            <h3>GitHub</h3>
-                            <p>Code-Repository</p>
-                        </div>
-                        <button class="remove-bookmark" onclick="removeBookmark(event, this)">×</button>
-                    </a>
-                    <a href="https://translate.google.com" class="bookmark-item" data-name="Google Translate" data-url="https://translate.google.com" data-desc="Übersetzungsdienst">
-                        <div class="bookmark-icon">翻</div>
-                        <div class="bookmark-info">
-                            <h3>Google Translate</h3>
-                            <p>Übersetzungsdienst</p>
-                        </div>
-                        <button class="remove-bookmark" onclick="removeBookmark(event, this)">×</button>
-                    </a>
-                </div>
-            </div>
+        <div class="search-selector">
+          <select class="search-select" id="searchEngine">
+            <option value="bilibili">Bilibili</option>
+            <option value="google">Google</option>
+            <option value="youtube">YouTube</option>
+            <option value="zhihu">Zhihu</option>
+            <option value="edge">Edge</option>
+          </select>
         </div>
+      </div>
     </div>
 
-    <!-- Add Bookmark Modal -->
-    <div class="modal" id="addBookmarkModal">
-        <div class="modal-content">
-            <h3>Neues Lesezeichen hinzufügen</h3>
-            <input type="text" id="bookmarkName" placeholder="Name der Website">
-            <input type="url" id="bookmarkUrl" placeholder="https://example.com">
-            <input type="text" id="bookmarkDesc" placeholder="Kurze Beschreibung">
-            <div class="modal-buttons">
-                <button class="cancel" onclick="closeModal()">Abbrechen</button>
-                <button onclick="addBookmark()">Hinzufügen</button>
-            </div>
+    <div class="bookmarks">
+      <div class="bookmark-section">
+        <div class="section-header">
+          <h2 class="section-title">Meine Lesezeichen</h2>
+          <div>
+            <button class="toggle-sort" id="toggleSortBtn">Anordnen</button>
+            <button class="add-bookmark" id="addBookmarkBtn">+ Hinzufügen</button>
+          </div>
         </div>
+        <div class="bookmark-grid" id="bookmarkGrid"></div>
+      </div>
     </div>
+  </div>
 
-    <script>
-        // Partikel-System
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            
-            function createParticle() {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                const size = Math.random() * 3 + 1.5;
-                const startX = Math.random() * window.innerWidth;
-                const opacity = Math.random() * 0.6 + 0.3;
-                
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = startX + 'px';
-                particle.style.opacity = opacity;
-                particle.style.animationDuration = (Math.random() * 8 + 20) + 's';
-                particle.style.animationDelay = Math.random() * 3 + 's';
-                
-                particlesContainer.appendChild(particle);
-                
-                setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.parentNode.removeChild(particle);
-                    }
-                }, 30000);
-            }
-            
-            setInterval(createParticle, 200);
-        }
+  <div class="modal" id="addBookmarkModal">
+    <div class="modal-content">
+      <h3>Neues Lesezeichen hinzufügen</h3>
+      <input type="text" id="bookmarkName" placeholder="Name der Website">
+      <input type="url" id="bookmarkUrl" placeholder="https://example.com">
+      <input type="text" id="bookmarkDesc" placeholder="Kurze Beschreibung">
+      <div class="modal-buttons">
+        <button class="cancel" onclick="closeModal()">Abbrechen</button>
+        <button onclick="addBookmark()">Hinzufügen</button>
+      </div>
+    </div>
+  </div>
 
-        // Suche
-        const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
-        const searchEngine = document.getElementById('searchEngine');
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const searchEngine = document.getElementById('searchEngine');
 
-        const searchUrls = {
-            bilibili: 'https://search.bilibili.com/all?keyword=',
-            google: 'https://www.google.com/search?q=',
-            youtube: 'https://www.youtube.com/results?search_query=',
-            zhihu: 'https://www.zhihu.com/search?type=content&q=',
-            edge: 'https://www.bing.com/search?q='
-        };
+    const searchUrls = {
+      bilibili: 'https://search.bilibili.com/all?keyword=',
+      google: 'https://www.google.com/search?q=',
+      youtube: 'https://www.youtube.com/results?search_query=',
+      zhihu: 'https://www.zhihu.com/search?type=content&q=',
+      edge: 'https://www.bing.com/search?q='
+    };
 
-        function performSearch() {
-            const query = searchInput.value.trim();
-            const engine = searchEngine.value;
-            
-            if (query) {
-                const encodedQuery = encodeURIComponent(query);
-                const searchUrl = searchUrls[engine] + encodedQuery;
-                window.open(searchUrl, '_blank');
-            }
-        }
+    function performSearch() {
+      const query = searchInput.value.trim();
+      const engine = searchEngine.value;
+      if (query) {
+        const encodedQuery = encodeURIComponent(query);
+        const searchUrl = searchUrls[engine] + encodedQuery;
+        window.open(searchUrl, '_blank');
+      }
+    }
 
-        searchButton.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') performSearch();
+    });
+
+    const bookmarkGrid = document.getElementById('bookmarkGrid');
+
+    function getInitials(name) {
+      return name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    function saveBookmarks() {
+      const bookmarks = Array.from(bookmarkGrid.children).map(item => ({
+        name: item.getAttribute('data-name'),
+        url: item.getAttribute('data-url'),
+        desc: item.getAttribute('data-desc')
+      }));
+      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    }
+
+    function loadBookmarks() {
+      const stored = localStorage.getItem('bookmarks');
+      const bookmarks = stored ? JSON.parse(stored) : [
+        { name: 'Bilibili', url: 'https://www.bilibili.com', desc: 'Video-Community' },
+        { name: 'YouTube', url: 'https://www.youtube.com', desc: 'Video-Plattform' },
+        { name: 'GitHub', url: 'https://github.com', desc: 'Code-Repository' },
+        { name: 'Google Translate', url: 'https://translate.google.com', desc: 'Übersetzungsdienst' }
+      ];
+      bookmarkGrid.innerHTML = '';
+      bookmarks.forEach(data => appendBookmark(data));
+    }
+
+    function appendBookmark({ name, url, desc }) {
+      const initials = getInitials(name);
+      const bookmarkItem = document.createElement('a');
+      bookmarkItem.href = url;
+      bookmarkItem.target = '_blank';
+      bookmarkItem.className = 'bookmark-item';
+      bookmarkItem.setAttribute('data-name', name);
+      bookmarkItem.setAttribute('data-url', url);
+      bookmarkItem.setAttribute('data-desc', desc);
+      bookmarkItem.draggable = isSorting;
+      bookmarkItem.innerHTML = `
+        <div class="bookmark-icon">${initials}</div>
+        <div class="bookmark-info">
+          <h3>${name}</h3>
+          <p>${desc}</p>
+        </div>
+        <button class="remove-bookmark" onclick="removeBookmark(event, this)">×</button>
+      `;
+      bookmarkGrid.appendChild(bookmarkItem);
+    }
+
+    function addBookmark() {
+      const name = document.getElementById('bookmarkName').value.trim();
+      const url = document.getElementById('bookmarkUrl').value.trim();
+      const desc = document.getElementById('bookmarkDesc').value.trim();
+      if (!name || !url) return alert('Bitte Name und URL eingeben!');
+      appendBookmark({ name, url, desc });
+      closeModal();
+      saveBookmarks();
+      if (isSorting) enableDragAndDrop();
+    }
+
+    function removeBookmark(event, button) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (confirm('Lesezeichen wirklich entfernen?')) {
+        button.parentElement.remove();
+        saveBookmarks();
+      }
+    }
+
+    function openModal() {
+      document.getElementById('addBookmarkModal').style.display = 'flex';
+      document.getElementById('bookmarkName').focus();
+    }
+
+    function closeModal() {
+      document.getElementById('addBookmarkModal').style.display = 'none';
+      document.getElementById('bookmarkName').value = '';
+      document.getElementById('bookmarkUrl').value = '';
+      document.getElementById('bookmarkDesc').value = '';
+    }
+
+    let isSorting = false;
+    let draggedItem = null;
+
+    function toggleSorting() {
+      isSorting = !isSorting;
+      const toggleBtn = document.getElementById('toggleSortBtn');
+      if (isSorting) {
+        toggleBtn.textContent = '✓ Fertig';
+        toggleBtn.classList.add('active');
+        bookmarkGrid.classList.add('sorting');
+        Array.from(bookmarkGrid.children).forEach(item => {
+          item.draggable = true;
+          item.classList.add('sortable');
         });
-
-        // Lesezeichen-Management
-        function getInitials(name) {
-            return name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
-        }
-
-        function addBookmark() {
-            const name = document.getElementById('bookmarkName').value.trim();
-            const url = document.getElementById('bookmarkUrl').value.trim();
-            const desc = document.getElementById('bookmarkDesc').value.trim();
-            
-            if (!name || !url) {
-                alert('Bitte Name und URL eingeben!');
-                return;
-            }
-            
-            const bookmarkGrid = document.getElementById('bookmarkGrid');
-            const bookmarkItem = document.createElement('a');
-            bookmarkItem.href = url;
-            bookmarkItem.className = 'bookmark-item';
-            bookmarkItem.setAttribute('data-name', name);
-            bookmarkItem.setAttribute('data-url', url);
-            bookmarkItem.setAttribute('data-desc', desc);
-            bookmarkItem.draggable = isSorting;
-            
-            const initials = getInitials(name);
-            
-            bookmarkItem.innerHTML = `
-                <div class="bookmark-icon">${initials}</div>
-                <div class="bookmark-info">
-                    <h3>${name}</h3>
-                    <p>${desc}</p>
-                </div>
-                <button class="remove-bookmark" onclick="removeBookmark(event, this)">×</button>
-            `;
-            
-            bookmarkGrid.appendChild(bookmarkItem);
-            closeModal();
-            if (isSorting) enableDragAndDrop();
-        }
-
-        function removeBookmark(event, button) {
-            event.preventDefault();
-            event.stopPropagation();
-            if (confirm('Lesezeichen wirklich entfernen?')) {
-                button.parentElement.remove();
-            }
-        }
-
-        function openModal() {
-            document.getElementById('addBookmarkModal').style.display = 'flex';
-            document.getElementById('bookmarkName').focus();
-        }
-
-        function closeModal() {
-            document.getElementById('addBookmarkModal').style.display = 'none';
-            document.getElementById('bookmarkName').value = '';
-            document.getElementById('bookmarkUrl').value = '';
-            document.getElementById('bookmarkDesc').value = '';
-        }
-
-        // Drag and Drop functionality
-        let isSorting = false;
-        let draggedItem = null;
-
-        function toggleSorting() {
-            isSorting = !isSorting;
-            const toggleBtn = document.getElementById('toggleSortBtn');
-            const bookmarkGrid = document.getElementById('bookmarkGrid');
-            const bookmarkItems = document.querySelectorAll('.bookmark-item');
-
-            if (isSorting) {
-                toggleBtn.textContent = '✓ Fertig';
-                toggleBtn.classList.add('active');
-                bookmarkGrid.classList.add('sorting');
-                bookmarkItems.forEach(item => {
-                    item.draggable = true;
-                    item.classList.add('sortable');
-                });
-                enableDragAndDrop();
-            } else {
-                toggleBtn.textContent = 'Anordnen';
-                toggleBtn.classList.remove('active');
-                bookmarkGrid.classList.remove('sorting');
-                bookmarkItems.forEach(item => {
-                    item.draggable = false;
-                    item.classList.remove('sortable');
-                });
-                disableDragAndDrop();
-            }
-        }
-
-        function enableDragAndDrop() {
-            const bookmarkItems = document.querySelectorAll('.bookmark-item');
-            bookmarkItems.forEach(item => {
-                item.addEventListener('dragstart', handleDragStart);
-                item.addEventListener('dragend', handleDragEnd);
-                item.addEventListener('dragover', handleDragOver);
-                item.addEventListener('dragenter', handleDragEnter);
-                item.addEventListener('dragleave', handleDragLeave);
-                item.addEventListener('drop', handleDrop);
-            });
-        }
-
-        function disableDragAndDrop() {
-            const bookmarkItems = document.querySelectorAll('.bookmark-item');
-            bookmarkItems.forEach(item => {
-                item.removeEventListener('dragstart', handleDragStart);
-                item.removeEventListener('dragend', handleDragEnd);
-                item.removeEventListener('dragover', handleDragOver);
-                item.removeEventListener('dragenter', handleDragEnter);
-                item.removeEventListener('dragleave', handleDragLeave);
-                item.removeEventListener('drop', handleDrop);
-            });
-        }
-
-        function handleDragStart(e) {
-            draggedItem = this;
-            this.classList.add('dragging');
-            e.dataTransfer.effectAllowed = 'move';
-            e.dataTransfer.setData('text/html', this.innerHTML);
-        }
-
-        function handleDragEnd() {
-            this.classList.remove('dragging');
-            const bookmarkItems = document.querySelectorAll('.bookmark-item');
-            bookmarkItems.forEach(item => {
-                item.classList.remove('drag-over');
-            });
-        }
-
-        function handleDragOver(e) {
-            if (e.preventDefault) {
-                e.preventDefault();
-            }
-            e.dataTransfer.dropEffect = 'move';
-            return false;
-        }
-
-        function handleDragEnter(e) {
-            this.classList.add('drag-over');
-        }
-
-        function handleDragLeave() {
-            this.classList.remove('drag-over');
-        }
-
-        function handleDrop(e) {
-            if (e.stopPropagation) {
-                e.stopPropagation();
-            }
-            
-            if (draggedItem !== this) {
-                const bookmarkGrid = document.getElementById('bookmarkGrid');
-                const children = Array.from(bookmarkGrid.children);
-                const draggedIndex = children.indexOf(draggedItem);
-                const targetIndex = children.indexOf(this);
-                
-                if (draggedIndex < targetIndex) {
-                    bookmarkGrid.insertBefore(draggedItem, this.nextSibling);
-                } else {
-                    bookmarkGrid.insertBefore(draggedItem, this);
-                }
-            }
-            
-            return false;
-        }
-
-        // Event Listeners
-        document.getElementById('addBookmarkBtn').addEventListener('click', openModal);
-        document.getElementById('toggleSortBtn').addEventListener('click', toggleSorting);
-        
-        document.getElementById('addBookmarkModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+        enableDragAndDrop();
+      } else {
+        toggleBtn.textContent = 'Anordnen';
+        toggleBtn.classList.remove('active');
+        bookmarkGrid.classList.remove('sorting');
+        Array.from(bookmarkGrid.children).forEach(item => {
+          item.draggable = false;
+          item.classList.remove('sortable');
         });
+        disableDragAndDrop();
+        saveBookmarks();
+      }
+    }
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            if (e.key === '/' && e.target !== searchInput) {
-                e.preventDefault();
-                searchInput.focus();
-            }
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
+    function enableDragAndDrop() {
+      Array.from(bookmarkGrid.children).forEach(item => {
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragend', handleDragEnd);
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('dragenter', handleDragEnter);
+        item.addEventListener('dragleave', handleDragLeave);
+        item.addEventListener('drop', handleDrop);
+      });
+    }
 
-        // Initialize
+    function disableDragAndDrop() {
+      Array.from(bookmarkGrid.children).forEach(item => {
+        item.removeEventListener('dragstart', handleDragStart);
+        item.removeEventListener('dragend', handleDragEnd);
+        item.removeEventListener('dragover', handleDragOver);
+        item.removeEventListener('dragenter', handleDragEnter);
+        item.removeEventListener('dragleave', handleDragLeave);
+        item.removeEventListener('drop', handleDrop);
+      });
+    }
+
+    function handleDragStart(e) {
+      draggedItem = this;
+      this.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    }
+
+    function handleDragEnd() {
+      this.classList.remove('dragging');
+      Array.from(bookmarkGrid.children).forEach(item => {
+        item.classList.remove('drag-over');
+      });
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+    }
+
+    function handleDragEnter() {
+      this.classList.add('drag-over');
+    }
+
+    function handleDragLeave() {
+      this.classList.remove('drag-over');
+    }
+
+    function handleDrop(e) {
+      e.stopPropagation();
+      if (draggedItem !== this) {
+        const children = Array.from(bookmarkGrid.children);
+        const draggedIndex = children.indexOf(draggedItem);
+        const targetIndex = children.indexOf(this);
+        if (draggedIndex < targetIndex) {
+          bookmarkGrid.insertBefore(draggedItem, this.nextSibling);
+        } else {
+          bookmarkGrid.insertBefore(draggedItem, this);
+        }
+        saveBookmarks();
+      }
+    }
+
+    document.getElementById('addBookmarkBtn').addEventListener('click', openModal);
+    document.getElementById('toggleSortBtn').addEventListener('click', toggleSorting);
+    document.getElementById('addBookmarkModal').addEventListener('click', function (e) {
+      if (e.target === this) closeModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === '/' && e.target !== searchInput) {
+        e.preventDefault();
         searchInput.focus();
-        createParticles();
-    </script>
+      }
+      if (e.key === 'Escape') closeModal();
+    });
+
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        const size = Math.random() * 3 + 1.5;
+        const startX = Math.random() * window.innerWidth;
+        const opacity = Math.random() * 0.6 + 0.3;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = startX + 'px';
+        particle.style.opacity = opacity;
+        particle.style.animationDuration = (Math.random() * 8 + 20) + 's';
+        particle.style.animationDelay = Math.random() * 3 + 's';
+        particlesContainer.appendChild(particle);
+        setTimeout(() => {
+          if (particle.parentNode) particle.parentNode.removeChild(particle);
+        }, 30000);
+      }
+      setInterval(createParticle, 200);
+    }
+
+    searchInput.focus();
+    createParticles();
+    loadBookmarks();
+  </script>
 </body>
 </html>
