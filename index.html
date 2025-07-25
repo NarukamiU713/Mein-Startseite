@@ -198,6 +198,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .section-title {
@@ -207,7 +209,7 @@
             letter-spacing: -0.5px;
         }
 
-        .add-bookmark {
+        .add-bookmark, .toggle-sort {
             background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -219,17 +221,28 @@
             backdrop-filter: blur(10px);
         }
 
-        .add-bookmark:hover {
+        .add-bookmark:hover, .toggle-sort:hover {
             background: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.4);
             transform: scale(1.08);
             box-shadow: 0 0 35px rgba(255, 255, 255, 0.2), 0 0 70px rgba(255, 255, 255, 0.1);
         }
 
+        .toggle-sort.active {
+            background: rgba(100, 255, 100, 0.2);
+            border-color: rgba(100, 255, 100, 0.4);
+        }
+
         .bookmark-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
+        }
+
+        .bookmark-grid.sorting {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .bookmark-item {
@@ -243,7 +256,19 @@
             color: #e0e0e0;
             transition: all 0.3s ease;
             position: relative;
-            group: hover;
+            cursor: grab;
+        }
+
+        .bookmark-item:active {
+            cursor: grabbing;
+        }
+
+        .bookmark-item.sortable {
+            cursor: grab;
+        }
+
+        .bookmark-item.sortable:active {
+            cursor: grabbing;
         }
 
         .bookmark-item:hover {
@@ -425,6 +450,12 @@
                 gap: 1rem;
                 align-items: flex-start;
             }
+
+            .section-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
         }
 
         .fade-in {
@@ -440,6 +471,17 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        .dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+            z-index: 100;
+        }
+
+        .drag-over {
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
@@ -470,7 +512,10 @@
             <div class="bookmark-section">
                 <div class="section-header">
                     <h2 class="section-title">Meine Lesezeichen</h2>
-                    <button class="add-bookmark" id="addBookmarkBtn">+ Hinzufügen</button>
+                    <div>
+                        <button class="toggle-sort" id="toggleSortBtn">Anordnen</button>
+                        <button class="add-bookmark" id="addBookmarkBtn">+ Hinzufügen</button>
+                    </div>
                 </div>
                 <div class="bookmark-grid" id="bookmarkGrid">
                     <!-- Default bookmarks -->
@@ -610,6 +655,7 @@
             bookmarkItem.setAttribute('data-name', name);
             bookmarkItem.setAttribute('data-url', url);
             bookmarkItem.setAttribute('data-desc', desc);
+            bookmarkItem.draggable = isSorting;
             
             const initials = getInitials(name);
             
@@ -624,6 +670,7 @@
             
             bookmarkGrid.appendChild(bookmarkItem);
             closeModal();
+            if (isSorting) enableDragAndDrop();
         }
 
         function removeBookmark(event, button) {
@@ -646,8 +693,116 @@
             document.getElementById('bookmarkDesc').value = '';
         }
 
+        // Drag and Drop functionality
+        let isSorting = false;
+        let draggedItem = null;
+
+        function toggleSorting() {
+            isSorting = !isSorting;
+            const toggleBtn = document.getElementById('toggleSortBtn');
+            const bookmarkGrid = document.getElementById('bookmarkGrid');
+            const bookmarkItems = document.querySelectorAll('.bookmark-item');
+
+            if (isSorting) {
+                toggleBtn.textContent = '✓ Fertig';
+                toggleBtn.classList.add('active');
+                bookmarkGrid.classList.add('sorting');
+                bookmarkItems.forEach(item => {
+                    item.draggable = true;
+                    item.classList.add('sortable');
+                });
+                enableDragAndDrop();
+            } else {
+                toggleBtn.textContent = 'Anordnen';
+                toggleBtn.classList.remove('active');
+                bookmarkGrid.classList.remove('sorting');
+                bookmarkItems.forEach(item => {
+                    item.draggable = false;
+                    item.classList.remove('sortable');
+                });
+                disableDragAndDrop();
+            }
+        }
+
+        function enableDragAndDrop() {
+            const bookmarkItems = document.querySelectorAll('.bookmark-item');
+            bookmarkItems.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
+                item.addEventListener('dragover', handleDragOver);
+                item.addEventListener('dragenter', handleDragEnter);
+                item.addEventListener('dragleave', handleDragLeave);
+                item.addEventListener('drop', handleDrop);
+            });
+        }
+
+        function disableDragAndDrop() {
+            const bookmarkItems = document.querySelectorAll('.bookmark-item');
+            bookmarkItems.forEach(item => {
+                item.removeEventListener('dragstart', handleDragStart);
+                item.removeEventListener('dragend', handleDragEnd);
+                item.removeEventListener('dragover', handleDragOver);
+                item.removeEventListener('dragenter', handleDragEnter);
+                item.removeEventListener('dragleave', handleDragLeave);
+                item.removeEventListener('drop', handleDrop);
+            });
+        }
+
+        function handleDragStart(e) {
+            draggedItem = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+        }
+
+        function handleDragEnd() {
+            this.classList.remove('dragging');
+            const bookmarkItems = document.querySelectorAll('.bookmark-item');
+            bookmarkItems.forEach(item => {
+                item.classList.remove('drag-over');
+            });
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+
+        function handleDragEnter(e) {
+            this.classList.add('drag-over');
+        }
+
+        function handleDragLeave() {
+            this.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            
+            if (draggedItem !== this) {
+                const bookmarkGrid = document.getElementById('bookmarkGrid');
+                const children = Array.from(bookmarkGrid.children);
+                const draggedIndex = children.indexOf(draggedItem);
+                const targetIndex = children.indexOf(this);
+                
+                if (draggedIndex < targetIndex) {
+                    bookmarkGrid.insertBefore(draggedItem, this.nextSibling);
+                } else {
+                    bookmarkGrid.insertBefore(draggedItem, this);
+                }
+            }
+            
+            return false;
+        }
+
         // Event Listeners
         document.getElementById('addBookmarkBtn').addEventListener('click', openModal);
+        document.getElementById('toggleSortBtn').addEventListener('click', toggleSorting);
         
         document.getElementById('addBookmarkModal').addEventListener('click', function(e) {
             if (e.target === this) {
