@@ -1,8 +1,8 @@
 
 <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0054)file:///C:/Users/30341/Desktop/improved_startpage.html -->
+<html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zanes Startseite</title>
     <style>
@@ -217,9 +217,9 @@
         }
 
         .bookmark-section {
-            background: rgba(0, 0, 0, 0.15);  /* Lighter than 0.25 */
-            backdrop-filter: blur(10px);  /* Increased blur */
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 2.5rem;
             margin-bottom: 2rem;
@@ -227,8 +227,8 @@
         }
 
         .bookmark-section:hover {
-            background: rgba(0, 0, 0, 0.3);  /* Lighter than 0.5 */
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.15);
         }
 
         .section-controls {
@@ -289,7 +289,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
-            gap: 1rem;
         }
 
         .section-title {
@@ -297,10 +296,6 @@
             font-weight: 300;
             color: #ffffff;
             letter-spacing: -0.5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: calc(100% - 200px); /* Platz für Buttons reservieren */
         }
 
         .add-bookmark {
@@ -326,17 +321,15 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
-            grid-auto-rows: max-content; /* Fixe Zeilenhöhe basierend auf Inhalt */
-            position: relative; /* Für absolute Positionierung während Drag */
         }
 
         .bookmark-item {
             display: flex;
             align-items: center;
             padding: 1.2rem;
-            background: rgba(255, 255, 255, 0.02);  /* Lighter than 0.03 */
-            backdrop-filter: blur(8px);  /* Increased blur */
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             text-decoration: none;
             color: #e0e0e0;
@@ -346,18 +339,11 @@
         }
 
         .bookmark-item.dragging {
-            position: absolute; /* Verhindert Grid-Neuberechnung */
             opacity: 0.7;
             transform: rotate(3deg) scale(1.05);
             z-index: 1000;
             pointer-events: none;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            width: var(--drag-width); /* Dynamische Breite während Drag */
-        }
-
-        .bookmark-item.placeholder {
-            visibility: hidden;
-            grid-column: 1;
         }
 
         .bookmark-item.drag-over {
@@ -367,8 +353,8 @@
         }
 
         .bookmark-item:hover:not(.dragging) {
-            background: rgba(255, 255, 255, 0.08);  /* Lighter than 0.1 */
-            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-4px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 50px rgba(255, 255, 255, 0.1);
         }
@@ -388,29 +374,16 @@
             font-size: 1.1rem;
         }
 
-        .bookmark-info {
-            flex: 1;
-            min-width: 0; /* Ermöglicht Flex-Shrink */
-            margin-right: 30px; /* Platz für den Remove-Button */
-            overflow: hidden; /* Verhindert Textüberlauf */
-        }
-
         .bookmark-info h3 {
             font-size: 1.1rem;
             font-weight: 500;
             margin-bottom: 0.3rem;
             color: #ffffff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .bookmark-info p {
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.6);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .remove-bookmark {
@@ -562,151 +535,87 @@
 
         /* Light Theme Styles */
         body.light-theme {
-            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #e8e8e8 100%);
-            color: #2c2c2c;
+            background: radial-gradient(ellipse at center, #ffffff 0%, #f5f5f5 50%, #e0e0e0 100%);
+            color: #333;
         }
 
         body.light-theme .particles {
             background: radial-gradient(ellipse at center, 
-                rgba(192, 192, 192, 0.2) 0%, 
-                rgba(211, 211, 211, 0.3) 40%, 
-                rgba(169, 169, 169, 0.4) 100%);
+                rgba(245, 245, 245, 0.3) 0%, 
+                rgba(230, 230, 230, 0.6) 40%, 
+                rgba(220, 220, 220, 0.9) 100%);
         }
 
         body.light-theme .search-input,
         body.light-theme .search-select {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.7);
             color: #333;
-            border: 1px solid rgba(169, 169, 169, 0.3);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        body.light-theme .search-input::placeholder {
-            color: #757575;
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
         body.light-theme .search-button {
-            background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
+            background: rgba(0, 0, 0, 0.05);
             color: #333;
-            border: 1px solid rgba(169, 169, 169, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        body.light-theme .search-button:hover {
-            background: linear-gradient(135deg, #c0c0c0, #a9a9a9);
-            transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
         body.light-theme .bookmark-section {
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(192, 192, 192, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        body.light-theme .bookmark-section:hover {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.7);
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
         body.light-theme .bookmark-item {
-            background: linear-gradient(135deg, #f8f8f8, #f0f0f0);
-            border: 1px solid rgba(169, 169, 169, 0.2);
-            color: #2c2c2c;
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #333;
         }
 
         body.light-theme .bookmark-item:hover {
-            background: linear-gradient(135deg, #ffffff, #f8f8f8);
-            border-color: rgba(169, 169, 169, 0.4);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.8);
         }
 
         body.light-theme .bookmark-info h3 {
-            color: #2c2c2c;
+            color: #333;
         }
 
         body.light-theme .bookmark-info p {
-            color: #595959;
+            color: #666;
         }
 
         body.light-theme .theme-toggle {
-            background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
-            border: 1px solid rgba(169, 169, 169, 0.3);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
         }
 
-        body.light-theme .theme-toggle:hover {
-            background: linear-gradient(135deg, #c0c0c0, #a9a9a9);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        body.light-theme .theme-toggle i {
+            color: #333;
         }
 
         body.light-theme .logo {
-            color: #2c2c2c;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-theme .add-bookmark,
-        body.light-theme .rename-section,
-        body.light-theme .delete-section {
-            background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
-            color: #2c2c2c;
-            border: 1px solid rgba(169, 169, 169, 0.3);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        body.light-theme .add-bookmark:hover,
-        body.light-theme .rename-section:hover {
-            background: linear-gradient(135deg, #d0d0d0, #c0c0c0);
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        body.light-theme .delete-section:hover {
-            background: linear-gradient(135deg, #ffcdd2, #ef9a9a);
-            color: #c62828;
-        }
-
-        body.light-theme .add-section {
-            background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
-            color: #2c2c2c;
-            border: 1px solid rgba(169, 169, 169, 0.3);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        body.light-theme .add-section:hover {
-            background: linear-gradient(135deg, #c0c0c0, #a9a9a9);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
 
         body.light-theme .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(169, 169, 169, 0.2);
+            background: rgba(255, 255, 255, 0.9);
         }
 
         body.light-theme .modal input {
-            background: rgba(255, 255, 255, 0.9);
-            color: #2c2c2c;
-            border: 1px solid rgba(169, 169, 169, 0.3);
-        }
-
-        body.light-theme .modal input::placeholder {
-            color: #757575;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
         body.light-theme .modal h3 {
-            color: #2c2c2c;
-        }
-
-        body.light-theme .bookmark-icon {
-            background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
-            border: 1px solid rgba(169, 169, 169, 0.3);
-            color: #2c2c2c;
+            color: #333;
         }
     </style>
 </head>
-<body>
-    <div class="particles" id="particles"></div>
+<body class="">
+    <button class="theme-toggle" id="themeToggle">
+        <i>🌙</i>
+    </button>
+
+    <div class="particles" id="particles"><div class="particle star" style="width: 1.24938px; height: 1.24938px; left: 84.3937%; top: 47.6202%; animation-delay: 1.69045s; animation-duration: 4.26293s;"></div><div class="particle blue-star" style="width: 1.25798px; height: 1.25798px; left: 13.8232%; top: 44.0502%; animation-delay: 0.0656592s; animation-duration: 4.64956s;"></div><div class="particle star" style="width: 1.75672px; height: 1.75672px; left: 75.7114%; top: 7.12821%; animation-delay: 0.352166s; animation-duration: 4.5572s;"></div><div class="particle star" style="width: 2.7869px; height: 2.7869px; left: 26.337%; top: 20.7281%; animation-delay: 0.216709s; animation-duration: 4.35956s;"></div><div class="particle star" style="width: 2.66031px; height: 2.66031px; left: 77.1427%; top: 8.20334%; animation-delay: 2.36658s; animation-duration: 3.62087s;"></div><div class="particle star" style="width: 1.13002px; height: 1.13002px; left: 61.9105%; top: 62.0793%; animation-delay: 3.58006s; animation-duration: 3.24977s;"></div><div class="particle star" style="width: 1.7507px; height: 1.7507px; left: 42.2131%; top: 31.0654%; animation-delay: 0.521073s; animation-duration: 4.66465s;"></div><div class="particle blue-star" style="width: 1.92649px; height: 1.92649px; left: 56.1611%; top: 25.4008%; animation-delay: 0.75351s; animation-duration: 4.97036s;"></div><div class="particle distant-star" style="width: 1.38751px; height: 1.38751px; left: 19.4745%; top: 41.3633%; animation-delay: 1.2212s; animation-duration: 3.62183s;"></div><div class="particle star" style="width: 2.2852px; height: 2.2852px; left: 18.7716%; top: 62.1529%; animation-delay: 3.37415s; animation-duration: 5.2442s;"></div><div class="particle star" style="width: 2.03496px; height: 2.03496px; left: 29.2406%; top: 37.9557%; animation-delay: 0.844522s; animation-duration: 5.06394s;"></div><div class="particle star" style="width: 1.1367px; height: 1.1367px; left: 43.3908%; top: 84.5139%; animation-delay: 2.22578s; animation-duration: 4.25044s;"></div><div class="particle star" style="width: 1.08646px; height: 1.08646px; left: 87.062%; top: 84.1194%; animation-delay: 1.67179s; animation-duration: 4.35937s;"></div><div class="particle star" style="width: 1.61233px; height: 1.61233px; left: 98.7229%; top: 78.3545%; animation-delay: 2.70044s; animation-duration: 4.2463s;"></div><div class="particle star" style="width: 2.78283px; height: 2.78283px; left: 8.84772%; top: 7.53511%; animation-delay: 0.747947s; animation-duration: 3.44488s;"></div><div class="particle star" style="width: 2.47219px; height: 2.47219px; left: 32.204%; top: 72.7976%; animation-delay: 2.00219s; animation-duration: 4.4836s;"></div><div class="particle star" style="width: 2.47712px; height: 2.47712px; left: 62.0318%; top: 43.9819%; animation-delay: 3.03651s; animation-duration: 4.16275s;"></div><div class="particle star" style="width: 1.0025px; height: 1.0025px; left: 58.013%; top: 65.2048%; animation-delay: 0.728349s; animation-duration: 5.20648s;"></div><div class="particle star" style="width: 2.35797px; height: 2.35797px; left: 71.1664%; top: 76.444%; animation-delay: 3.97956s; animation-duration: 3.7965s;"></div><div class="particle star" style="width: 1.95899px; height: 1.95899px; left: 46.1603%; top: 42.946%; animation-delay: 0.703564s; animation-duration: 4.08416s;"></div><div class="particle distant-star" style="width: 1.31116px; height: 1.31116px; left: 68.8206%; top: 62.2201%; animation-delay: 3.86634s; animation-duration: 3.80462s;"></div><div class="particle star" style="width: 1.34736px; height: 1.34736px; left: 9.40287%; top: 55.0336%; animation-delay: 3.63002s; animation-duration: 5.74886s;"></div><div class="particle star" style="width: 1.30857px; height: 1.30857px; left: 3.08188%; top: 26.0782%; animation-delay: 3.01589s; animation-duration: 4.8393s;"></div><div class="particle distant-star" style="width: 1.4861px; height: 1.4861px; left: 85.726%; top: 90.9712%; animation-delay: 0.317257s; animation-duration: 3.15273s;"></div><div class="particle distant-star" style="width: 1.08149px; height: 1.08149px; left: 89.0566%; top: 52.0934%; animation-delay: 2.9636s; animation-duration: 4.75653s;"></div><div class="particle blue-star" style="width: 2.19442px; height: 2.19442px; left: 55.3173%; top: 48.2175%; animation-delay: 0.813843s; animation-duration: 4.34051s;"></div><div class="particle star" style="width: 2.61251px; height: 2.61251px; left: 72.1985%; top: 21.8419%; animation-delay: 0.00218704s; animation-duration: 3.6965s;"></div><div class="particle star" style="width: 2.24804px; height: 2.24804px; left: 41.1069%; top: 31.1979%; animation-delay: 0.320812s; animation-duration: 5.34143s;"></div><div class="particle star" style="width: 1.28589px; height: 1.28589px; left: 46.8293%; top: 6.59627%; animation-delay: 2.20961s; animation-duration: 5.16489s;"></div><div class="particle star" style="width: 2.1306px; height: 2.1306px; left: 9.48723%; top: 17.7239%; animation-delay: 0.048916s; animation-duration: 3.2437s;"></div><div class="particle blue-star" style="width: 1.21248px; height: 1.21248px; left: 72.1675%; top: 43.8288%; animation-delay: 2.07485s; animation-duration: 5.46383s;"></div><div class="particle star" style="width: 1.13284px; height: 1.13284px; left: 14.891%; top: 27.0053%; animation-delay: 1.56413s; animation-duration: 5.24701s;"></div><div class="particle star" style="width: 1.03694px; height: 1.03694px; left: 20.6928%; top: 44.9441%; animation-delay: 0.101934s; animation-duration: 3.36739s;"></div><div class="particle star" style="width: 2.50913px; height: 2.50913px; left: 42.4595%; top: 15.1106%; animation-delay: 2.0543s; animation-duration: 5.84175s;"></div><div class="particle star" style="width: 2.53279px; height: 2.53279px; left: 8.08096%; top: 1.07683%; animation-delay: 0.0769883s; animation-duration: 3.55936s;"></div><div class="particle star" style="width: 2.66662px; height: 2.66662px; left: 23.6121%; top: 58.5777%; animation-delay: 1.25908s; animation-duration: 3.15766s;"></div><div class="particle blue-star" style="width: 1.16596px; height: 1.16596px; left: 94.7082%; top: 94.6151%; animation-delay: 3.25174s; animation-duration: 5.52439s;"></div><div class="particle star" style="width: 1.50121px; height: 1.50121px; left: 16.9186%; top: 63.0503%; animation-delay: 2.98636s; animation-duration: 3.9093s;"></div><div class="particle star" style="width: 1.91184px; height: 1.91184px; left: 81.6218%; top: 62.8845%; animation-delay: 3.12381s; animation-duration: 3.70101s;"></div><div class="particle star" style="width: 2.12451px; height: 2.12451px; left: 31.1929%; top: 92.4406%; animation-delay: 3.66076s; animation-duration: 3.80269s;"></div><div class="particle blue-star" style="width: 1.56676px; height: 1.56676px; left: 25.1583%; top: 49.8454%; animation-delay: 2.38768s; animation-duration: 5.74139s;"></div><div class="particle blue-star" style="width: 1.36534px; height: 1.36534px; left: 28.7642%; top: 63.162%; animation-delay: 0.153358s; animation-duration: 5.9376s;"></div><div class="particle star" style="width: 1.28039px; height: 1.28039px; left: 8.93249%; top: 30.0201%; animation-delay: 1.25039s; animation-duration: 5.72994s;"></div><div class="particle blue-star" style="width: 1.23044px; height: 1.23044px; left: 51.605%; top: 4.74276%; animation-delay: 0.10028s; animation-duration: 5.29961s;"></div><div class="particle star" style="width: 1.06305px; height: 1.06305px; left: 48.7026%; top: 83.8703%; animation-delay: 1.07106s; animation-duration: 3.47997s;"></div><div class="particle star" style="width: 1.90949px; height: 1.90949px; left: 25.9004%; top: 39.0244%; animation-delay: 0.317876s; animation-duration: 5.74255s;"></div><div class="particle star" style="width: 1.67617px; height: 1.67617px; left: 81.5226%; top: 33.4614%; animation-delay: 2.65122s; animation-duration: 3.83066s;"></div><div class="particle star" style="width: 1.35902px; height: 1.35902px; left: 76.8648%; top: 30.7669%; animation-delay: 2.14533s; animation-duration: 5.59007s;"></div><div class="particle star" style="width: 2.83107px; height: 2.83107px; left: 4.86332%; top: 38.9532%; animation-delay: 3.83027s; animation-duration: 3.482s;"></div><div class="particle distant-star" style="width: 0.878588px; height: 0.878588px; left: 40.7221%; top: 54.3219%; animation-delay: 3.32347s; animation-duration: 4.34857s;"></div><div class="particle star" style="width: 1.40756px; height: 1.40756px; left: 71.0924%; top: 23.7354%; animation-delay: 2.74588s; animation-duration: 5.32394s;"></div><div class="particle blue-star" style="width: 1.03448px; height: 1.03448px; left: 60.8741%; top: 69.3978%; animation-delay: 0.802755s; animation-duration: 3.62902s;"></div><div class="particle star" style="width: 2.71959px; height: 2.71959px; left: 91.59%; top: 9.97166%; animation-delay: 2.4827s; animation-duration: 5.86579s;"></div><div class="particle blue-star" style="width: 2.22631px; height: 2.22631px; left: 60.1912%; top: 23.7125%; animation-delay: 3.24437s; animation-duration: 5.60612s;"></div><div class="particle star" style="width: 1.90261px; height: 1.90261px; left: 7.12921%; top: 96.1752%; animation-delay: 1.37413s; animation-duration: 4.92591s;"></div><div class="particle star" style="width: 1.71139px; height: 1.71139px; left: 24.5987%; top: 64.0356%; animation-delay: 0.603821s; animation-duration: 5.05018s;"></div><div class="particle star" style="width: 2.05166px; height: 2.05166px; left: 6.8439%; top: 55.2611%; animation-delay: 1.03063s; animation-duration: 5.17996s;"></div><div class="particle star" style="width: 2.60125px; height: 2.60125px; left: 35.6057%; top: 44.2319%; animation-delay: 0.917943s; animation-duration: 3.37874s;"></div><div class="particle star" style="width: 2.20415px; height: 2.20415px; left: 29.2278%; top: 8.10785%; animation-delay: 3.54988s; animation-duration: 3.46902s;"></div><div class="particle star" style="width: 2.51038px; height: 2.51038px; left: 77.7621%; top: 31.2654%; animation-delay: 2.9563s; animation-duration: 4.17404s;"></div><div class="particle star" style="width: 2.26827px; height: 2.26827px; left: 63.2409%; top: 68.6657%; animation-delay: 3.90117s; animation-duration: 3.51902s;"></div><div class="particle star" style="width: 1.78098px; height: 1.78098px; left: 88.4689%; top: 43.2489%; animation-delay: 3.98969s; animation-duration: 4.77734s;"></div><div class="particle star" style="width: 1.74946px; height: 1.74946px; left: 52.6632%; top: 48.355%; animation-delay: 0.945167s; animation-duration: 5.68739s;"></div><div class="particle star" style="width: 1.3837px; height: 1.3837px; left: 69.1806%; top: 36.3674%; animation-delay: 0.0422091s; animation-duration: 3.64645s;"></div><div class="particle blue-star" style="width: 2.17647px; height: 2.17647px; left: 36.2204%; top: 21.5421%; animation-delay: 3.38131s; animation-duration: 5.92922s;"></div><div class="particle star" style="width: 1.65604px; height: 1.65604px; left: 32.598%; top: 60.906%; animation-delay: 2.26539s; animation-duration: 3.957s;"></div><div class="particle star" style="width: 1.27309px; height: 1.27309px; left: 66.1509%; top: 35.6171%; animation-delay: 3.80556s; animation-duration: 3.74645s;"></div><div class="particle distant-star" style="width: 1.20334px; height: 1.20334px; left: 82.3602%; top: 88.7833%; animation-delay: 1.65582s; animation-duration: 5.20175s;"></div><div class="particle star" style="width: 1.77924px; height: 1.77924px; left: 74.9871%; top: 99.2844%; animation-delay: 0.31342s; animation-duration: 5.16255s;"></div><div class="particle star" style="width: 1.64186px; height: 1.64186px; left: 96.2682%; top: 67.1638%; animation-delay: 0.159994s; animation-duration: 3.41701s;"></div><div class="particle star" style="width: 1.65246px; height: 1.65246px; left: 0.0782889%; top: 27.2664%; animation-delay: 3.78536s; animation-duration: 3.16521s;"></div><div class="particle blue-star" style="width: 0.805396px; height: 0.805396px; left: 30.6467%; top: 40.2795%; animation-delay: 3.30208s; animation-duration: 3.72112s;"></div><div class="particle star" style="width: 1.37726px; height: 1.37726px; left: 99.4291%; top: 55.7104%; animation-delay: 3.49627s; animation-duration: 3.4108s;"></div><div class="particle blue-star" style="width: 1.36493px; height: 1.36493px; left: 51.3211%; top: 44.9402%; animation-delay: 3.20122s; animation-duration: 5.27316s;"></div><div class="particle star" style="width: 1.81053px; height: 1.81053px; left: 53.3049%; top: 95.6085%; animation-delay: 2.32062s; animation-duration: 4.69539s;"></div><div class="particle blue-star" style="width: 1.8763px; height: 1.8763px; left: 18.7632%; top: 93.1329%; animation-delay: 3.9182s; animation-duration: 4.31708s;"></div><div class="particle star" style="width: 2.16387px; height: 2.16387px; left: 99.1953%; top: 86.5898%; animation-delay: 3.79233s; animation-duration: 3.1772s;"></div><div class="particle blue-star" style="width: 1.11901px; height: 1.11901px; left: 61.1447%; top: 46.6848%; animation-delay: 2.72397s; animation-duration: 3.76549s;"></div><div class="particle star" style="width: 2.54896px; height: 2.54896px; left: 25.6288%; top: 1.07198%; animation-delay: 2.33977s; animation-duration: 5.03906s;"></div><div class="particle star" style="width: 1.13812px; height: 1.13812px; left: 7.29444%; top: 70.4014%; animation-delay: 3.95854s; animation-duration: 5.69583s;"></div><div class="particle star" style="width: 2.46792px; height: 2.46792px; left: 70.1544%; top: 28.0415%; animation-delay: 1.74832s; animation-duration: 3.56502s;"></div><div class="particle blue-star" style="width: 1.51031px; height: 1.51031px; left: 46.5567%; top: 18.5514%; animation-delay: 1.38282s; animation-duration: 3.6746s;"></div><div class="particle distant-star" style="width: 0.605567px; height: 0.605567px; left: 43.4114%; top: 71.3549%; animation-delay: 2.68906s; animation-duration: 5.66332s;"></div><div class="particle star" style="width: 1.87944px; height: 1.87944px; left: 7.50702%; top: 45.7351%; animation-delay: 3.79137s; animation-duration: 3.17611s;"></div><div class="particle distant-star" style="width: 0.574939px; height: 0.574939px; left: 21.401%; top: 95.5879%; animation-delay: 1.07552s; animation-duration: 5.52124s;"></div><div class="particle distant-star" style="width: 0.79899px; height: 0.79899px; left: 28.1497%; top: 53.7974%; animation-delay: 3.59642s; animation-duration: 4.94527s;"></div><div class="particle star" style="width: 1.5875px; height: 1.5875px; left: 85.2067%; top: 15.3764%; animation-delay: 3.79339s; animation-duration: 3.05402s;"></div><div class="particle star" style="width: 2.2257px; height: 2.2257px; left: 78.475%; top: 96.218%; animation-delay: 2.69947s; animation-duration: 5.85292s;"></div><div class="particle star" style="width: 1.41955px; height: 1.41955px; left: 88.4671%; top: 86.4645%; animation-delay: 2.82979s; animation-duration: 3.35344s;"></div><div class="particle star" style="width: 1.06927px; height: 1.06927px; left: 82.6891%; top: 2.4512%; animation-delay: 2.59029s; animation-duration: 3.68321s;"></div><div class="particle star" style="width: 1.49136px; height: 1.49136px; left: 43.4551%; top: 76.7333%; animation-delay: 1.87386s; animation-duration: 4.12928s;"></div><div class="particle blue-star" style="width: 2.07011px; height: 2.07011px; left: 60.7751%; top: 70.7941%; animation-delay: 3.8091s; animation-duration: 4.29292s;"></div><div class="particle star" style="width: 2.75305px; height: 2.75305px; left: 99.2883%; top: 63.4093%; animation-delay: 2.65186s; animation-duration: 3.66016s;"></div><div class="particle star" style="width: 1.07471px; height: 1.07471px; left: 15.9142%; top: 1.94286%; animation-delay: 2.35633s; animation-duration: 3.67865s;"></div><div class="particle blue-star" style="width: 1.7681px; height: 1.7681px; left: 52.6565%; top: 55.5587%; animation-delay: 0.334968s; animation-duration: 5.91224s;"></div><div class="particle star" style="width: 2.94502px; height: 2.94502px; left: 19.2224%; top: 46.1376%; animation-delay: 1.56576s; animation-duration: 5.9067s;"></div><div class="particle star" style="width: 1.01911px; height: 1.01911px; left: 81.8144%; top: 41.6866%; animation-delay: 1.99538s; animation-duration: 4.23764s;"></div><div class="particle star" style="width: 2.9428px; height: 2.9428px; left: 43.6711%; top: 54.6028%; animation-delay: 1.76444s; animation-duration: 3.01629s;"></div><div class="particle star" style="width: 1.05104px; height: 1.05104px; left: 63.235%; top: 34.3905%; animation-delay: 2.76059s; animation-duration: 3.97798s;"></div><div class="particle star" style="width: 2.45899px; height: 2.45899px; left: 62.5034%; top: 74.3891%; animation-delay: 2.20972s; animation-duration: 5.16441s;"></div><div class="particle star" style="width: 2.06643px; height: 2.06643px; left: 70.6247%; top: 68.3995%; animation-delay: 0.0972434s; animation-duration: 5.67868s;"></div><div class="particle star" style="width: 2.80872px; height: 2.80872px; left: 15.0542%; top: 20.632%; animation-delay: 3.95057s; animation-duration: 5.21776s;"></div><div class="particle star" style="width: 1.87966px; height: 1.87966px; left: 88.4397%; top: 77.2687%; animation-delay: 3.15838s; animation-duration: 4.29028s;"></div><div class="particle blue-star" style="width: 1.14357px; height: 1.14357px; left: 46.4887%; top: 50.5853%; animation-delay: 0.609032s; animation-duration: 3.96949s;"></div><div class="particle star" style="width: 1.01682px; height: 1.01682px; left: 41.6777%; top: 2.2695%; animation-delay: 3.34612s; animation-duration: 4.72842s;"></div><div class="particle star" style="width: 2.7115px; height: 2.7115px; left: 39.8476%; top: 75.1478%; animation-delay: 2.46839s; animation-duration: 4.92956s;"></div><div class="particle star" style="width: 1.37856px; height: 1.37856px; left: 24.6198%; top: 20.8514%; animation-delay: 2.10951s; animation-duration: 5.26433s;"></div><div class="particle star" style="width: 1.72965px; height: 1.72965px; left: 53.9237%; top: 2.80672%; animation-delay: 3.52158s; animation-duration: 5.86345s;"></div><div class="particle distant-star" style="width: 1.06134px; height: 1.06134px; left: 69.8212%; top: 39.247%; animation-delay: 1.1649s; animation-duration: 3.25117s;"></div><div class="particle distant-star" style="width: 1.32641px; height: 1.32641px; left: 87.4235%; top: 94.7187%; animation-delay: 2.49282s; animation-duration: 4.43735s;"></div><div class="particle blue-star" style="width: 1.00464px; height: 1.00464px; left: 38.0742%; top: 82.2293%; animation-delay: 2.43964s; animation-duration: 4.6238s;"></div><div class="particle blue-star" style="width: 1.54577px; height: 1.54577px; left: 52.2352%; top: 26.6068%; animation-delay: 0.85221s; animation-duration: 5.40891s;"></div><div class="particle blue-star" style="width: 2.0894px; height: 2.0894px; left: 27.3644%; top: 4.12139%; animation-delay: 2.19676s; animation-duration: 4.26905s;"></div><div class="particle star" style="width: 1.00963px; height: 1.00963px; left: 98.4298%; top: 3.81867%; animation-delay: 3.60499s; animation-duration: 5.58071s;"></div><div class="particle star" style="width: 1.42889px; height: 1.42889px; left: 41.1962%; top: 12.1213%; animation-delay: 1.27389s; animation-duration: 5.75829s;"></div><div class="particle star" style="width: 1.09065px; height: 1.09065px; left: 29.1437%; top: 68.7972%; animation-delay: 0.269247s; animation-duration: 4.0675s;"></div><div class="particle star" style="width: 2.7393px; height: 2.7393px; left: 10.1322%; top: 13.6833%; animation-delay: 0.463624s; animation-duration: 3.11845s;"></div><div class="particle star" style="width: 2.63794px; height: 2.63794px; left: 20.5821%; top: 39.9032%; animation-delay: 3.53394s; animation-duration: 4.49904s;"></div><div class="particle star" style="width: 1.87556px; height: 1.87556px; left: 37.1636%; top: 30.4061%; animation-delay: 0.40087s; animation-duration: 3.61303s;"></div><div class="particle star" style="width: 1.26586px; height: 1.26586px; left: 81.7506%; top: 53.6764%; animation-delay: 1.41253s; animation-duration: 5.0223s;"></div><div class="particle star" style="width: 1.58699px; height: 1.58699px; left: 73.3576%; top: 2.05076%; animation-delay: 1.77959s; animation-duration: 5.0732s;"></div><div class="particle star" style="width: 2.82958px; height: 2.82958px; left: 40.8422%; top: 14.4259%; animation-delay: 2.20872s; animation-duration: 3.80571s;"></div><div class="particle star" style="width: 2.64924px; height: 2.64924px; left: 20.6972%; top: 73.6498%; animation-delay: 2.3489s; animation-duration: 3.45108s;"></div><div class="particle blue-star" style="width: 1.03116px; height: 1.03116px; left: 46.5918%; top: 34.991%; animation-delay: 3.97761s; animation-duration: 5.86005s;"></div><div class="particle star" style="width: 1.47717px; height: 1.47717px; left: 11.5459%; top: 69.4838%; animation-delay: 2.14306s; animation-duration: 3.10736s;"></div><div class="particle star" style="width: 2.39082px; height: 2.39082px; left: 39.5802%; top: 12.3609%; animation-delay: 3.6645s; animation-duration: 4.03555s;"></div><div class="particle star" style="width: 1.34256px; height: 1.34256px; left: 49.1821%; top: 22.6625%; animation-delay: 1.26335s; animation-duration: 4.00337s;"></div><div class="particle star" style="width: 1.26942px; height: 1.26942px; left: 30.7088%; top: 30.8776%; animation-delay: 2.43018s; animation-duration: 4.92822s;"></div><div class="particle blue-star" style="width: 1.09278px; height: 1.09278px; left: 38.0038%; top: 25.5178%; animation-delay: 1.27162s; animation-duration: 4.61845s;"></div><div class="particle blue-star" style="width: 0.838092px; height: 0.838092px; left: 90.8341%; top: 29.0855%; animation-delay: 2.09668s; animation-duration: 4.89168s;"></div><div class="particle star" style="width: 2.75415px; height: 2.75415px; left: 88.1962%; top: 1.27949%; animation-delay: 1.33827s; animation-duration: 3.63066s;"></div><div class="particle distant-star" style="width: 0.557491px; height: 0.557491px; left: 94.0297%; top: 40.3123%; animation-delay: 0.768866s; animation-duration: 4.35408s;"></div><div class="particle star" style="width: 2.4173px; height: 2.4173px; left: 46.5631%; top: 10.6662%; animation-delay: 0.725011s; animation-duration: 5.42125s;"></div><div class="particle distant-star" style="width: 0.953287px; height: 0.953287px; left: 11.1295%; top: 41.4508%; animation-delay: 1.5358s; animation-duration: 5.43369s;"></div><div class="particle blue-star" style="width: 1.59182px; height: 1.59182px; left: 54.6862%; top: 26.3486%; animation-delay: 1.90865s; animation-duration: 5.21564s;"></div><div class="particle star" style="width: 1.49162px; height: 1.49162px; left: 59.1006%; top: 42.6381%; animation-delay: 0.205511s; animation-duration: 3.05608s;"></div><div class="particle star" style="width: 1.60762px; height: 1.60762px; left: 96.1188%; top: 49.6365%; animation-delay: 3.967s; animation-duration: 5.81709s;"></div><div class="particle star" style="width: 1.22978px; height: 1.22978px; left: 2.40817%; top: 43.1755%; animation-delay: 0.463321s; animation-duration: 3.93089s;"></div><div class="particle star" style="width: 2.24334px; height: 2.24334px; left: 93.3313%; top: 55.8467%; animation-delay: 3.17612s; animation-duration: 3.94969s;"></div><div class="particle star" style="width: 1.24791px; height: 1.24791px; left: 4.46832%; top: 11.9013%; animation-delay: 2.3694s; animation-duration: 3.62505s;"></div><div class="particle blue-star" style="width: 1.73047px; height: 1.73047px; left: 92.5332%; top: 85.9551%; animation-delay: 0.276237s; animation-duration: 3.42167s;"></div><div class="particle star" style="width: 2.25755px; height: 2.25755px; left: 35.8535%; top: 67.487%; animation-delay: 0.314041s; animation-duration: 4.52056s;"></div><div class="particle distant-star" style="width: 1.34276px; height: 1.34276px; left: 89.8293%; top: 20.7981%; animation-delay: 0.317279s; animation-duration: 4.597s;"></div><div class="particle blue-star" style="width: 2.27051px; height: 2.27051px; left: 90.0599%; top: 55.6278%; animation-delay: 2.02861s; animation-duration: 3.61951s;"></div><div class="particle blue-star" style="width: 0.815491px; height: 0.815491px; left: 8.29891%; top: 56.2821%; animation-delay: 1.98447s; animation-duration: 4.62296s;"></div><div class="particle distant-star" style="width: 0.886129px; height: 0.886129px; left: 25.3727%; top: 92.9921%; animation-delay: 0.444402s; animation-duration: 4.14337s;"></div><div class="particle blue-star" style="width: 0.96192px; height: 0.96192px; left: 86.3497%; top: 69.9997%; animation-delay: 3.46456s; animation-duration: 4.84822s;"></div><div class="particle star" style="width: 1.64432px; height: 1.64432px; left: 85.3269%; top: 77.0332%; animation-delay: 1.17713s; animation-duration: 3.95255s;"></div><div class="particle distant-star" style="width: 0.801856px; height: 0.801856px; left: 54.8642%; top: 6.5721%; animation-delay: 2.6305s; animation-duration: 3.55264s;"></div><div class="particle distant-star" style="width: 0.828431px; height: 0.828431px; left: 98.7168%; top: 78.7255%; animation-delay: 3.44328s; animation-duration: 3.6058s;"></div></div>
 
     <div class="container fade-in">
         <div class="header">
@@ -729,7 +638,82 @@
         </div>
 
         <div class="bookmarks">
-            <div id="bookmarkSections"></div>
+            <div id="bookmarkSections"><div class="bookmark-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Meine Lesezeichen</h2>
+                        <div class="section-controls">
+                            <button class="add-bookmark" data-section-id="main">+ Hinzufügen</button>
+                            
+                        </div>
+                    </div>
+                    <div class="bookmark-grid" id="grid-main"><a href="https://github.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="0" draggable="false">
+                    <div class="bookmark-icon">G</div>
+                    <div class="bookmark-info">
+                        <h3>GitHub</h3>
+                        <p>Code-Repository</p>
+                    </div>
+                    <button class="remove-bookmark" data-section-id="main" data-index="0">×</button>
+                </a><a href="https://translate.google.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="1" draggable="false">
+                    <div class="bookmark-icon">GT</div>
+                    <div class="bookmark-info">
+                        <h3>Google Translate</h3>
+                        <p>Übersetzungsdienst</p>
+                    </div>
+                    <button class="remove-bookmark" data-section-id="main" data-index="1">×</button>
+                </a><a href="https://www.bilibili.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="2" draggable="false">
+                    <div class="bookmark-icon">B</div>
+                    <div class="bookmark-info">
+                        <h3>Bilibili</h3>
+                        <p>Video-Community</p>
+                    </div>
+                    <button class="remove-bookmark" data-section-id="main" data-index="2">×</button>
+                </a><a href="https://www.youtube.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="3" draggable="false">
+                    <div class="bookmark-icon">Y</div>
+                    <div class="bookmark-info">
+                        <h3>YouTube</h3>
+                        <p>Video-Plattform</p>
+                    </div>
+                    <button class="remove-bookmark" data-section-id="main" data-index="3">×</button>
+                </a></div>
+                </div><div class="bookmark-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Weitere Lesezeichen</h2>
+                        <div class="section-controls">
+                            <button class="add-bookmark" data-section-id="additional">+ Hinzufügen</button>
+                            
+                                <button class="rename-section" data-section-id="additional">✏️</button>
+                                <button class="delete-section" data-section-id="additional">🗑️</button>
+                            
+                        </div>
+                    </div>
+                    <div class="bookmark-grid" id="grid-additional"><a href="file:///C:/Users/30341/Desktop/1" target="_blank" class="bookmark-item" data-section-id="additional" data-index="0" draggable="false">
+                    <div class="bookmark-icon">1</div>
+                    <div class="bookmark-info">
+                        <h3>1</h3>
+                        <p></p>
+                    </div>
+                    <button class="remove-bookmark" data-section-id="additional" data-index="0">×</button>
+                </a><a href="file:///C:/Users/30341/Desktop/2" target="_blank" class="bookmark-item" data-section-id="additional" data-index="1" draggable="false">
+                    <div class="bookmark-icon">2</div>
+                    <div class="bookmark-info">
+                        <h3>2</h3>
+                        <p></p>
+                    </div>
+                    <button class="remove-bookmark" data-section-id="additional" data-index="1">×</button>
+                </a></div>
+                </div><div class="bookmark-section">
+                    <div class="section-header">
+                        <h2 class="section-title">s</h2>
+                        <div class="section-controls">
+                            <button class="add-bookmark" data-section-id="section_1753518318759">+ Hinzufügen</button>
+                            
+                                <button class="rename-section" data-section-id="section_1753518318759">✏️</button>
+                                <button class="delete-section" data-section-id="section_1753518318759">🗑️</button>
+                            
+                        </div>
+                    </div>
+                    <div class="bookmark-grid" id="grid-section_1753518318759"></div>
+                </div></div>
             <button class="add-section" id="addSectionBtn">+ Neuen Bereich hinzufügen</button>
         </div>
     </div>
@@ -879,66 +863,56 @@
             dragState.draggedElement = element;
             dragState.draggedIndex = parseInt(element.dataset.index);
             dragState.draggedSectionId = element.dataset.sectionId;
-
-            const rect = element.getBoundingClientRect();
-            const offsetX = startX - rect.left;
-            const offsetY = startY - rect.top;
-
-            // Klon erstellen und an Maus/Touch-Position setzen
+    
             const clone = element.cloneNode(true);
             clone.style.position = 'fixed';
-            clone.style.left = startX - offsetX + 'px';
-            clone.style.top = startY - offsetY + 'px';
-            clone.style.width = rect.width + 'px';
+            clone.style.width = element.offsetWidth + 'px';
             clone.style.zIndex = '1000';
             clone.style.opacity = '0.8';
             clone.style.pointerEvents = 'none';
             document.body.appendChild(clone);
-
-            // Original ausblenden (nicht löschen)
-            element.style.visibility = 'hidden';
-
-            // Platzhalter erstellen
-            const placeholder = element.cloneNode(true);
-            placeholder.classList.add('placeholder');
-            placeholder.style.visibility = 'hidden';
-            element.parentNode.insertBefore(placeholder, element);
-
+    
+            element.style.opacity = '0.3';
+    
+            const rect = element.getBoundingClientRect();
+            const offsetX = startX - rect.left;
+            const offsetY = startY - rect.top;
+    
             function moveClone(e) {
                 if (!dragState.isDragging) return;
                 e.preventDefault();
-
+    
                 const x = (e.type === 'mousemove' ? e.clientX : e.touches[0].clientX) - offsetX;
                 const y = (e.type === 'mousemove' ? e.clientY : e.touches[0].clientY) - offsetY;
                 clone.style.left = x + 'px';
                 clone.style.top = y + 'px';
-
+    
                 const mouseY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
-                checkInsertPosition(mouseY);
+                checkAndSwapItems(mouseY);
             }
-
+    
             function endDrag(e) {
                 if (!dragState.isDragging) return;
-
+    
                 document.body.removeChild(clone);
-                element.style.visibility = '';
-                if (placeholder.parentNode) {
-                    placeholder.parentNode.removeChild(placeholder);
-                }
-
+                element.style.opacity = '';
+    
                 document.removeEventListener('mousemove', moveClone);
                 document.removeEventListener('touchmove', moveClone);
                 document.removeEventListener('mouseup', endDrag);
                 document.removeEventListener('touchend', endDrag);
-
+    
                 const mouseY = e.type === 'mouseup' ? e.clientY : e.changedTouches[0].clientY;
                 finalizeSwap(mouseY);
-
+    
                 dragState.isDragging = false;
                 dragState.draggedElement = null;
                 dragState.isLongPress = false;
             }
-
+    
+            clone.style.left = rect.left + 'px';
+            clone.style.top = rect.top + 'px';
+    
             document.addEventListener('mousemove', moveClone);
             document.addEventListener('touchmove', moveClone, { passive: false });
             document.addEventListener('mouseup', endDrag);
@@ -948,38 +922,43 @@
         function checkAndSwapItems(mouseY) {
             const grid = document.getElementById(`grid-${dragState.draggedSectionId}`);
             const items = Array.from(grid.querySelectorAll('.bookmark-item:not(.dragging)'));
-            
+    
+            let targetItem = null;
+            let minDistance = Infinity;
+    
             items.forEach(item => {
                 const rect = item.getBoundingClientRect();
-                // Check if mouse is over this item
-                if (mouseY >= rect.top && mouseY <= rect.bottom) {
-                    const targetIndex = parseInt(item.dataset.index);
-                    if (targetIndex !== dragState.draggedIndex) {
-                        swapItems(targetIndex);
-                    }
+                const distance = Math.abs(mouseY - (rect.top + rect.height / 2));
+    
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    targetItem = item;
                 }
             });
+    
+            if (targetItem && targetItem !== dragState.draggedElement) {
+                const targetIndex = parseInt(targetItem.dataset.index);
+                if (targetIndex !== dragState.draggedIndex) {
+                    swapItems(targetIndex);
+                }
+            }
         }
 
-        function insertAtIndex(targetIndex) {
+        function swapItems(targetIndex) {
             const section = bookmarkSections.find(s => s.id === dragState.draggedSectionId);
             if (!section) return;
-
-            const draggedIndex = dragState.draggedIndex;
-
-            if (draggedIndex === targetIndex) return;
-
-            // 取出被拖动的元素
-            const [draggedItem] = section.bookmarks.splice(draggedIndex, 1);
-
-            // 插入到目标位置
-            section.bookmarks.splice(targetIndex, 0, draggedItem);
-
-            // 更新拖动索引
+    
+            const fromIndex = dragState.draggedIndex;
+            const [movedBookmark] = section.bookmarks.splice(fromIndex, 1);
+            section.bookmarks.splice(targetIndex, 0, movedBookmark);
             dragState.draggedIndex = targetIndex;
-
-            // 重新渲染
-            renderBookmarks(dragState.draggedSectionId);
+    
+            // 更新所有书签的索引
+            const grid = document.getElementById(`grid-${dragState.draggedSectionId}`);
+            const items = Array.from(grid.querySelectorAll('.bookmark-item'));
+            items.forEach((item, index) => {
+                item.dataset.index = index;
+            });
         }
 
         function finalizeSwap(mouseY) {
@@ -1411,6 +1390,29 @@
             }, 300);
         }
 
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const isLight = document.body.classList.contains('light-theme');
+            themeIcon.textContent = isLight ? '☀️' : '🌙';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeIcon.textContent = '☀️';
+            }
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        loadTheme();
+
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
             const addSectionBtn = document.getElementById('addSectionBtn');
@@ -1463,5 +1465,5 @@
         createParticles();
         loadSections();
     </script>
-</body>
-</html>
+
+</body></html>
