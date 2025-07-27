@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<!-- saved from url=(0054)file:///C:/Users/30341/Desktop/improved_startpage.html -->
+<!-- saved from url=(0055)file:///C:/Users/30341/Desktop/optimized_startpage.html -->
 <html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -161,10 +160,36 @@
             text-align: center;
         }
 
-        .search-select option {
-            background: #1a1a1a;
+        .search-engine-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .search-engine-dropdown.show {
+            display: block;
+        }
+
+        .search-engine-option {
+            padding: 0.8rem 1rem;
             color: #ffffff;
-            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .search-engine-option:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .search-input::placeholder {
@@ -340,16 +365,16 @@
 
         .bookmark-item.dragging {
             opacity: 0.7;
-            transform: rotate(3deg) scale(1.05);
+            transform: rotate(2deg) scale(1.02);
             z-index: 1000;
             pointer-events: none;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
-        .bookmark-item.drag-over {
+        .bookmark-item.drag-target {
             border-color: rgba(255, 255, 255, 0.4);
             background: rgba(255, 255, 255, 0.1);
-            transform: translateX(10px);
+            transform: scale(1.02);
         }
 
         .bookmark-item:hover:not(.dragging) {
@@ -372,6 +397,11 @@
             color: #ffffff;
             font-weight: 600;
             font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .bookmark-info {
+            flex: 1;
         }
 
         .bookmark-info h3 {
@@ -503,136 +533,96 @@
             background: rgba(255, 50, 50, 0.2);
         }
 
-        /* Theme Toggle Button */
-        .theme-toggle {
+        /* Language Menu Button */
+        .language-menu {
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            z-index: 1000;
+        }
+
+        .language-btn {
+            padding: 0.5rem 1rem;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: #ffffff;
             cursor: pointer;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
             backdrop-filter: blur(4px);
-            transition: all 0.3s ease;
         }
 
-        .theme-toggle:hover {
+        .language-btn:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
-        .theme-toggle i {
-            font-size: 20px;
-            color: #fff;
-            transition: all 0.3s ease;
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            min-width: 150px;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Light Theme Styles */
-        body.light-theme {
-            background: radial-gradient(ellipse at center, #ffffff 0%, #f5f5f5 50%, #e0e0e0 100%);
-            color: #333;
+        .language-dropdown.show {
+            display: block;
         }
 
-        body.light-theme .particles {
-            background: radial-gradient(ellipse at center, 
-                rgba(245, 245, 245, 0.3) 0%, 
-                rgba(230, 230, 230, 0.6) 40%, 
-                rgba(220, 220, 220, 0.9) 100%);
+        .language-option {
+            padding: 0.5rem 1rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        body.light-theme .search-input,
-        body.light-theme .search-select {
-            background: rgba(255, 255, 255, 0.7);
-            color: #333;
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-theme .search-button {
-            background: rgba(0, 0, 0, 0.05);
-            color: #333;
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-theme .bookmark-section {
-            background: rgba(255, 255, 255, 0.7);
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-theme .bookmark-item {
-            background: rgba(255, 255, 255, 0.5);
-            border-color: rgba(0, 0, 0, 0.1);
-            color: #333;
-        }
-
-        body.light-theme .bookmark-item:hover {
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        body.light-theme .bookmark-info h3 {
-            color: #333;
-        }
-
-        body.light-theme .bookmark-info p {
-            color: #666;
-        }
-
-        body.light-theme .theme-toggle {
-            background: rgba(0, 0, 0, 0.1);
-            border-color: rgba(0, 0, 0, 0.2);
-        }
-
-        body.light-theme .theme-toggle i {
-            color: #333;
-        }
-
-        body.light-theme .logo {
-            color: #333;
-        }
-
-        body.light-theme .modal-content {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        body.light-theme .modal input {
-            background: rgba(255, 255, 255, 0.8);
-            color: #333;
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-theme .modal h3 {
-            color: #333;
+        .language-option:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
-<body class="">
-    <button class="theme-toggle" id="themeToggle">
-        <i>🌙</i>
-    </button>
+<body>
+    <div class="language-menu">
+        <button class="language-btn" id="languageBtn">Meh</button>
+        <div class="language-dropdown" id="languageDropdown">
+            <div class="language-option" data-lang="de">Deutsch</div>
+            <div class="language-option" data-lang="nl">Niederländisch</div>
+            <div class="language-option" data-lang="gsw">Schweizerdeutsch</div>
+            <div class="language-option" data-lang="fi">Finnisch</div>
+            <div class="language-option" data-lang="fr">Französisch</div>
+            <div class="language-option" data-lang="en">Englisch</div>
+            <div class="language-option" data-lang="zh">Chinesisch</div>
+            <div class="language-option" data-lang="ja">Japanisch</div>
+        </div>
+    </div>
 
-    <div class="particles" id="particles"><div class="particle star" style="width: 1.24938px; height: 1.24938px; left: 84.3937%; top: 47.6202%; animation-delay: 1.69045s; animation-duration: 4.26293s;"></div><div class="particle blue-star" style="width: 1.25798px; height: 1.25798px; left: 13.8232%; top: 44.0502%; animation-delay: 0.0656592s; animation-duration: 4.64956s;"></div><div class="particle star" style="width: 1.75672px; height: 1.75672px; left: 75.7114%; top: 7.12821%; animation-delay: 0.352166s; animation-duration: 4.5572s;"></div><div class="particle star" style="width: 2.7869px; height: 2.7869px; left: 26.337%; top: 20.7281%; animation-delay: 0.216709s; animation-duration: 4.35956s;"></div><div class="particle star" style="width: 2.66031px; height: 2.66031px; left: 77.1427%; top: 8.20334%; animation-delay: 2.36658s; animation-duration: 3.62087s;"></div><div class="particle star" style="width: 1.13002px; height: 1.13002px; left: 61.9105%; top: 62.0793%; animation-delay: 3.58006s; animation-duration: 3.24977s;"></div><div class="particle star" style="width: 1.7507px; height: 1.7507px; left: 42.2131%; top: 31.0654%; animation-delay: 0.521073s; animation-duration: 4.66465s;"></div><div class="particle blue-star" style="width: 1.92649px; height: 1.92649px; left: 56.1611%; top: 25.4008%; animation-delay: 0.75351s; animation-duration: 4.97036s;"></div><div class="particle distant-star" style="width: 1.38751px; height: 1.38751px; left: 19.4745%; top: 41.3633%; animation-delay: 1.2212s; animation-duration: 3.62183s;"></div><div class="particle star" style="width: 2.2852px; height: 2.2852px; left: 18.7716%; top: 62.1529%; animation-delay: 3.37415s; animation-duration: 5.2442s;"></div><div class="particle star" style="width: 2.03496px; height: 2.03496px; left: 29.2406%; top: 37.9557%; animation-delay: 0.844522s; animation-duration: 5.06394s;"></div><div class="particle star" style="width: 1.1367px; height: 1.1367px; left: 43.3908%; top: 84.5139%; animation-delay: 2.22578s; animation-duration: 4.25044s;"></div><div class="particle star" style="width: 1.08646px; height: 1.08646px; left: 87.062%; top: 84.1194%; animation-delay: 1.67179s; animation-duration: 4.35937s;"></div><div class="particle star" style="width: 1.61233px; height: 1.61233px; left: 98.7229%; top: 78.3545%; animation-delay: 2.70044s; animation-duration: 4.2463s;"></div><div class="particle star" style="width: 2.78283px; height: 2.78283px; left: 8.84772%; top: 7.53511%; animation-delay: 0.747947s; animation-duration: 3.44488s;"></div><div class="particle star" style="width: 2.47219px; height: 2.47219px; left: 32.204%; top: 72.7976%; animation-delay: 2.00219s; animation-duration: 4.4836s;"></div><div class="particle star" style="width: 2.47712px; height: 2.47712px; left: 62.0318%; top: 43.9819%; animation-delay: 3.03651s; animation-duration: 4.16275s;"></div><div class="particle star" style="width: 1.0025px; height: 1.0025px; left: 58.013%; top: 65.2048%; animation-delay: 0.728349s; animation-duration: 5.20648s;"></div><div class="particle star" style="width: 2.35797px; height: 2.35797px; left: 71.1664%; top: 76.444%; animation-delay: 3.97956s; animation-duration: 3.7965s;"></div><div class="particle star" style="width: 1.95899px; height: 1.95899px; left: 46.1603%; top: 42.946%; animation-delay: 0.703564s; animation-duration: 4.08416s;"></div><div class="particle distant-star" style="width: 1.31116px; height: 1.31116px; left: 68.8206%; top: 62.2201%; animation-delay: 3.86634s; animation-duration: 3.80462s;"></div><div class="particle star" style="width: 1.34736px; height: 1.34736px; left: 9.40287%; top: 55.0336%; animation-delay: 3.63002s; animation-duration: 5.74886s;"></div><div class="particle star" style="width: 1.30857px; height: 1.30857px; left: 3.08188%; top: 26.0782%; animation-delay: 3.01589s; animation-duration: 4.8393s;"></div><div class="particle distant-star" style="width: 1.4861px; height: 1.4861px; left: 85.726%; top: 90.9712%; animation-delay: 0.317257s; animation-duration: 3.15273s;"></div><div class="particle distant-star" style="width: 1.08149px; height: 1.08149px; left: 89.0566%; top: 52.0934%; animation-delay: 2.9636s; animation-duration: 4.75653s;"></div><div class="particle blue-star" style="width: 2.19442px; height: 2.19442px; left: 55.3173%; top: 48.2175%; animation-delay: 0.813843s; animation-duration: 4.34051s;"></div><div class="particle star" style="width: 2.61251px; height: 2.61251px; left: 72.1985%; top: 21.8419%; animation-delay: 0.00218704s; animation-duration: 3.6965s;"></div><div class="particle star" style="width: 2.24804px; height: 2.24804px; left: 41.1069%; top: 31.1979%; animation-delay: 0.320812s; animation-duration: 5.34143s;"></div><div class="particle star" style="width: 1.28589px; height: 1.28589px; left: 46.8293%; top: 6.59627%; animation-delay: 2.20961s; animation-duration: 5.16489s;"></div><div class="particle star" style="width: 2.1306px; height: 2.1306px; left: 9.48723%; top: 17.7239%; animation-delay: 0.048916s; animation-duration: 3.2437s;"></div><div class="particle blue-star" style="width: 1.21248px; height: 1.21248px; left: 72.1675%; top: 43.8288%; animation-delay: 2.07485s; animation-duration: 5.46383s;"></div><div class="particle star" style="width: 1.13284px; height: 1.13284px; left: 14.891%; top: 27.0053%; animation-delay: 1.56413s; animation-duration: 5.24701s;"></div><div class="particle star" style="width: 1.03694px; height: 1.03694px; left: 20.6928%; top: 44.9441%; animation-delay: 0.101934s; animation-duration: 3.36739s;"></div><div class="particle star" style="width: 2.50913px; height: 2.50913px; left: 42.4595%; top: 15.1106%; animation-delay: 2.0543s; animation-duration: 5.84175s;"></div><div class="particle star" style="width: 2.53279px; height: 2.53279px; left: 8.08096%; top: 1.07683%; animation-delay: 0.0769883s; animation-duration: 3.55936s;"></div><div class="particle star" style="width: 2.66662px; height: 2.66662px; left: 23.6121%; top: 58.5777%; animation-delay: 1.25908s; animation-duration: 3.15766s;"></div><div class="particle blue-star" style="width: 1.16596px; height: 1.16596px; left: 94.7082%; top: 94.6151%; animation-delay: 3.25174s; animation-duration: 5.52439s;"></div><div class="particle star" style="width: 1.50121px; height: 1.50121px; left: 16.9186%; top: 63.0503%; animation-delay: 2.98636s; animation-duration: 3.9093s;"></div><div class="particle star" style="width: 1.91184px; height: 1.91184px; left: 81.6218%; top: 62.8845%; animation-delay: 3.12381s; animation-duration: 3.70101s;"></div><div class="particle star" style="width: 2.12451px; height: 2.12451px; left: 31.1929%; top: 92.4406%; animation-delay: 3.66076s; animation-duration: 3.80269s;"></div><div class="particle blue-star" style="width: 1.56676px; height: 1.56676px; left: 25.1583%; top: 49.8454%; animation-delay: 2.38768s; animation-duration: 5.74139s;"></div><div class="particle blue-star" style="width: 1.36534px; height: 1.36534px; left: 28.7642%; top: 63.162%; animation-delay: 0.153358s; animation-duration: 5.9376s;"></div><div class="particle star" style="width: 1.28039px; height: 1.28039px; left: 8.93249%; top: 30.0201%; animation-delay: 1.25039s; animation-duration: 5.72994s;"></div><div class="particle blue-star" style="width: 1.23044px; height: 1.23044px; left: 51.605%; top: 4.74276%; animation-delay: 0.10028s; animation-duration: 5.29961s;"></div><div class="particle star" style="width: 1.06305px; height: 1.06305px; left: 48.7026%; top: 83.8703%; animation-delay: 1.07106s; animation-duration: 3.47997s;"></div><div class="particle star" style="width: 1.90949px; height: 1.90949px; left: 25.9004%; top: 39.0244%; animation-delay: 0.317876s; animation-duration: 5.74255s;"></div><div class="particle star" style="width: 1.67617px; height: 1.67617px; left: 81.5226%; top: 33.4614%; animation-delay: 2.65122s; animation-duration: 3.83066s;"></div><div class="particle star" style="width: 1.35902px; height: 1.35902px; left: 76.8648%; top: 30.7669%; animation-delay: 2.14533s; animation-duration: 5.59007s;"></div><div class="particle star" style="width: 2.83107px; height: 2.83107px; left: 4.86332%; top: 38.9532%; animation-delay: 3.83027s; animation-duration: 3.482s;"></div><div class="particle distant-star" style="width: 0.878588px; height: 0.878588px; left: 40.7221%; top: 54.3219%; animation-delay: 3.32347s; animation-duration: 4.34857s;"></div><div class="particle star" style="width: 1.40756px; height: 1.40756px; left: 71.0924%; top: 23.7354%; animation-delay: 2.74588s; animation-duration: 5.32394s;"></div><div class="particle blue-star" style="width: 1.03448px; height: 1.03448px; left: 60.8741%; top: 69.3978%; animation-delay: 0.802755s; animation-duration: 3.62902s;"></div><div class="particle star" style="width: 2.71959px; height: 2.71959px; left: 91.59%; top: 9.97166%; animation-delay: 2.4827s; animation-duration: 5.86579s;"></div><div class="particle blue-star" style="width: 2.22631px; height: 2.22631px; left: 60.1912%; top: 23.7125%; animation-delay: 3.24437s; animation-duration: 5.60612s;"></div><div class="particle star" style="width: 1.90261px; height: 1.90261px; left: 7.12921%; top: 96.1752%; animation-delay: 1.37413s; animation-duration: 4.92591s;"></div><div class="particle star" style="width: 1.71139px; height: 1.71139px; left: 24.5987%; top: 64.0356%; animation-delay: 0.603821s; animation-duration: 5.05018s;"></div><div class="particle star" style="width: 2.05166px; height: 2.05166px; left: 6.8439%; top: 55.2611%; animation-delay: 1.03063s; animation-duration: 5.17996s;"></div><div class="particle star" style="width: 2.60125px; height: 2.60125px; left: 35.6057%; top: 44.2319%; animation-delay: 0.917943s; animation-duration: 3.37874s;"></div><div class="particle star" style="width: 2.20415px; height: 2.20415px; left: 29.2278%; top: 8.10785%; animation-delay: 3.54988s; animation-duration: 3.46902s;"></div><div class="particle star" style="width: 2.51038px; height: 2.51038px; left: 77.7621%; top: 31.2654%; animation-delay: 2.9563s; animation-duration: 4.17404s;"></div><div class="particle star" style="width: 2.26827px; height: 2.26827px; left: 63.2409%; top: 68.6657%; animation-delay: 3.90117s; animation-duration: 3.51902s;"></div><div class="particle star" style="width: 1.78098px; height: 1.78098px; left: 88.4689%; top: 43.2489%; animation-delay: 3.98969s; animation-duration: 4.77734s;"></div><div class="particle star" style="width: 1.74946px; height: 1.74946px; left: 52.6632%; top: 48.355%; animation-delay: 0.945167s; animation-duration: 5.68739s;"></div><div class="particle star" style="width: 1.3837px; height: 1.3837px; left: 69.1806%; top: 36.3674%; animation-delay: 0.0422091s; animation-duration: 3.64645s;"></div><div class="particle blue-star" style="width: 2.17647px; height: 2.17647px; left: 36.2204%; top: 21.5421%; animation-delay: 3.38131s; animation-duration: 5.92922s;"></div><div class="particle star" style="width: 1.65604px; height: 1.65604px; left: 32.598%; top: 60.906%; animation-delay: 2.26539s; animation-duration: 3.957s;"></div><div class="particle star" style="width: 1.27309px; height: 1.27309px; left: 66.1509%; top: 35.6171%; animation-delay: 3.80556s; animation-duration: 3.74645s;"></div><div class="particle distant-star" style="width: 1.20334px; height: 1.20334px; left: 82.3602%; top: 88.7833%; animation-delay: 1.65582s; animation-duration: 5.20175s;"></div><div class="particle star" style="width: 1.77924px; height: 1.77924px; left: 74.9871%; top: 99.2844%; animation-delay: 0.31342s; animation-duration: 5.16255s;"></div><div class="particle star" style="width: 1.64186px; height: 1.64186px; left: 96.2682%; top: 67.1638%; animation-delay: 0.159994s; animation-duration: 3.41701s;"></div><div class="particle star" style="width: 1.65246px; height: 1.65246px; left: 0.0782889%; top: 27.2664%; animation-delay: 3.78536s; animation-duration: 3.16521s;"></div><div class="particle blue-star" style="width: 0.805396px; height: 0.805396px; left: 30.6467%; top: 40.2795%; animation-delay: 3.30208s; animation-duration: 3.72112s;"></div><div class="particle star" style="width: 1.37726px; height: 1.37726px; left: 99.4291%; top: 55.7104%; animation-delay: 3.49627s; animation-duration: 3.4108s;"></div><div class="particle blue-star" style="width: 1.36493px; height: 1.36493px; left: 51.3211%; top: 44.9402%; animation-delay: 3.20122s; animation-duration: 5.27316s;"></div><div class="particle star" style="width: 1.81053px; height: 1.81053px; left: 53.3049%; top: 95.6085%; animation-delay: 2.32062s; animation-duration: 4.69539s;"></div><div class="particle blue-star" style="width: 1.8763px; height: 1.8763px; left: 18.7632%; top: 93.1329%; animation-delay: 3.9182s; animation-duration: 4.31708s;"></div><div class="particle star" style="width: 2.16387px; height: 2.16387px; left: 99.1953%; top: 86.5898%; animation-delay: 3.79233s; animation-duration: 3.1772s;"></div><div class="particle blue-star" style="width: 1.11901px; height: 1.11901px; left: 61.1447%; top: 46.6848%; animation-delay: 2.72397s; animation-duration: 3.76549s;"></div><div class="particle star" style="width: 2.54896px; height: 2.54896px; left: 25.6288%; top: 1.07198%; animation-delay: 2.33977s; animation-duration: 5.03906s;"></div><div class="particle star" style="width: 1.13812px; height: 1.13812px; left: 7.29444%; top: 70.4014%; animation-delay: 3.95854s; animation-duration: 5.69583s;"></div><div class="particle star" style="width: 2.46792px; height: 2.46792px; left: 70.1544%; top: 28.0415%; animation-delay: 1.74832s; animation-duration: 3.56502s;"></div><div class="particle blue-star" style="width: 1.51031px; height: 1.51031px; left: 46.5567%; top: 18.5514%; animation-delay: 1.38282s; animation-duration: 3.6746s;"></div><div class="particle distant-star" style="width: 0.605567px; height: 0.605567px; left: 43.4114%; top: 71.3549%; animation-delay: 2.68906s; animation-duration: 5.66332s;"></div><div class="particle star" style="width: 1.87944px; height: 1.87944px; left: 7.50702%; top: 45.7351%; animation-delay: 3.79137s; animation-duration: 3.17611s;"></div><div class="particle distant-star" style="width: 0.574939px; height: 0.574939px; left: 21.401%; top: 95.5879%; animation-delay: 1.07552s; animation-duration: 5.52124s;"></div><div class="particle distant-star" style="width: 0.79899px; height: 0.79899px; left: 28.1497%; top: 53.7974%; animation-delay: 3.59642s; animation-duration: 4.94527s;"></div><div class="particle star" style="width: 1.5875px; height: 1.5875px; left: 85.2067%; top: 15.3764%; animation-delay: 3.79339s; animation-duration: 3.05402s;"></div><div class="particle star" style="width: 2.2257px; height: 2.2257px; left: 78.475%; top: 96.218%; animation-delay: 2.69947s; animation-duration: 5.85292s;"></div><div class="particle star" style="width: 1.41955px; height: 1.41955px; left: 88.4671%; top: 86.4645%; animation-delay: 2.82979s; animation-duration: 3.35344s;"></div><div class="particle star" style="width: 1.06927px; height: 1.06927px; left: 82.6891%; top: 2.4512%; animation-delay: 2.59029s; animation-duration: 3.68321s;"></div><div class="particle star" style="width: 1.49136px; height: 1.49136px; left: 43.4551%; top: 76.7333%; animation-delay: 1.87386s; animation-duration: 4.12928s;"></div><div class="particle blue-star" style="width: 2.07011px; height: 2.07011px; left: 60.7751%; top: 70.7941%; animation-delay: 3.8091s; animation-duration: 4.29292s;"></div><div class="particle star" style="width: 2.75305px; height: 2.75305px; left: 99.2883%; top: 63.4093%; animation-delay: 2.65186s; animation-duration: 3.66016s;"></div><div class="particle star" style="width: 1.07471px; height: 1.07471px; left: 15.9142%; top: 1.94286%; animation-delay: 2.35633s; animation-duration: 3.67865s;"></div><div class="particle blue-star" style="width: 1.7681px; height: 1.7681px; left: 52.6565%; top: 55.5587%; animation-delay: 0.334968s; animation-duration: 5.91224s;"></div><div class="particle star" style="width: 2.94502px; height: 2.94502px; left: 19.2224%; top: 46.1376%; animation-delay: 1.56576s; animation-duration: 5.9067s;"></div><div class="particle star" style="width: 1.01911px; height: 1.01911px; left: 81.8144%; top: 41.6866%; animation-delay: 1.99538s; animation-duration: 4.23764s;"></div><div class="particle star" style="width: 2.9428px; height: 2.9428px; left: 43.6711%; top: 54.6028%; animation-delay: 1.76444s; animation-duration: 3.01629s;"></div><div class="particle star" style="width: 1.05104px; height: 1.05104px; left: 63.235%; top: 34.3905%; animation-delay: 2.76059s; animation-duration: 3.97798s;"></div><div class="particle star" style="width: 2.45899px; height: 2.45899px; left: 62.5034%; top: 74.3891%; animation-delay: 2.20972s; animation-duration: 5.16441s;"></div><div class="particle star" style="width: 2.06643px; height: 2.06643px; left: 70.6247%; top: 68.3995%; animation-delay: 0.0972434s; animation-duration: 5.67868s;"></div><div class="particle star" style="width: 2.80872px; height: 2.80872px; left: 15.0542%; top: 20.632%; animation-delay: 3.95057s; animation-duration: 5.21776s;"></div><div class="particle star" style="width: 1.87966px; height: 1.87966px; left: 88.4397%; top: 77.2687%; animation-delay: 3.15838s; animation-duration: 4.29028s;"></div><div class="particle blue-star" style="width: 1.14357px; height: 1.14357px; left: 46.4887%; top: 50.5853%; animation-delay: 0.609032s; animation-duration: 3.96949s;"></div><div class="particle star" style="width: 1.01682px; height: 1.01682px; left: 41.6777%; top: 2.2695%; animation-delay: 3.34612s; animation-duration: 4.72842s;"></div><div class="particle star" style="width: 2.7115px; height: 2.7115px; left: 39.8476%; top: 75.1478%; animation-delay: 2.46839s; animation-duration: 4.92956s;"></div><div class="particle star" style="width: 1.37856px; height: 1.37856px; left: 24.6198%; top: 20.8514%; animation-delay: 2.10951s; animation-duration: 5.26433s;"></div><div class="particle star" style="width: 1.72965px; height: 1.72965px; left: 53.9237%; top: 2.80672%; animation-delay: 3.52158s; animation-duration: 5.86345s;"></div><div class="particle distant-star" style="width: 1.06134px; height: 1.06134px; left: 69.8212%; top: 39.247%; animation-delay: 1.1649s; animation-duration: 3.25117s;"></div><div class="particle distant-star" style="width: 1.32641px; height: 1.32641px; left: 87.4235%; top: 94.7187%; animation-delay: 2.49282s; animation-duration: 4.43735s;"></div><div class="particle blue-star" style="width: 1.00464px; height: 1.00464px; left: 38.0742%; top: 82.2293%; animation-delay: 2.43964s; animation-duration: 4.6238s;"></div><div class="particle blue-star" style="width: 1.54577px; height: 1.54577px; left: 52.2352%; top: 26.6068%; animation-delay: 0.85221s; animation-duration: 5.40891s;"></div><div class="particle blue-star" style="width: 2.0894px; height: 2.0894px; left: 27.3644%; top: 4.12139%; animation-delay: 2.19676s; animation-duration: 4.26905s;"></div><div class="particle star" style="width: 1.00963px; height: 1.00963px; left: 98.4298%; top: 3.81867%; animation-delay: 3.60499s; animation-duration: 5.58071s;"></div><div class="particle star" style="width: 1.42889px; height: 1.42889px; left: 41.1962%; top: 12.1213%; animation-delay: 1.27389s; animation-duration: 5.75829s;"></div><div class="particle star" style="width: 1.09065px; height: 1.09065px; left: 29.1437%; top: 68.7972%; animation-delay: 0.269247s; animation-duration: 4.0675s;"></div><div class="particle star" style="width: 2.7393px; height: 2.7393px; left: 10.1322%; top: 13.6833%; animation-delay: 0.463624s; animation-duration: 3.11845s;"></div><div class="particle star" style="width: 2.63794px; height: 2.63794px; left: 20.5821%; top: 39.9032%; animation-delay: 3.53394s; animation-duration: 4.49904s;"></div><div class="particle star" style="width: 1.87556px; height: 1.87556px; left: 37.1636%; top: 30.4061%; animation-delay: 0.40087s; animation-duration: 3.61303s;"></div><div class="particle star" style="width: 1.26586px; height: 1.26586px; left: 81.7506%; top: 53.6764%; animation-delay: 1.41253s; animation-duration: 5.0223s;"></div><div class="particle star" style="width: 1.58699px; height: 1.58699px; left: 73.3576%; top: 2.05076%; animation-delay: 1.77959s; animation-duration: 5.0732s;"></div><div class="particle star" style="width: 2.82958px; height: 2.82958px; left: 40.8422%; top: 14.4259%; animation-delay: 2.20872s; animation-duration: 3.80571s;"></div><div class="particle star" style="width: 2.64924px; height: 2.64924px; left: 20.6972%; top: 73.6498%; animation-delay: 2.3489s; animation-duration: 3.45108s;"></div><div class="particle blue-star" style="width: 1.03116px; height: 1.03116px; left: 46.5918%; top: 34.991%; animation-delay: 3.97761s; animation-duration: 5.86005s;"></div><div class="particle star" style="width: 1.47717px; height: 1.47717px; left: 11.5459%; top: 69.4838%; animation-delay: 2.14306s; animation-duration: 3.10736s;"></div><div class="particle star" style="width: 2.39082px; height: 2.39082px; left: 39.5802%; top: 12.3609%; animation-delay: 3.6645s; animation-duration: 4.03555s;"></div><div class="particle star" style="width: 1.34256px; height: 1.34256px; left: 49.1821%; top: 22.6625%; animation-delay: 1.26335s; animation-duration: 4.00337s;"></div><div class="particle star" style="width: 1.26942px; height: 1.26942px; left: 30.7088%; top: 30.8776%; animation-delay: 2.43018s; animation-duration: 4.92822s;"></div><div class="particle blue-star" style="width: 1.09278px; height: 1.09278px; left: 38.0038%; top: 25.5178%; animation-delay: 1.27162s; animation-duration: 4.61845s;"></div><div class="particle blue-star" style="width: 0.838092px; height: 0.838092px; left: 90.8341%; top: 29.0855%; animation-delay: 2.09668s; animation-duration: 4.89168s;"></div><div class="particle star" style="width: 2.75415px; height: 2.75415px; left: 88.1962%; top: 1.27949%; animation-delay: 1.33827s; animation-duration: 3.63066s;"></div><div class="particle distant-star" style="width: 0.557491px; height: 0.557491px; left: 94.0297%; top: 40.3123%; animation-delay: 0.768866s; animation-duration: 4.35408s;"></div><div class="particle star" style="width: 2.4173px; height: 2.4173px; left: 46.5631%; top: 10.6662%; animation-delay: 0.725011s; animation-duration: 5.42125s;"></div><div class="particle distant-star" style="width: 0.953287px; height: 0.953287px; left: 11.1295%; top: 41.4508%; animation-delay: 1.5358s; animation-duration: 5.43369s;"></div><div class="particle blue-star" style="width: 1.59182px; height: 1.59182px; left: 54.6862%; top: 26.3486%; animation-delay: 1.90865s; animation-duration: 5.21564s;"></div><div class="particle star" style="width: 1.49162px; height: 1.49162px; left: 59.1006%; top: 42.6381%; animation-delay: 0.205511s; animation-duration: 3.05608s;"></div><div class="particle star" style="width: 1.60762px; height: 1.60762px; left: 96.1188%; top: 49.6365%; animation-delay: 3.967s; animation-duration: 5.81709s;"></div><div class="particle star" style="width: 1.22978px; height: 1.22978px; left: 2.40817%; top: 43.1755%; animation-delay: 0.463321s; animation-duration: 3.93089s;"></div><div class="particle star" style="width: 2.24334px; height: 2.24334px; left: 93.3313%; top: 55.8467%; animation-delay: 3.17612s; animation-duration: 3.94969s;"></div><div class="particle star" style="width: 1.24791px; height: 1.24791px; left: 4.46832%; top: 11.9013%; animation-delay: 2.3694s; animation-duration: 3.62505s;"></div><div class="particle blue-star" style="width: 1.73047px; height: 1.73047px; left: 92.5332%; top: 85.9551%; animation-delay: 0.276237s; animation-duration: 3.42167s;"></div><div class="particle star" style="width: 2.25755px; height: 2.25755px; left: 35.8535%; top: 67.487%; animation-delay: 0.314041s; animation-duration: 4.52056s;"></div><div class="particle distant-star" style="width: 1.34276px; height: 1.34276px; left: 89.8293%; top: 20.7981%; animation-delay: 0.317279s; animation-duration: 4.597s;"></div><div class="particle blue-star" style="width: 2.27051px; height: 2.27051px; left: 90.0599%; top: 55.6278%; animation-delay: 2.02861s; animation-duration: 3.61951s;"></div><div class="particle blue-star" style="width: 0.815491px; height: 0.815491px; left: 8.29891%; top: 56.2821%; animation-delay: 1.98447s; animation-duration: 4.62296s;"></div><div class="particle distant-star" style="width: 0.886129px; height: 0.886129px; left: 25.3727%; top: 92.9921%; animation-delay: 0.444402s; animation-duration: 4.14337s;"></div><div class="particle blue-star" style="width: 0.96192px; height: 0.96192px; left: 86.3497%; top: 69.9997%; animation-delay: 3.46456s; animation-duration: 4.84822s;"></div><div class="particle star" style="width: 1.64432px; height: 1.64432px; left: 85.3269%; top: 77.0332%; animation-delay: 1.17713s; animation-duration: 3.95255s;"></div><div class="particle distant-star" style="width: 0.801856px; height: 0.801856px; left: 54.8642%; top: 6.5721%; animation-delay: 2.6305s; animation-duration: 3.55264s;"></div><div class="particle distant-star" style="width: 0.828431px; height: 0.828431px; left: 98.7168%; top: 78.7255%; animation-delay: 3.44328s; animation-duration: 3.6058s;"></div></div>
+    <div class="particles" id="particles"><div class="particle star" style="width: 2.68156px; height: 2.68156px; left: 98.8267%; top: 4.18137%; animation-delay: 1.13103s; animation-duration: 4.81864s;"></div><div class="particle star" style="width: 2.77212px; height: 2.77212px; left: 74.1002%; top: 71.2507%; animation-delay: 1.47199s; animation-duration: 4.46559s;"></div><div class="particle star" style="width: 2.41677px; height: 2.41677px; left: 98.1641%; top: 43.925%; animation-delay: 0.105369s; animation-duration: 4.95115s;"></div><div class="particle distant-star" style="width: 0.675769px; height: 0.675769px; left: 6.57521%; top: 72.1996%; animation-delay: 2.22562s; animation-duration: 5.4602s;"></div><div class="particle star" style="width: 2.31759px; height: 2.31759px; left: 6.52205%; top: 78.6273%; animation-delay: 3.58442s; animation-duration: 5.75024s;"></div><div class="particle blue-star" style="width: 1.56453px; height: 1.56453px; left: 44.7112%; top: 82.5783%; animation-delay: 3.87295s; animation-duration: 5.71898s;"></div><div class="particle star" style="width: 2.63615px; height: 2.63615px; left: 48.7964%; top: 64.849%; animation-delay: 2.40817s; animation-duration: 5.35412s;"></div><div class="particle star" style="width: 2.50537px; height: 2.50537px; left: 67.3907%; top: 65.5367%; animation-delay: 0.922603s; animation-duration: 4.89907s;"></div><div class="particle star" style="width: 1.62963px; height: 1.62963px; left: 12.1722%; top: 24.432%; animation-delay: 3.67436s; animation-duration: 3.94844s;"></div><div class="particle star" style="width: 1.70799px; height: 1.70799px; left: 69.0457%; top: 18.3879%; animation-delay: 0.0628908s; animation-duration: 4.21154s;"></div><div class="particle blue-star" style="width: 1.66669px; height: 1.66669px; left: 69.1275%; top: 40.2899%; animation-delay: 2.30887s; animation-duration: 4.058s;"></div><div class="particle blue-star" style="width: 1.95475px; height: 1.95475px; left: 8.6938%; top: 61.5965%; animation-delay: 2.48693s; animation-duration: 5.33477s;"></div><div class="particle distant-star" style="width: 1.08616px; height: 1.08616px; left: 53.3496%; top: 87.1836%; animation-delay: 2.80248s; animation-duration: 3.71797s;"></div><div class="particle star" style="width: 1.9923px; height: 1.9923px; left: 83.4974%; top: 78.1685%; animation-delay: 1.30261s; animation-duration: 3.26914s;"></div><div class="particle distant-star" style="width: 1.17708px; height: 1.17708px; left: 64.1863%; top: 20.6154%; animation-delay: 3.68588s; animation-duration: 5.73945s;"></div><div class="particle star" style="width: 1.34347px; height: 1.34347px; left: 88.623%; top: 17.8702%; animation-delay: 0.101964s; animation-duration: 4.36372s;"></div><div class="particle star" style="width: 2.78535px; height: 2.78535px; left: 86.029%; top: 79.268%; animation-delay: 3.58432s; animation-duration: 4.55664s;"></div><div class="particle star" style="width: 1.28306px; height: 1.28306px; left: 98.6335%; top: 30.9582%; animation-delay: 1.49269s; animation-duration: 4.79209s;"></div><div class="particle star" style="width: 1.85809px; height: 1.85809px; left: 75.7714%; top: 68.9531%; animation-delay: 0.812504s; animation-duration: 5.74724s;"></div><div class="particle star" style="width: 2.16597px; height: 2.16597px; left: 19.8242%; top: 77.8624%; animation-delay: 0.763482s; animation-duration: 5.77851s;"></div><div class="particle star" style="width: 2.77402px; height: 2.77402px; left: 23.8894%; top: 33.4985%; animation-delay: 1.46584s; animation-duration: 3.42057s;"></div><div class="particle star" style="width: 1.17003px; height: 1.17003px; left: 12.0567%; top: 60.0593%; animation-delay: 1.36455s; animation-duration: 3.73334s;"></div><div class="particle star" style="width: 2.58666px; height: 2.58666px; left: 98.4154%; top: 68.0596%; animation-delay: 2.48972s; animation-duration: 5.70135s;"></div><div class="particle star" style="width: 2.63645px; height: 2.63645px; left: 76.311%; top: 36.3826%; animation-delay: 2.75764s; animation-duration: 4.29407s;"></div><div class="particle star" style="width: 1.48644px; height: 1.48644px; left: 82.1152%; top: 89.5234%; animation-delay: 3.45001s; animation-duration: 4.30755s;"></div><div class="particle star" style="width: 2.31854px; height: 2.31854px; left: 57.0278%; top: 47.0429%; animation-delay: 2.94098s; animation-duration: 5.46702s;"></div><div class="particle star" style="width: 1.09997px; height: 1.09997px; left: 20.2669%; top: 21.9536%; animation-delay: 0.0430818s; animation-duration: 4.49328s;"></div><div class="particle star" style="width: 2.47656px; height: 2.47656px; left: 81.7279%; top: 47.6435%; animation-delay: 3.9279s; animation-duration: 5.35178s;"></div><div class="particle star" style="width: 1.24889px; height: 1.24889px; left: 13.8476%; top: 70.4184%; animation-delay: 0.933096s; animation-duration: 3.45533s;"></div><div class="particle star" style="width: 1.26142px; height: 1.26142px; left: 48.2672%; top: 77.0659%; animation-delay: 0.227696s; animation-duration: 3.30839s;"></div><div class="particle star" style="width: 2.35249px; height: 2.35249px; left: 23.1675%; top: 32.2628%; animation-delay: 2.37103s; animation-duration: 4.09265s;"></div><div class="particle star" style="width: 1.59254px; height: 1.59254px; left: 10.5176%; top: 94.692%; animation-delay: 3.97967s; animation-duration: 4.17222s;"></div><div class="particle star" style="width: 2.73414px; height: 2.73414px; left: 46.177%; top: 81.9372%; animation-delay: 2.45032s; animation-duration: 3.9688s;"></div><div class="particle star" style="width: 2.87538px; height: 2.87538px; left: 65.8294%; top: 24.6494%; animation-delay: 1.52758s; animation-duration: 5.02069s;"></div><div class="particle blue-star" style="width: 1.53758px; height: 1.53758px; left: 56.5301%; top: 94.0561%; animation-delay: 0.85603s; animation-duration: 4.37916s;"></div><div class="particle distant-star" style="width: 1.14219px; height: 1.14219px; left: 9.68789%; top: 70.5163%; animation-delay: 3.41478s; animation-duration: 3.96552s;"></div><div class="particle blue-star" style="width: 1.29646px; height: 1.29646px; left: 38.4858%; top: 1.29171%; animation-delay: 3.24943s; animation-duration: 4.4419s;"></div><div class="particle star" style="width: 2.62146px; height: 2.62146px; left: 99.3269%; top: 49.8236%; animation-delay: 1.32235s; animation-duration: 4.98154s;"></div><div class="particle blue-star" style="width: 2.19707px; height: 2.19707px; left: 70.4819%; top: 84.9835%; animation-delay: 0.380923s; animation-duration: 4.18169s;"></div><div class="particle star" style="width: 1.37948px; height: 1.37948px; left: 8.29616%; top: 2.65086%; animation-delay: 1.62457s; animation-duration: 4.9732s;"></div><div class="particle blue-star" style="width: 0.849097px; height: 0.849097px; left: 44.8132%; top: 14.9741%; animation-delay: 3.18095s; animation-duration: 4.97285s;"></div><div class="particle star" style="width: 2.08305px; height: 2.08305px; left: 55.1818%; top: 41.8322%; animation-delay: 1.80081s; animation-duration: 5.44287s;"></div><div class="particle star" style="width: 1.2884px; height: 1.2884px; left: 89.6427%; top: 37.1703%; animation-delay: 2.66969s; animation-duration: 3.97323s;"></div><div class="particle star" style="width: 2.44471px; height: 2.44471px; left: 3.13266%; top: 16.8952%; animation-delay: 1.09505s; animation-duration: 3.9595s;"></div><div class="particle star" style="width: 1.07031px; height: 1.07031px; left: 6.96129%; top: 31.6485%; animation-delay: 3.81251s; animation-duration: 4.87367s;"></div><div class="particle star" style="width: 1.68495px; height: 1.68495px; left: 50.6744%; top: 31.8471%; animation-delay: 3.19548s; animation-duration: 3.80533s;"></div><div class="particle star" style="width: 1.35377px; height: 1.35377px; left: 24.6627%; top: 72.679%; animation-delay: 2.66838s; animation-duration: 4.6683s;"></div><div class="particle star" style="width: 2.74748px; height: 2.74748px; left: 39.0101%; top: 93.697%; animation-delay: 2.12072s; animation-duration: 4.73281s;"></div><div class="particle distant-star" style="width: 1.12538px; height: 1.12538px; left: 44.5256%; top: 91.0678%; animation-delay: 2.86099s; animation-duration: 4.04015s;"></div><div class="particle star" style="width: 2.66747px; height: 2.66747px; left: 69.2974%; top: 86.1379%; animation-delay: 3.48835s; animation-duration: 4.58987s;"></div><div class="particle star" style="width: 2.62008px; height: 2.62008px; left: 95.8828%; top: 58.8568%; animation-delay: 1.70647s; animation-duration: 5.26641s;"></div><div class="particle distant-star" style="width: 0.991825px; height: 0.991825px; left: 96.489%; top: 54.0506%; animation-delay: 1.80037s; animation-duration: 3.10388s;"></div><div class="particle distant-star" style="width: 1.46991px; height: 1.46991px; left: 50.0259%; top: 22.9967%; animation-delay: 3.36044s; animation-duration: 5.14105s;"></div><div class="particle blue-star" style="width: 1.25863px; height: 1.25863px; left: 24.5436%; top: 22.1747%; animation-delay: 3.56577s; animation-duration: 5.29785s;"></div><div class="particle star" style="width: 1.46661px; height: 1.46661px; left: 80.1473%; top: 41.4754%; animation-delay: 0.0894454s; animation-duration: 5.61985s;"></div><div class="particle star" style="width: 2.95134px; height: 2.95134px; left: 70.0704%; top: 4.91369%; animation-delay: 3.3827s; animation-duration: 5.94301s;"></div><div class="particle star" style="width: 2.74505px; height: 2.74505px; left: 46.9072%; top: 17.112%; animation-delay: 3.78215s; animation-duration: 5.78448s;"></div><div class="particle star" style="width: 1.43428px; height: 1.43428px; left: 1.49831%; top: 58.2957%; animation-delay: 3.57805s; animation-duration: 4.59099s;"></div><div class="particle star" style="width: 2.7628px; height: 2.7628px; left: 68.1639%; top: 2.6366%; animation-delay: 1.87094s; animation-duration: 4.97551s;"></div><div class="particle star" style="width: 2.53669px; height: 2.53669px; left: 16.7533%; top: 85.9305%; animation-delay: 0.404437s; animation-duration: 4.52258s;"></div><div class="particle blue-star" style="width: 0.860117px; height: 0.860117px; left: 43.1337%; top: 68.971%; animation-delay: 1.70287s; animation-duration: 5.15213s;"></div><div class="particle star" style="width: 2.03668px; height: 2.03668px; left: 74.3962%; top: 23.1858%; animation-delay: 3.22856s; animation-duration: 3.28971s;"></div><div class="particle star" style="width: 1.0109px; height: 1.0109px; left: 15.2972%; top: 74.8353%; animation-delay: 2.53932s; animation-duration: 4.85848s;"></div><div class="particle star" style="width: 2.6293px; height: 2.6293px; left: 87.3292%; top: 13.185%; animation-delay: 1.17625s; animation-duration: 4.7463s;"></div><div class="particle star" style="width: 2.82989px; height: 2.82989px; left: 15.8884%; top: 90.6708%; animation-delay: 0.34804s; animation-duration: 5.15911s;"></div><div class="particle star" style="width: 1.80129px; height: 1.80129px; left: 15.8394%; top: 89.3508%; animation-delay: 3.60912s; animation-duration: 3.47714s;"></div><div class="particle star" style="width: 2.74194px; height: 2.74194px; left: 50.4074%; top: 35.0074%; animation-delay: 1.32035s; animation-duration: 3.86617s;"></div><div class="particle star" style="width: 1.87516px; height: 1.87516px; left: 76.8609%; top: 78.7917%; animation-delay: 1.97941s; animation-duration: 5.43498s;"></div><div class="particle star" style="width: 1.92839px; height: 1.92839px; left: 48.842%; top: 35.808%; animation-delay: 0.561808s; animation-duration: 4.99726s;"></div><div class="particle star" style="width: 1.99841px; height: 1.99841px; left: 80.1965%; top: 70.8631%; animation-delay: 2.99224s; animation-duration: 4.65903s;"></div><div class="particle star" style="width: 2.66165px; height: 2.66165px; left: 48.8618%; top: 97.6295%; animation-delay: 3.29208s; animation-duration: 4.18517s;"></div><div class="particle star" style="width: 2.15774px; height: 2.15774px; left: 64.2341%; top: 11.5074%; animation-delay: 0.509934s; animation-duration: 4.95111s;"></div><div class="particle star" style="width: 2.44891px; height: 2.44891px; left: 51.155%; top: 74.5425%; animation-delay: 3.43576s; animation-duration: 3.74354s;"></div><div class="particle blue-star" style="width: 0.953359px; height: 0.953359px; left: 93.8233%; top: 13.2683%; animation-delay: 2.22636s; animation-duration: 3.22582s;"></div><div class="particle blue-star" style="width: 1.2362px; height: 1.2362px; left: 67.3924%; top: 38.3173%; animation-delay: 1.02955s; animation-duration: 5.16451s;"></div><div class="particle star" style="width: 1.60247px; height: 1.60247px; left: 72.3057%; top: 59.3652%; animation-delay: 2.50926s; animation-duration: 4.23587s;"></div><div class="particle star" style="width: 2.69613px; height: 2.69613px; left: 15.52%; top: 48.512%; animation-delay: 2.25719s; animation-duration: 5.64394s;"></div><div class="particle blue-star" style="width: 1.67079px; height: 1.67079px; left: 60.9007%; top: 55.9418%; animation-delay: 2.7146s; animation-duration: 4.80831s;"></div><div class="particle star" style="width: 1.22186px; height: 1.22186px; left: 56.3989%; top: 6.90629%; animation-delay: 3.67385s; animation-duration: 5.55037s;"></div><div class="particle star" style="width: 1.19196px; height: 1.19196px; left: 37.6365%; top: 17.4916%; animation-delay: 3.52625s; animation-duration: 3.01675s;"></div><div class="particle blue-star" style="width: 1.29106px; height: 1.29106px; left: 21.6248%; top: 93.0645%; animation-delay: 2.02834s; animation-duration: 3.24081s;"></div><div class="particle star" style="width: 1.49289px; height: 1.49289px; left: 29.5996%; top: 16.5898%; animation-delay: 1.79281s; animation-duration: 3.15054s;"></div><div class="particle star" style="width: 2.63244px; height: 2.63244px; left: 36.5746%; top: 92.8702%; animation-delay: 1.0917s; animation-duration: 3.49469s;"></div><div class="particle star" style="width: 1.10722px; height: 1.10722px; left: 13.2638%; top: 83.2571%; animation-delay: 0.0632586s; animation-duration: 3.648s;"></div><div class="particle blue-star" style="width: 1.51242px; height: 1.51242px; left: 73.4011%; top: 29.8762%; animation-delay: 1.90835s; animation-duration: 5.93278s;"></div><div class="particle star" style="width: 1.72216px; height: 1.72216px; left: 34.2711%; top: 41.808%; animation-delay: 0.776073s; animation-duration: 5.1113s;"></div><div class="particle star" style="width: 2.16563px; height: 2.16563px; left: 45.213%; top: 69.3973%; animation-delay: 0.0867146s; animation-duration: 4.07689s;"></div><div class="particle star" style="width: 1.50019px; height: 1.50019px; left: 63.6946%; top: 25.1266%; animation-delay: 2.89657s; animation-duration: 5.49306s;"></div><div class="particle distant-star" style="width: 1.49928px; height: 1.49928px; left: 35.0394%; top: 56.8139%; animation-delay: 0.0176376s; animation-duration: 5.73465s;"></div><div class="particle blue-star" style="width: 2.26401px; height: 2.26401px; left: 47.548%; top: 78.1119%; animation-delay: 1.67846s; animation-duration: 3.00012s;"></div><div class="particle star" style="width: 2.15881px; height: 2.15881px; left: 21.3639%; top: 38.9961%; animation-delay: 3.38762s; animation-duration: 3.5593s;"></div><div class="particle star" style="width: 1.85834px; height: 1.85834px; left: 75.5379%; top: 70.7273%; animation-delay: 3.27949s; animation-duration: 4.7784s;"></div><div class="particle distant-star" style="width: 0.8038px; height: 0.8038px; left: 91.6097%; top: 14.9699%; animation-delay: 3.10779s; animation-duration: 5.06205s;"></div><div class="particle blue-star" style="width: 1.8976px; height: 1.8976px; left: 11.0851%; top: 16.8525%; animation-delay: 2.7093s; animation-duration: 3.57224s;"></div><div class="particle star" style="width: 2.84425px; height: 2.84425px; left: 78.4627%; top: 94.7175%; animation-delay: 1.08678s; animation-duration: 5.26343s;"></div><div class="particle star" style="width: 2.49753px; height: 2.49753px; left: 22.3253%; top: 57.7911%; animation-delay: 1.54835s; animation-duration: 3.64861s;"></div><div class="particle blue-star" style="width: 1.99225px; height: 1.99225px; left: 42.3079%; top: 78.5183%; animation-delay: 0.47116s; animation-duration: 4.70157s;"></div><div class="particle star" style="width: 2.41544px; height: 2.41544px; left: 92.1335%; top: 7.33726%; animation-delay: 0.932482s; animation-duration: 5.31539s;"></div><div class="particle star" style="width: 1.13351px; height: 1.13351px; left: 14.8548%; top: 9.48214%; animation-delay: 1.05479s; animation-duration: 4.45007s;"></div><div class="particle blue-star" style="width: 1.9361px; height: 1.9361px; left: 54.2097%; top: 51.8261%; animation-delay: 1.96942s; animation-duration: 3.73259s;"></div><div class="particle star" style="width: 1.28818px; height: 1.28818px; left: 48.5316%; top: 83.1181%; animation-delay: 2.6915s; animation-duration: 5.76344s;"></div><div class="particle star" style="width: 2.9018px; height: 2.9018px; left: 59.8991%; top: 22.1968%; animation-delay: 2.34483s; animation-duration: 5.26258s;"></div><div class="particle blue-star" style="width: 2.18086px; height: 2.18086px; left: 53.6305%; top: 1.91529%; animation-delay: 0.447089s; animation-duration: 3.0157s;"></div><div class="particle blue-star" style="width: 1.16476px; height: 1.16476px; left: 33.458%; top: 26.3789%; animation-delay: 1.86819s; animation-duration: 5.11333s;"></div><div class="particle blue-star" style="width: 1.39857px; height: 1.39857px; left: 12.945%; top: 75.3103%; animation-delay: 0.68576s; animation-duration: 4.09867s;"></div><div class="particle star" style="width: 1.618px; height: 1.618px; left: 86.4702%; top: 45.7843%; animation-delay: 2.56242s; animation-duration: 4.77387s;"></div><div class="particle blue-star" style="width: 1.11884px; height: 1.11884px; left: 42.9367%; top: 85.9988%; animation-delay: 2.14367s; animation-duration: 4.67339s;"></div><div class="particle star" style="width: 1.37736px; height: 1.37736px; left: 14.8641%; top: 43.6635%; animation-delay: 1.08509s; animation-duration: 5.36212s;"></div><div class="particle star" style="width: 1.30563px; height: 1.30563px; left: 7.41542%; top: 80.0543%; animation-delay: 2.94054s; animation-duration: 3.12291s;"></div><div class="particle star" style="width: 2.76045px; height: 2.76045px; left: 74.5531%; top: 25.952%; animation-delay: 3.23197s; animation-duration: 3.22005s;"></div><div class="particle blue-star" style="width: 1.32874px; height: 1.32874px; left: 24.2157%; top: 60.9013%; animation-delay: 2.05929s; animation-duration: 4.77196s;"></div><div class="particle star" style="width: 1.16969px; height: 1.16969px; left: 1.69571%; top: 7.58954%; animation-delay: 0.0487209s; animation-duration: 3.88999s;"></div><div class="particle star" style="width: 2.31254px; height: 2.31254px; left: 69.0303%; top: 39.3308%; animation-delay: 0.517498s; animation-duration: 4.63145s;"></div><div class="particle blue-star" style="width: 1.72457px; height: 1.72457px; left: 1.91739%; top: 99.4621%; animation-delay: 3.57293s; animation-duration: 5.44285s;"></div><div class="particle blue-star" style="width: 1.80192px; height: 1.80192px; left: 0.897504%; top: 61.9228%; animation-delay: 2.6364s; animation-duration: 5.99078s;"></div><div class="particle star" style="width: 1.18994px; height: 1.18994px; left: 49.9519%; top: 93.1038%; animation-delay: 2.37579s; animation-duration: 5.6199s;"></div><div class="particle star" style="width: 2.40451px; height: 2.40451px; left: 95.8607%; top: 5.10452%; animation-delay: 0.850551s; animation-duration: 3.19248s;"></div><div class="particle star" style="width: 1.11698px; height: 1.11698px; left: 27.4768%; top: 67.1397%; animation-delay: 2.87926s; animation-duration: 3.43661s;"></div><div class="particle star" style="width: 2.11149px; height: 2.11149px; left: 93.3%; top: 27.2529%; animation-delay: 1.67405s; animation-duration: 5.42041s;"></div><div class="particle star" style="width: 1.23934px; height: 1.23934px; left: 44.4217%; top: 71.8233%; animation-delay: 3.84343s; animation-duration: 4.92454s;"></div><div class="particle distant-star" style="width: 1.0791px; height: 1.0791px; left: 59.449%; top: 57.4585%; animation-delay: 1.14729s; animation-duration: 4.51281s;"></div><div class="particle star" style="width: 1.66833px; height: 1.66833px; left: 0.517511%; top: 56.8388%; animation-delay: 3.13956s; animation-duration: 4.01276s;"></div><div class="particle star" style="width: 2.64897px; height: 2.64897px; left: 19.7784%; top: 19.3179%; animation-delay: 2.68326s; animation-duration: 4.3376s;"></div><div class="particle star" style="width: 1.90452px; height: 1.90452px; left: 49.7211%; top: 35.9348%; animation-delay: 1.88834s; animation-duration: 5.55815s;"></div><div class="particle distant-star" style="width: 0.742631px; height: 0.742631px; left: 50.9993%; top: 74.4313%; animation-delay: 2.69246s; animation-duration: 3.8433s;"></div><div class="particle star" style="width: 2.07666px; height: 2.07666px; left: 53.2653%; top: 13.2035%; animation-delay: 3.10545s; animation-duration: 4.9705s;"></div><div class="particle star" style="width: 1.1608px; height: 1.1608px; left: 97.7431%; top: 53.6175%; animation-delay: 2.89522s; animation-duration: 3.69655s;"></div><div class="particle star" style="width: 2.95694px; height: 2.95694px; left: 56.2099%; top: 50.642%; animation-delay: 1.57445s; animation-duration: 5.41104s;"></div><div class="particle star" style="width: 1.11118px; height: 1.11118px; left: 91.2448%; top: 54.817%; animation-delay: 0.681869s; animation-duration: 3.19162s;"></div><div class="particle star" style="width: 2.53263px; height: 2.53263px; left: 53.188%; top: 69.9381%; animation-delay: 3.16316s; animation-duration: 3.40028s;"></div><div class="particle star" style="width: 2.63535px; height: 2.63535px; left: 89.7112%; top: 98.5359%; animation-delay: 2.46748s; animation-duration: 5.25991s;"></div><div class="particle star" style="width: 1.63736px; height: 1.63736px; left: 34.212%; top: 84.9489%; animation-delay: 0.635625s; animation-duration: 5.02153s;"></div><div class="particle star" style="width: 1.77353px; height: 1.77353px; left: 79.6331%; top: 80.9061%; animation-delay: 0.995187s; animation-duration: 4.14253s;"></div><div class="particle star" style="width: 1.40887px; height: 1.40887px; left: 76.8623%; top: 81.1822%; animation-delay: 3.08143s; animation-duration: 3.58454s;"></div><div class="particle star" style="width: 1.96292px; height: 1.96292px; left: 79.3204%; top: 98.5873%; animation-delay: 1.57093s; animation-duration: 4.96112s;"></div><div class="particle star" style="width: 1.21496px; height: 1.21496px; left: 88.9137%; top: 42.706%; animation-delay: 3.5147s; animation-duration: 5.68588s;"></div><div class="particle star" style="width: 2.11328px; height: 2.11328px; left: 76.3288%; top: 36.9371%; animation-delay: 2.91714s; animation-duration: 5.98616s;"></div><div class="particle blue-star" style="width: 1.41042px; height: 1.41042px; left: 0.68484%; top: 86.0469%; animation-delay: 0.0414652s; animation-duration: 5.28133s;"></div><div class="particle blue-star" style="width: 1.07049px; height: 1.07049px; left: 63.048%; top: 78.8054%; animation-delay: 3.71223s; animation-duration: 5.51164s;"></div><div class="particle star" style="width: 2.22356px; height: 2.22356px; left: 60.2924%; top: 67.8024%; animation-delay: 2.42404s; animation-duration: 3.04596s;"></div><div class="particle star" style="width: 2.31148px; height: 2.31148px; left: 22.5793%; top: 64.0162%; animation-delay: 1.56718s; animation-duration: 3.71374s;"></div><div class="particle star" style="width: 2.25815px; height: 2.25815px; left: 61.6925%; top: 20.8485%; animation-delay: 1.43531s; animation-duration: 4.28532s;"></div><div class="particle star" style="width: 1.49443px; height: 1.49443px; left: 39.7515%; top: 38.0833%; animation-delay: 1.38973s; animation-duration: 4.98986s;"></div><div class="particle star" style="width: 1.07881px; height: 1.07881px; left: 16.3999%; top: 44.9222%; animation-delay: 1.21842s; animation-duration: 4.12061s;"></div><div class="particle star" style="width: 1.11947px; height: 1.11947px; left: 46.6492%; top: 11.8968%; animation-delay: 2.39791s; animation-duration: 5.71365s;"></div><div class="particle star" style="width: 1.99368px; height: 1.99368px; left: 59.1591%; top: 96.2318%; animation-delay: 2.10649s; animation-duration: 4.10064s;"></div><div class="particle blue-star" style="width: 1.74159px; height: 1.74159px; left: 36.629%; top: 52.7788%; animation-delay: 0.520754s; animation-duration: 4.21739s;"></div><div class="particle star" style="width: 1.72022px; height: 1.72022px; left: 30.8327%; top: 19.6439%; animation-delay: 0.211035s; animation-duration: 3.16226s;"></div><div class="particle star" style="width: 1.88931px; height: 1.88931px; left: 57.9121%; top: 66.2708%; animation-delay: 1.30881s; animation-duration: 5.29736s;"></div><div class="particle blue-star" style="width: 1.64463px; height: 1.64463px; left: 46.7861%; top: 6.77678%; animation-delay: 1.96099s; animation-duration: 4.76109s;"></div></div>
 
     <div class="container fade-in">
         <div class="header">
-            <h1 class="logo">Zanes Startseite</h1>
+            <h1 class="logo">Zanes Startsiite</h1>
             <div class="search-container">
                 <div class="search-wrapper">
-                    <input type="text" class="search-input" placeholder="Suchbegriff eingeben..." id="searchInput">
-                    <button class="search-button" id="searchButton">Suchen</button>
+                    <input type="text" class="search-input" placeholder="Suchbegriff iigäh..." id="searchInput">
+                    <button class="search-button" id="searchButton">Sueche</button>
                 </div>
                 <div class="search-selector">
-                    <select class="search-select" id="searchEngine">
-                        <option value="bilibili">Bilibili</option>
-                        <option value="google">Google</option>
-                        <option value="youtube">YouTube</option>
-                        <option value="zhihu">Zhihu</option>
-                        <option value="edge">Edge</option>
-                    </select>
+                    <button class="search-select" id="searchEngineBtn">Bilibili</button>
+                    <div class="search-engine-dropdown" id="searchEngineDropdown">
+                        <div class="search-engine-option" data-engine="bilibili">Bilibili</div>
+                        <div class="search-engine-option" data-engine="google">Google</div>
+                        <div class="search-engine-option" data-engine="youtube">YouTube</div>
+                        <div class="search-engine-option" data-engine="zhihu">Zhihu</div>
+                        <div class="search-engine-option" data-engine="edge">Edge</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -640,38 +630,38 @@
         <div class="bookmarks">
             <div id="bookmarkSections"><div class="bookmark-section">
                     <div class="section-header">
-                        <h2 class="section-title">Meine Lesezeichen</h2>
+                        <h2 class="section-title">Mini Lesezeiche</h2>
                         <div class="section-controls">
                             <button class="add-bookmark" data-section-id="main">+ Hinzufügen</button>
                             
                         </div>
                     </div>
-                    <div class="bookmark-grid" id="grid-main"><a href="https://github.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="0" draggable="false">
-                    <div class="bookmark-icon">G</div>
-                    <div class="bookmark-info">
-                        <h3>GitHub</h3>
-                        <p>Code-Repository</p>
-                    </div>
-                    <button class="remove-bookmark" data-section-id="main" data-index="0">×</button>
-                </a><a href="https://translate.google.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="1" draggable="false">
+                    <div class="bookmark-grid" id="grid-main"><a href="https://translate.google.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="0" draggable="false">
                     <div class="bookmark-icon">GT</div>
                     <div class="bookmark-info">
                         <h3>Google Translate</h3>
                         <p>Übersetzungsdienst</p>
                     </div>
-                    <button class="remove-bookmark" data-section-id="main" data-index="1">×</button>
-                </a><a href="https://www.bilibili.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="2" draggable="false">
-                    <div class="bookmark-icon">B</div>
+                    <button class="remove-bookmark" data-section-id="main" data-index="0">×</button>
+                </a><a href="https://github.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="1" draggable="false">
+                    <div class="bookmark-icon">G</div>
                     <div class="bookmark-info">
-                        <h3>Bilibili</h3>
-                        <p>Video-Community</p>
+                        <h3>GitHub</h3>
+                        <p>Code-Repository</p>
                     </div>
-                    <button class="remove-bookmark" data-section-id="main" data-index="2">×</button>
-                </a><a href="https://www.youtube.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="3" draggable="false">
+                    <button class="remove-bookmark" data-section-id="main" data-index="1">×</button>
+                </a><a href="https://www.youtube.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="2" draggable="false">
                     <div class="bookmark-icon">Y</div>
                     <div class="bookmark-info">
                         <h3>YouTube</h3>
                         <p>Video-Plattform</p>
+                    </div>
+                    <button class="remove-bookmark" data-section-id="main" data-index="2">×</button>
+                </a><a href="https://www.bilibili.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="3" draggable="false">
+                    <div class="bookmark-icon">B</div>
+                    <div class="bookmark-info">
+                        <h3>Bilibili</h3>
+                        <p>Video-Community</p>
                     </div>
                     <button class="remove-bookmark" data-section-id="main" data-index="3">×</button>
                 </a></div>
@@ -714,20 +704,20 @@
                     </div>
                     <div class="bookmark-grid" id="grid-section_1753518318759"></div>
                 </div></div>
-            <button class="add-section" id="addSectionBtn">+ Neuen Bereich hinzufügen</button>
+            <button class="add-section" id="addSectionBtn">+ Neue Bereich zuefüege</button>
         </div>
     </div>
 
     <!-- Add Bookmark Modal -->
-    <div class="modal" id="addBookmarkModal">
+    <div class="modal" id="addBookmarkModal" style="display: none;">
         <div class="modal-content">
-            <h3>Neues Lesezeichen hinzufügen</h3>
+            <h3>Neus Lesezeiche zuefüege</h3>
             <input type="text" id="bookmarkName" placeholder="Name der Website">
             <input type="url" id="bookmarkUrl" placeholder="https://example.com">
             <input type="text" id="bookmarkDesc" placeholder="Kurze Beschreibung">
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeBookmarkModal()">Abbrechen</button>
-                <button onclick="addBookmark()">Hinzufügen</button>
+                <button class="cancel" onclick="closeBookmarkModal()">Abbreche</button>
+                <button onclick="addBookmark()">Zuefüege</button>
             </div>
         </div>
     </div>
@@ -735,11 +725,11 @@
     <!-- Add Section Modal -->
     <div class="modal" id="addSectionModal">
         <div class="modal-content">
-            <h3>Neuen Bereich erstellen</h3>
+            <h3>Neue Bereich erstelle</h3>
             <input type="text" id="sectionName" placeholder="Name des Bereichs">
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeSectionModal()">Abbrechen</button>
-                <button onclick="addSection()">Erstellen</button>
+                <button class="cancel" onclick="closeSectionModal()">Abbreche</button>
+                <button onclick="addSection()">Erstelle</button>
             </div>
         </div>
     </div>
@@ -747,26 +737,26 @@
     <!-- Rename Section Modal -->
     <div class="modal" id="renameSectionModal">
         <div class="modal-content">
-            <h3>Bereich umbenennen</h3>
+            <h3>Bereich umbenenne</h3>
             <input type="text" id="newSectionName" placeholder="Neuer Name">
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeRenameModal()">Abbrechen</button>
-                <button onclick="confirmRename()">Umbenennen</button>
+                <button class="cancel" onclick="closeRenameModal()">Abbreche</button>
+                <button onclick="confirmRename()">Umbennene</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Optimized Touch/Long-press Drag and Drop System
+        // Optimized Drag and Drop System
         let dragState = {
             isDragging: false,
             draggedElement: null,
             draggedIndex: null,
             draggedSectionId: null,
-            placeholder: null,
             startPos: { x: 0, y: 0 },
             longPressTimer: null,
-            isLongPress: false
+            isLongPress: false,
+            lastTargetElement: null
         };
 
         function setupDragAndDrop(sectionId) {
@@ -864,15 +854,20 @@
             dragState.draggedIndex = parseInt(element.dataset.index);
             dragState.draggedSectionId = element.dataset.sectionId;
     
+            // Create visual clone
             const clone = element.cloneNode(true);
             clone.style.position = 'fixed';
             clone.style.width = element.offsetWidth + 'px';
-            clone.style.zIndex = '1000';
-            clone.style.opacity = '0.8';
+            clone.style.zIndex = '1001';
+            clone.style.opacity = '0.9';
             clone.style.pointerEvents = 'none';
+            clone.style.transform = 'rotate(2deg) scale(1.02)';
+            clone.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.6)';
+            clone.id = 'dragClone';
             document.body.appendChild(clone);
     
-            element.style.opacity = '0.3';
+            // Mark original element as dragging
+            element.classList.add('dragging');
     
             const rect = element.getBoundingClientRect();
             const offsetX = startX - rect.left;
@@ -888,28 +883,36 @@
                 clone.style.top = y + 'px';
     
                 const mouseY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
-                checkAndSwapItems(mouseY);
+                const mouseX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+                updateDragTarget(mouseX, mouseY);
             }
     
             function endDrag(e) {
                 if (!dragState.isDragging) return;
     
-                document.body.removeChild(clone);
-                element.style.opacity = '';
+                const cloneElement = document.getElementById('dragClone');
+                if (cloneElement) {
+                    document.body.removeChild(cloneElement);
+                }
+                
+                element.classList.remove('dragging');
+                clearDragTargets();
     
                 document.removeEventListener('mousemove', moveClone);
                 document.removeEventListener('touchmove', moveClone);
                 document.removeEventListener('mouseup', endDrag);
                 document.removeEventListener('touchend', endDrag);
     
-                const mouseY = e.type === 'mouseup' ? e.clientY : e.changedTouches[0].clientY;
-                finalizeSwap(mouseY);
+                // Finalize the drag operation
+                if (dragState.lastTargetElement && dragState.lastTargetElement !== element) {
+                    const targetIndex = parseInt(dragState.lastTargetElement.dataset.index);
+                    performSwap(dragState.draggedIndex, targetIndex);
+                }
     
-                dragState.isDragging = false;
-                dragState.draggedElement = null;
-                dragState.isLongPress = false;
+                resetDragState();
             }
     
+            // Position the clone initially
             clone.style.left = rect.left + 'px';
             clone.style.top = rect.top + 'px';
     
@@ -919,52 +922,76 @@
             document.addEventListener('touchend', endDrag);
         }
 
-        function checkAndSwapItems(mouseY) {
+        function updateDragTarget(mouseX, mouseY) {
             const grid = document.getElementById(`grid-${dragState.draggedSectionId}`);
             const items = Array.from(grid.querySelectorAll('.bookmark-item:not(.dragging)'));
     
-            let targetItem = null;
+            // Clear previous target
+            if (dragState.lastTargetElement) {
+                dragState.lastTargetElement.classList.remove('drag-target');
+            }
+    
+            // Find the closest item
+            let closestItem = null;
             let minDistance = Infinity;
     
             items.forEach(item => {
                 const rect = item.getBoundingClientRect();
-                const distance = Math.abs(mouseY - (rect.top + rect.height / 2));
-    
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    targetItem = item;
+                const itemCenterX = rect.left + rect.width / 2;
+                const itemCenterY = rect.top + rect.height / 2;
+                
+                // Calculate distance from mouse to item center
+                const distance = Math.sqrt(
+                    Math.pow(mouseX - itemCenterX, 2) + 
+                    Math.pow(mouseY - itemCenterY, 2)
+                );
+                
+                // Check if mouse is within the item bounds
+                if (mouseX >= rect.left && mouseX <= rect.right && 
+                    mouseY >= rect.top && mouseY <= rect.bottom) {
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestItem = item;
+                    }
                 }
             });
     
-            if (targetItem && targetItem !== dragState.draggedElement) {
-                const targetIndex = parseInt(targetItem.dataset.index);
-                if (targetIndex !== dragState.draggedIndex) {
-                    swapItems(targetIndex);
-                }
+            // Set new target
+            if (closestItem) {
+                closestItem.classList.add('drag-target');
+                dragState.lastTargetElement = closestItem;
+            } else {
+                dragState.lastTargetElement = null;
             }
         }
 
-        function swapItems(targetIndex) {
+        function performSwap(fromIndex, toIndex) {
+            if (fromIndex === toIndex) return;
+            
             const section = bookmarkSections.find(s => s.id === dragState.draggedSectionId);
             if (!section) return;
     
-            const fromIndex = dragState.draggedIndex;
+            // Perform the swap in the data array
             const [movedBookmark] = section.bookmarks.splice(fromIndex, 1);
-            section.bookmarks.splice(targetIndex, 0, movedBookmark);
-            dragState.draggedIndex = targetIndex;
-    
-            // 更新所有书签的索引
-            const grid = document.getElementById(`grid-${dragState.draggedSectionId}`);
-            const items = Array.from(grid.querySelectorAll('.bookmark-item'));
-            items.forEach((item, index) => {
-                item.dataset.index = index;
-            });
-        }
-
-        function finalizeSwap(mouseY) {
-            checkAndSwapItems(mouseY);
+            section.bookmarks.splice(toIndex, 0, movedBookmark);
+            
+            // Save and re-render
             saveSections();
             renderBookmarks(dragState.draggedSectionId);
+        }
+
+        function clearDragTargets() {
+            const items = document.querySelectorAll('.bookmark-item.drag-target');
+            items.forEach(item => item.classList.remove('drag-target'));
+        }
+
+        function resetDragState() {
+            dragState.isDragging = false;
+            dragState.draggedElement = null;
+            dragState.draggedIndex = null;
+            dragState.draggedSectionId = null;
+            dragState.isLongPress = false;
+            dragState.lastTargetElement = null;
         }
 
         // Sternenhimmel-Partikel-System
@@ -1039,7 +1066,7 @@
         // Suche
         const searchInput = document.getElementById('searchInput');
         const searchButton = document.getElementById('searchButton');
-        const searchEngine = document.getElementById('searchEngine');
+        const searchEngineBtn = document.getElementById('searchEngineBtn');
 
         const searchUrls = {
             bilibili: 'https://search.bilibili.com/all?keyword=',
@@ -1051,7 +1078,7 @@
 
         function performSearch() {
             const query = searchInput.value.trim();
-            const engine = searchEngine.value;
+            const engine = searchEngineBtn.textContent.toLowerCase();
             
             if (query) {
                 const encodedQuery = encodeURIComponent(query);
@@ -1073,18 +1100,18 @@
         let currentRenameId = null;
 
         function loadSections() {
-            const stored = JSON.parse(localStorage.getItem('zanes-sections') || 'null');
-            if (!stored || stored.length === 0) {
-                // Default sections including "Meine Lesezeichen" and "Weitere Lesezeichen"
+            const stored = localStorage.getItem('zanes-sections');
+            if (!stored) {
+                // Default sections
                 bookmarkSections = [
                     {
                         id: 'main',
                         name: 'Meine Lesezeichen',
                         bookmarks: [
-                            { name: 'Bilibili', url: 'https://www.bilibili.com', desc: 'Video-Community' },
-                            { name: 'YouTube', url: 'https://www.youtube.com', desc: 'Video-Plattform' },
-                            { name: 'GitHub', url: 'https://github.com', desc: 'Code-Repository' },
-                            { name: 'Google Translate', url: 'https://translate.google.com', desc: 'Übersetzungsdienst' }
+                            { name: 'GitHub', url: 'https://github.com/', desc: 'Code-Repository' },
+                            { name: 'Google Translate', url: 'https://translate.google.com/', desc: 'Übersetzungsdienst' },
+                            { name: 'Bilibili', url: 'https://www.bilibili.com/', desc: 'Video-Community' },
+                            { name: 'YouTube', url: 'https://www.youtube.com/', desc: 'Video-Plattform' }
                         ],
                         isDefault: true
                     },
@@ -1092,36 +1119,26 @@
                         id: 'additional',
                         name: 'Weitere Lesezeichen',
                         bookmarks: [],
-                        isDefault: false,
-                        isSystemSection: true
+                        isDefault: false
                     }
                 ];
                 saveSections();
             } else {
-                bookmarkSections = stored;
-                // Ensure "Meine Lesezeichen" exists
-                if (!bookmarkSections.find(s => s.id === 'main')) {
-                    bookmarkSections.unshift({
-                        id: 'main',
-                        name: 'Meine Lesezeichen',
-                        bookmarks: [],
-                        isDefault: true
-                    });
-                    saveSections();
-                }
-                // Only re-add "Weitere Lesezeichen" if it is the only module besides "Meine Lesezeichen"
-                if (!bookmarkSections.find(s => s.id === 'additional')) {
-                    const mainIndex = bookmarkSections.findIndex(s => s.id === 'main');
-                    if (bookmarkSections.length === 1) {
-                        bookmarkSections.splice(mainIndex + 1, 0, {
-                            id: 'additional',
-                            name: 'Weitere Lesezeichen',
+                try {
+                    bookmarkSections = JSON.parse(stored);
+                    // Ensure main section exists
+                    if (!bookmarkSections.find(s => s.id === 'main')) {
+                        bookmarkSections.unshift({
+                            id: 'main',
+                            name: 'Meine Lesezeichen',
                             bookmarks: [],
-                            isDefault: false,
-                            isSystemSection: true
+                            isDefault: true
                         });
                         saveSections();
                     }
+                } catch (e) {
+                    console.error('Error parsing stored sections:', e);
+                    bookmarkSections = [];
                 }
             }
             renderSections();
@@ -1138,14 +1155,15 @@
             bookmarkSections.forEach(section => {
                 const sectionElement = document.createElement('div');
                 sectionElement.className = 'bookmark-section';
+                const langData = translations[currentLanguage] || translations.de;
                 sectionElement.innerHTML = `
                     <div class="section-header">
                         <h2 class="section-title">${section.name}</h2>
                         <div class="section-controls">
-                            <button class="add-bookmark" data-section-id="${section.id}">+ Hinzufügen</button>
+                            <button class="add-bookmark" data-section-id="${section.id}">+ ${langData.addBookmarkBtn}</button>
                             ${!section.isDefault ? `
-                                <button class="rename-section" data-section-id="${section.id}">✏️</button>
-                                <button class="delete-section" data-section-id="${section.id}">🗑️</button>
+                                <button class="rename-section" data-section-id="${section.id}" title="${langData.editPrompt}">✏️</button>
+                                <button class="delete-section" data-section-id="${section.id}" title="${langData.deletePrompt}">🗑️</button>
                             ` : ''}
                         </div>
                     </div>
@@ -1155,12 +1173,10 @@
                 renderBookmarks(section.id);
             });
             
-            // Event Listeners für Buttons nach dem Rendern hinzufügen
             setupSectionEventListeners();
         }
 
         function setupSectionEventListeners() {
-            // Add bookmark buttons
             document.querySelectorAll('.add-bookmark').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const sectionId = e.target.getAttribute('data-section-id');
@@ -1168,7 +1184,6 @@
                 });
             });
             
-            // Rename section buttons  
             document.querySelectorAll('.rename-section').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const sectionId = e.target.getAttribute('data-section-id');
@@ -1176,7 +1191,6 @@
                 });
             });
             
-            // Delete section buttons
             document.querySelectorAll('.delete-section').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const sectionId = e.target.getAttribute('data-section-id');
@@ -1190,6 +1204,8 @@
             if (!section) return;
             
             const grid = document.getElementById(`grid-${sectionId}`);
+            if (!grid) return;
+            
             grid.innerHTML = '';
             
             section.bookmarks.forEach((bookmark, index) => {
@@ -1199,7 +1215,7 @@
                 bookmarkItem.className = 'bookmark-item';
                 bookmarkItem.dataset.sectionId = sectionId;
                 bookmarkItem.dataset.index = index;
-                bookmarkItem.draggable = false; // Initially not draggable
+                bookmarkItem.draggable = false;
                 
                 const initials = getInitials(bookmark.name);
                 
@@ -1207,7 +1223,7 @@
                     <div class="bookmark-icon">${initials}</div>
                     <div class="bookmark-info">
                         <h3>${bookmark.name}</h3>
-                        <p>${bookmark.desc}</p>
+                        <p>${bookmark.desc || ''}</p>
                     </div>
                     <button class="remove-bookmark" data-section-id="${sectionId}" data-index="${index}">×</button>
                 `;
@@ -1221,25 +1237,29 @@
 
         function setupRemoveButtons(sectionId) {
             const grid = document.getElementById(`grid-${sectionId}`);
+            if (!grid) return;
+            
             grid.querySelectorAll('.remove-bookmark').forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     const sectionId = e.target.getAttribute('data-section-id');
                     const index = parseInt(e.target.getAttribute('data-index'));
-                    removeBookmark(e, sectionId, index);
+                    removeBookmark(sectionId, index);
                 });
             });
         }
 
         function getInitials(name) {
+            if (!name) return '?';
             return name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
         }
 
         function addSection() {
             const name = document.getElementById('sectionName').value.trim();
+            const langData = translations[currentLanguage] || translations.de;
             if (!name) {
-                alert('Bitte einen Namen eingeben!');
+                alert(langData.sectionNameRequired || 'Please enter a name!');
                 return;
             }
             
@@ -1257,8 +1277,8 @@
         }
 
         function deleteSection(sectionId) {
-            // "Weitere Lesezeichen" kann gelöscht werden, aber wird beim nächsten Laden wieder erstellt
-            if (confirm('Bereich wirklich löschen? Alle Lesezeichen gehen verloren!')) {
+            const langData = translations[currentLanguage] || translations.de;
+            if (confirm(langData.deleteConfirm)) {
                 bookmarkSections = bookmarkSections.filter(s => s.id !== sectionId);
                 saveSections();
                 renderSections();
@@ -1277,8 +1297,9 @@
 
         function confirmRename() {
             const newName = document.getElementById('newSectionName').value.trim();
+            const langData = translations[currentLanguage] || translations.de;
             if (!newName) {
-                alert('Bitte einen Namen eingeben!');
+                alert(langData.sectionNameRequired || 'Please enter a name!');
                 return;
             }
             
@@ -1295,9 +1316,10 @@
             const name = document.getElementById('bookmarkName').value.trim();
             const url = document.getElementById('bookmarkUrl').value.trim();
             const desc = document.getElementById('bookmarkDesc').value.trim();
+            const langData = translations[currentLanguage] || translations.de;
             
             if (!name || !url) {
-                alert('Bitte Name und URL eingeben!');
+                alert(langData.bookmarkRequired || 'Please enter name and URL!');
                 return;
             }
             
@@ -1310,8 +1332,9 @@
             closeBookmarkModal();
         }
 
-        function removeBookmark(event, sectionId, index) {
-            if (confirm('Lesezeichen wirklich entfernen?')) {
+        function removeBookmark(sectionId, index) {
+            const langData = translations[currentLanguage] || translations.de;
+            if (confirm(langData.deleteBookmarkConfirm)) {
                 const section = bookmarkSections.find(s => s.id === sectionId);
                 if (section) {
                     section.bookmarks.splice(index, 1);
@@ -1319,28 +1342,6 @@
                     renderBookmarks(sectionId);
                 }
             }
-        }
-
-        function removePlaceholder() {
-            if (dragState.placeholder && dragState.placeholder.parentNode) {
-                dragState.placeholder.parentNode.removeChild(dragState.placeholder);
-            }
-            dragState.placeholder = null;
-        }
-
-        function getDragAfterElement(container, y) {
-            const draggableElements = [...container.querySelectorAll('.bookmark-item:not(.dragging):not(.drag-placeholder)')];
-            
-            return draggableElements.reduce((closest, child) => {
-                const box = child.getBoundingClientRect();
-                const offset = y - box.top - box.height / 2;
-                
-                if (offset < 0 && offset > closest.offset) {
-                    return { offset: offset, element: child };
-                } else {
-                    return closest;
-                }
-            }, { offset: Number.NEGATIVE_INFINITY }).element;
         }
 
         // Modal functions
@@ -1390,28 +1391,350 @@
             }, 300);
         }
 
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
+        // Language Menu Functionality
+        const languageBtn = document.getElementById('languageBtn');
+        const languageDropdown = document.getElementById('languageDropdown');
         
-        function toggleTheme() {
-            document.body.classList.toggle('light-theme');
-            const isLight = document.body.classList.contains('light-theme');
-            themeIcon.textContent = isLight ? '☀️' : '🌙';
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        }
+        // Toggle dropdown visibility
+        languageBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageDropdown.classList.toggle('show');
+        });
 
-        // Load saved theme
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.body.classList.add('light-theme');
-                themeIcon.textContent = '☀️';
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            languageDropdown.classList.remove('show');
+        });
+
+        // Translations dictionary
+        const translations = {
+            de: {
+                logo: "Zanes Startseite",
+                searchPlaceholder: "Suchbegriff eingeben...",
+                searchButton: "Suchen",
+                addSection: "+ Neuen Bereich hinzufügen",
+                addBookmarkTitle: "Neues Lesezeichen hinzufügen",
+                bookmarkName: "Name der Website",
+                bookmarkUrl: "https://example.com",
+                bookmarkDesc: "Kurze Beschreibung",
+                cancel: "Abbrechen",
+                add: "Hinzufügen",
+                createSection: "Neuen Bereich erstellen",
+                sectionName: "Name des Bereichs",
+                create: "Erstellen",
+                renameSection: "Bereich umbenennen",
+                newName: "Neuer Name",
+                rename: "Umbenennen",
+                deleteConfirm: "Bereich wirklich löschen? Alle Lesezeichen gehen verloren!",
+                deleteBookmarkConfirm: "Lesezeichen wirklich entfernen?",
+                defaultSection: "Meine Lesezeichen",
+                additionalSection: "Weitere Lesezeichen",
+                addBookmarkBtn: "Hinzufügen",
+                editBtn: "✏️",
+                deleteBtn: "🗑️",
+                moreBtn: "Mehr",
+                editPrompt: "Klicken Sie zum Bearbeiten",
+                deletePrompt: "Klicken Sie zum Löschen",
+                editWarning: "Achtung: Änderungen können nicht rückgängig gemacht werden",
+                deleteWarning: "Achtung: Dieser Vorgang kann nicht rückgängig gemacht werden",
+                sectionNameRequired: "Bitte einen Namen eingeben!",
+                bookmarkRequired: "Bitte Name und URL eingeben!"
+            },
+            en: {
+                logo: "Zane's Startpage",
+                searchPlaceholder: "Enter search term...",
+                searchButton: "Search",
+                addSection: "+ Add New Section",
+                addBookmarkTitle: "Add New Bookmark",
+                bookmarkName: "Website Name",
+                bookmarkUrl: "https://example.com",
+                bookmarkDesc: "Short Description",
+                cancel: "Cancel",
+                add: "Add",
+                createSection: "Create New Section",
+                sectionName: "Section Name",
+                create: "Create",
+                renameSection: "Rename Section",
+                newName: "New Name",
+                rename: "Rename",
+                deleteConfirm: "Really delete section? All bookmarks will be lost!",
+                deleteBookmarkConfirm: "Really remove bookmark?",
+                defaultSection: "My Bookmarks",
+                additionalSection: "Additional Bookmarks",
+                addBookmarkBtn: "Add",
+                editBtn: "✏️",
+                deleteBtn: "🗑️",
+                moreBtn: "More",
+                editPrompt: "Click to edit",
+                deletePrompt: "Click to delete",
+                editWarning: "Warning: Changes cannot be undone",
+                deleteWarning: "Warning: This action cannot be undone",
+                sectionNameRequired: "Please enter a name!",
+                bookmarkRequired: "Please enter name and URL!"
+            },
+            nl: {
+                logo: "Zane's Startpagina",
+                searchPlaceholder: "Zoekterm invoeren...",
+                searchButton: "Zoeken",
+                addSection: "+ Nieuwe sectie toevoegen",
+                addBookmarkTitle: "Nieuw bladwijzer toevoegen",
+                bookmarkName: "Website naam",
+                bookmarkUrl: "https://voorbeeld.com",
+                bookmarkDesc: "Korte beschrijving",
+                cancel: "Annuleren",
+                add: "Toevoegen",
+                createSection: "Nieuwe sectie maken",
+                sectionName: "Sectienaam",
+                create: "Maken",
+                renameSection: "Sectie hernoemen",
+                newName: "Nieuwe naam",
+                rename: "Hernoemen",
+                deleteConfirm: "Sectie echt verwijderen? Alle bladwijzers gaan verloren!",
+                deleteBookmarkConfirm: "Bladwijzer echt verwijderen?",
+                defaultSection: "Mijn bladwijzers",
+                additionalSection: "Extra bladwijzers",
+                addBookmarkBtn: "Toevoegen",
+                editBtn: "✏️",
+                deleteBtn: "🗑️",
+                moreBtn: "Meer",
+                editPrompt: "Klik om te bewerken",
+                deletePrompt: "Klik om te verwijderen",
+                editWarning: "Waarschuwing: Wijzigingen kunnen niet ongedaan worden gemaakt",
+                deleteWarning: "Waarschuwing: Deze actie kan niet ongedaan worden gemaakt",
+                sectionNameRequired: "Voer een naam in!",
+                bookmarkRequired: "Voer naam en URL in!"
+            },
+            gsw: {
+                logo: "Zanes Startsiite",
+                searchPlaceholder: "Suchbegriff iigäh...",
+                searchButton: "Sueche",
+                addSection: "+ Neue Bereich zuefüege",
+                addBookmarkTitle: "Neus Lesezeiche zuefüege",
+                bookmarkName: "Name vo de Website",
+                bookmarkUrl: "https://biispiel.com",
+                bookmarkDesc: "Churzi Beschriibig",
+                cancel: "Abbreche",
+                add: "Zuefüege",
+                createSection: "Neue Bereich erstelle",
+                sectionName: "Name vom Bereich",
+                create: "Erstelle",
+                renameSection: "Bereich umbenenne",
+                newName: "Neue Name",
+                rename: "Umbennene",
+                deleteConfirm: "Bereich würkli lösche? Alli Lesezeiche gönd verlore!",
+                deleteBookmarkConfirm: "Lesezeiche würkli entferne?",
+                defaultSection: "Mini Lesezeiche",
+                additionalSection: "Wyteri Lesezeiche",
+                addBookmarkBtn: "Zuefüege",
+                editBtn: "✏️",
+                deleteBtn: "🗑️",
+                moreBtn: "Meh",
+                editPrompt: "Klick zum Bearbeite",
+                deletePrompt: "Klick zum Lösche",
+                editWarning: "Achtig: Änderige chönd nid rückgängig gmacht werde",
+                deleteWarning: "Achtig: De Vorgang cha nid rückgängig gmacht werde",
+                sectionNameRequired: "Bitte gib en Name i!",
+                bookmarkRequired: "Bitte gib Name und URL i!"
+            },
+            fi: {
+                logo: "Zanen Aloitussivu",
+                searchPlaceholder: "Kirjoita hakusana...",
+                searchButton: "Hae",
+                addSection: "+ Lisää uusi osio",
+                addBookmarkTitle: "Lisää uusi kirjanmerkki",
+                bookmarkName: "Verkkosivun nimi",
+                bookmarkUrl: "https://esimerkki.com",
+                bookmarkDesc: "Lyhyt kuvaus",
+                cancel: "Peruuta",
+                add: "Lisää",
+                createSection: "Luo uusi osio",
+                sectionName: "Osion nimi",
+                create: "Luo",
+                renameSection: "Nimeä osio uudelleen",
+                newName: "Uusi nimi",
+                rename: "Nimeä uudelleen",
+                deleteConfirm: "Haluatko varmasti poistaa osion? Kaikki kirjanmerkit katoavat!",
+                deleteBookmarkConfirm: "Haluatko varmasti poistaa kirjanmerkin?",
+                defaultSection: "Omat kirjanmerkit",
+                additionalSection: "Lisäkirjanmerkit",
+                addBookmarkBtn: "Lisää",
+                editBtn: "✏️",
+                deleteBtn: "🗑️",
+                moreBtn: "Lisää",
+                editPrompt: "Klikkaa muokataksesi",
+                deletePrompt: "Klikkaa poistaaksesi",
+                editWarning: "Varoitus: Muutoksia ei voi perua",
+                deleteWarning: "Varoitus: Tätä toimintoa ei voi perua",
+                sectionNameRequired: "Anna nimi!",
+                bookmarkRequired: "Anna nimi ja URL!"
+            },
+            fr: {
+                logo: "Page d'accueil de Zane",
+                searchPlaceholder: "Entrez un terme de recherche...",
+                searchButton: "Rechercher",
+                addSection: "+ Ajouter une nouvelle section",
+                addBookmarkTitle: "Ajouter un nouveau favori",
+                bookmarkName: "Nom du site web",
+                bookmarkUrl: "https://exemple.com",
+                bookmarkDesc: "Brève description",
+                cancel: "Annuler",
+                add: "Ajouter",
+                createSection: "Créer une nouvelle section",
+                sectionName: "Nom de la section",
+                create: "Créer",
+                renameSection: "Renommer la section",
+                newName: "Nouveau nom",
+                rename: "Renommer",
+                deleteConfirm: "Voulez-vous vraiment supprimer cette section? Tous les favoris seront perdus!",
+                deleteBookmarkConfirm: "Voulez-vous vraiment supprimer ce favori?",
+                defaultSection: "Mes favoris",
+                additionalSection: "Favoris supplémentaires",
+                addBookmarkBtn: "Ajouter",
+                editBtn: "✏️",
+                deleteBtn: "🗑️",
+                moreBtn: "Plus",
+                editPrompt: "Cliquez pour modifier",
+                deletePrompt: "Cliquez pour supprimer",
+                editWarning: "Attention: Les modifications ne peuvent pas être annulées",
+                deleteWarning: "Attention: Cette action ne peut pas être annulée",
+                sectionNameRequired: "请输入名称！",
+                bookmarkRequired: "请输入名称和URL！"
+            },
+            zh: {
+                logo: "Zane的起始页",
+                searchPlaceholder: "输入搜索词...",
+                searchButton: "搜索",
+                addSection: "+ 添加新分区",
+                addBookmarkTitle: "添加新书签",
+                bookmarkName: "网站名称",
+                bookmarkUrl: "https://example.com",
+                bookmarkDesc: "简短描述",
+                cancel: "取消",
+                add: "添加",
+                createSection: "创建新分区",
+                sectionName: "分区名称",
+                create: "创建",
+                renameSection: "重命名分区",
+                newName: "新名称",
+                rename: "重命名",
+                deleteConfirm: "确定删除分区吗？所有书签都将丢失！",
+                deleteBookmarkConfirm: "确定删除书签吗？",
+                defaultSection: "我的书签",
+                additionalSection: "其他书签",
+                addBookmarkBtn: "添加",
+                editBtn: "✏️",
+                deleteBtn: "🗑️",
+                moreBtn: "更多",
+                editPrompt: "点击编辑",
+                deletePrompt: "点击删除",
+                editWarning: "警告：更改无法撤销",
+                deleteWarning: "警告：此操作无法撤销",
+                sectionNameRequired: "请输入名称！",
+                bookmarkRequired: "请输入名称和URL！"
+            },
+            ja: {
+                logo: "Zaneのスタートページ",
+                searchPlaceholder: "検索語を入力...",
+                searchButton: "検索",
+                addSection: "+ 新しいセクションを追加",
+                addBookmarkTitle: "新しいブックマークを追加",
+                bookmarkName: "ウェブサイト名",
+                bookmarkUrl: "https://example.com",
+                bookmarkDesc: "簡単な説明",
+                cancel: "キャンセル",
+                add: "追加",
+                createSection: "新しいセクションを作成",
+                sectionName: "セクション名",
+                create: "作成",
+                renameSection: "セクション名を変更",
+                newName: "新しい名前",
+                rename: "名前変更",
+                deleteConfirm: "セクションを本当に削除しますか？すべてのブックマークが失われます！",
+                deleteBookmarkConfirm: "ブックマークを本当に削除しますか？",
+                defaultSection: "マイブックマーク",
+                additionalSection: "追加のブックマーク",
+                addBookmarkBtn: "追加",
+                editBtn: "✏️",
+                deleteBtn: "🗑️",
+                moreBtn: "もっと",
+                editPrompt: "クリックして編集",
+                deletePrompt: "クリックして削除",
+                editWarning: "警告：変更は元に戻せません",
+                deleteWarning: "警告：この操作は元に戻せません",
+                sectionNameRequired: "名前を入力してください！",
+                bookmarkRequired: "名前とURLを入力してください！"
             }
+        };
+
+        // Current language - check localStorage first, default to German for first visit
+        let currentLanguage = localStorage.getItem('zane-language') || 'de';
+        
+        // Ensure German is set as default for first-time visitors
+        if (!localStorage.getItem('zane-language')) {
+            localStorage.setItem('zane-language', 'de');
+            document.documentElement.lang = 'de';
         }
 
-        themeToggle.addEventListener('click', toggleTheme);
-        loadTheme();
+        // Language selection handler
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                const lang = e.target.getAttribute('data-lang');
+                if (lang && lang !== currentLanguage) {
+                    currentLanguage = lang;
+                    localStorage.setItem('zane-language', lang);
+                    document.documentElement.lang = lang;
+                    updateUIText();
+                    languageDropdown.classList.remove('show');
+                }
+            });
+        });
+
+        // Update all UI text elements
+        function updateUIText() {
+            const langData = translations[currentLanguage] || translations.de;
+            
+            // Update logo
+            document.querySelector('.logo').textContent = langData.logo;
+            
+            // Update search elements
+            document.getElementById('searchInput').placeholder = langData.searchPlaceholder;
+            document.getElementById('searchButton').textContent = langData.searchButton;
+            
+            // Update section buttons
+            document.getElementById('addSectionBtn').textContent = langData.addSection;
+            
+            // Update language button
+            document.getElementById('languageBtn').textContent = langData.moreBtn;
+            
+            // Update modal texts
+            document.querySelector('#addBookmarkModal h3').textContent = langData.addBookmarkTitle;
+            document.querySelector('#addSectionModal h3').textContent = langData.createSection;
+            document.querySelector('#renameSectionModal h3').textContent = langData.renameSection;
+            
+            // Update button texts
+            document.querySelectorAll('.cancel').forEach(btn => {
+                btn.textContent = langData.cancel;
+            });
+            document.querySelector('#addBookmarkModal button:not(.cancel)').textContent = langData.add;
+            document.querySelector('#addSectionModal button:not(.cancel)').textContent = langData.create;
+            document.querySelector('#renameSectionModal button:not(.cancel)').textContent = langData.rename;
+            
+            // Update placeholders
+            document.getElementById('bookmarkName').placeholder = langData.bookmarkName;
+            document.getElementById('bookmarkUrl').placeholder = 'https://example.com';
+            document.getElementById('bookmarkDesc').placeholder = langData.bookmarkDesc;
+            document.getElementById('sectionName').placeholder = langData.sectionName;
+            document.getElementById('newSectionName').placeholder = langData.newName;
+            
+            // Update section names
+            const mainSection = bookmarkSections.find(s => s.id === 'main');
+            if (mainSection && mainSection.isDefault) {
+                mainSection.name = langData.defaultSection;
+            }
+            
+            // Re-render sections to update all text
+            renderSections();
+        }
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
@@ -1419,32 +1742,25 @@
             if (addSectionBtn) {
                 addSectionBtn.addEventListener('click', openSectionModal);
             }
-        });
+            
+            // Modal click-outside-to-close
+            document.getElementById('addBookmarkModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeBookmarkModal();
+                }
+            });
 
-        // Fallback für den Fall, dass DOMContentLoaded bereits ausgelöst wurde
-        setTimeout(function() {
-            const addSectionBtn = document.getElementById('addSectionBtn');
-            if (addSectionBtn && !addSectionBtn.onclick) {
-                addSectionBtn.addEventListener('click', openSectionModal);
-            }
-        }, 100);
-        
-        document.getElementById('addBookmarkModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeBookmarkModal();
-            }
-        });
+            document.getElementById('addSectionModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeSectionModal();
+                }
+            });
 
-        document.getElementById('addSectionModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeSectionModal();
-            }
-        });
-
-        document.getElementById('renameSectionModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeRenameModal();
-            }
+            document.getElementById('renameSectionModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeRenameModal();
+                }
+            });
         });
 
         // Keyboard shortcuts
@@ -1460,10 +1776,45 @@
             }
         });
 
+        // Search Engine Dropdown Functionality
+        const searchEngineDropdown = document.getElementById('searchEngineDropdown');
+        
+        // Toggle dropdown visibility
+        searchEngineBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            searchEngineDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            searchEngineDropdown.classList.remove('show');
+        });
+
+        // Handle engine selection
+        document.querySelectorAll('.search-engine-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                const engine = e.target.getAttribute('data-engine');
+                searchEngineBtn.textContent = e.target.textContent;
+                searchEngineDropdown.classList.remove('show');
+            });
+        });
+
         // Initialize
+        // Set language from localStorage before any rendering
+        const savedLanguage = localStorage.getItem('zane-language');
+        if (savedLanguage && translations[savedLanguage]) {
+            currentLanguage = savedLanguage;
+            document.documentElement.lang = savedLanguage;
+        }
+        
+        // Apply language immediately
+        updateUIText();
+        
         searchInput.focus();
         createParticles();
         loadSections();
     </script>
+
+
 
 </body></html>
