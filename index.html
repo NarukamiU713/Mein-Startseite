@@ -2331,45 +2331,46 @@
         createParticles();
         loadSections();
 
-        document.addEventListener("DOMContentLoaded", function () {
-          document.body.addEventListener("click", function (e) {
-            const btn = e.target.closest(".remove-bookmark");
-            if (!btn) return;
-        
-            e.preventDefault();
-            e.stopPropagation();
-        
-            const sectionId = btn.getAttribute("data-section-id");
-            const index = parseInt(btn.getAttribute("data-index"));
-            const grid = document.getElementById("grid-" + sectionId);
-            if (!grid) return;
-        
-            const items = grid.querySelectorAll(`.bookmark-item[data-section-id="${sectionId}"]`);
-            if (items[index]) {
-              items[index].remove();
-            }
-        
-            // 同步删除 localStorage 数据
-            const saved = localStorage.getItem("bookmarkData");
-            if (!saved) return;
-        
-            try {
-              const data = JSON.parse(saved);
-              if (!Array.isArray(data[sectionId])) return;
-              data[sectionId].splice(index, 1); // 删除对应项
-              localStorage.setItem("bookmarkData", JSON.stringify(data));
-            } catch (err) {
-              console.error("localStorage 解析失败", err);
-            }
-        
-            // 重新设置剩余书签的 data-index
-            grid.querySelectorAll(".bookmark-item").forEach((el, i) => {
-              el.setAttribute("data-index", i);
-              const removeBtn = el.querySelector(".remove-bookmark");
-              if (removeBtn) removeBtn.setAttribute("data-index", i);
-            });
-          });
-        });
+document.addEventListener("DOMContentLoaded", function () {
+  // 用事件委托绑定 touchend，兼容 iOS 事件模型
+  document.body.addEventListener("touchend", function (e) {
+    const btn = e.target.closest(".remove-bookmark");
+    if (!btn) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const sectionId = btn.getAttribute("data-section-id");
+    const index = parseInt(btn.getAttribute("data-index"));
+    const grid = document.getElementById("grid-" + sectionId);
+    if (!grid) return;
+
+    const items = grid.querySelectorAll(`.bookmark-item[data-section-id="${sectionId}"]`);
+    if (items[index]) {
+      items[index].remove();
+    }
+
+    // 删除本地存储中对应项
+    const saved = localStorage.getItem("bookmarkData");
+    if (!saved) return;
+
+    try {
+      const data = JSON.parse(saved);
+      if (!Array.isArray(data[sectionId])) return;
+      data[sectionId].splice(index, 1);
+      localStorage.setItem("bookmarkData", JSON.stringify(data));
+    } catch (err) {
+      console.error("localStorage 删除失败", err);
+    }
+
+    // 重设 data-index 保持一致
+    grid.querySelectorAll(".bookmark-item").forEach((el, i) => {
+      el.setAttribute("data-index", i);
+      const removeBtn = el.querySelector(".remove-bookmark");
+      if (removeBtn) removeBtn.setAttribute("data-index", i);
+    });
+  });
+});
     </script>
 
 
