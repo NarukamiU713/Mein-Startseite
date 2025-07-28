@@ -2348,6 +2348,26 @@
             });
         });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+          // 绑定删除按钮事件
+          document.body.addEventListener("click", function (e) {
+            const btn = e.target.closest(".remove-bookmark");
+            if (!btn) return;
+        
+            e.preventDefault();
+            e.stopPropagation();
+        
+            const sectionId = btn.getAttribute("data-section-id");
+            const index = btn.getAttribute("data-index");
+        
+            const grid = document.getElementById("grid-" + sectionId);
+            if (!grid) return;
+        
+            const item = grid.querySelector(`.bookmark-item[data-index="${index}"]`);
+            if (item) item.remove();
+          });
+        });
     </script>
 
 
