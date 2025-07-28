@@ -2330,6 +2330,24 @@
         searchInput.focus();
         createParticles();
         loadSections();
+
+        document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".bookmark-item").forEach((item) => {
+            item.addEventListener("touchend", function (e) {
+            // 拖拽中不跳转
+            if (item.classList.contains("dragging")) return;
+
+            // 点击的是删除按钮则不跳转
+            if (e.target.closest(".remove-bookmark")) return;
+
+            // 获取链接并跳转
+            const link = item.getAttribute("href");
+            if (link) {
+                window.open(link, "_blank");
+            }
+            });
+        });
+        });
     </script>
 
 
