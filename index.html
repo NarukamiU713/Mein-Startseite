@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+<!-- saved from url=(0058)file:///C:/Users/30341/Desktop/v3_optimized_startpage.html -->
 <html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
     <title>Zanes Startseite</title>
     <style>
         * {
@@ -744,6 +745,47 @@
             transform: scale(1.1);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
+
+        @media (max-width: 600px) {
+        .container {
+            padding: 1rem 0.5rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+        }
+
+        .search-container {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .search-input {
+            font-size: 1rem;
+            padding: 1rem 1.2rem;
+        }
+
+        .search-select {
+            font-size: 1rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .bookmark-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .bookmark-item {
+            padding: 1rem;
+        }
+
+        .bookmark-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+    }
+
     </style>
 <!-- SVG Icons -->
 </head><body><svg style="display: none;">
@@ -1078,6 +1120,7 @@
 
         function handleTouchStart(e) {
             e.preventDefault(); // Prevent scrolling during touch
+            e.stopPropagation(); // 防止事件冒泡
             
             const touch = e.touches[0];
             const startX = touch.clientX;
@@ -1263,9 +1306,11 @@
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             
+            particlesContainer.innerHTML = '';
+
             // Statische Sterne erstellen
             function createStars() {
-                const starCount = 30;
+                const starCount = 100;
                 
                 for (let i = 0; i < starCount; i++) {
                     const star = document.createElement('div');
