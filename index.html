@@ -866,7 +866,8 @@
                             
                         </div>
                     </div>
-                    <div class="bookmark-grid" id="grid-main"><a href="https://www.youtube.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="0" draggable="false">
+                    <div class="bookmark-item" data-section-id="main" data-index="0" draggable="false"
+     onclick="openLink('https://www.youtube.com/')">
                     <div class="bookmark-icon">Y</div>
                     <div class="bookmark-info">
                         <h3>YouTube</h3>
@@ -1595,9 +1596,8 @@
             grid.innerHTML = '';
             
             section.bookmarks.forEach((bookmark, index) => {
-                const bookmarkItem = document.createElement('a');
-                bookmarkItem.href = bookmark.url;
-                bookmarkItem.target = '_blank';
+                const bookmarkItem = document.createElement('div');
+                bookmarkItem.onclick = () => window.open(bookmark.url, '_blank');
                 bookmarkItem.className = 'bookmark-item';
                 bookmarkItem.dataset.sectionId = sectionId;
                 bookmarkItem.dataset.index = index;
@@ -2240,7 +2240,11 @@
             // Re-render sections to update all text
             renderSections();
         }
-
+        
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
+        
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
             const addSectionBtn = document.getElementById('addSectionBtn');
