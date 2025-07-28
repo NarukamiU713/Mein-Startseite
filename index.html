@@ -2332,73 +2332,62 @@
         loadSections();
 
         document.addEventListener("DOMContentLoaded", function () {
-          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        
-          function handleRemoveBookmark(btn) {
-            const confirmed = confirm("确定要删除这个书签吗？");
-            if (!confirmed) return;
-        
-            const sectionId = btn.getAttribute("data-section-id");
-            const index = parseInt(btn.getAttribute("data-index"));
-            const grid = document.getElementById("grid-" + sectionId);
-            if (!grid) return;
-        
-            const items = grid.querySelectorAll(`.bookmark-item[data-section-id="${sectionId}"]`);
-            if (items[index]) {
-              items[index].remove();
-            }
-        
-            // 删除本地存储
-            const saved = localStorage.getItem("bookmarkData");
-            if (saved) {
-              try {
-                const data = JSON.parse(saved);
-                if (Array.isArray(data[sectionId])) {
-                  data[sectionId].splice(index, 1);
-                  localStorage.setItem("bookmarkData", JSON.stringify(data));
-                }
-              } catch (err) {
-                console.error("localStorage 删除失败", err);
-              }
-            }
-        
-            // 重新设置 data-index
-            grid.querySelectorAll(".bookmark-item").forEach((el, i) => {
-              el.setAttribute("data-index", i);
-              const removeBtn = el.querySelector(".remove-bookmark");
-              if (removeBtn) removeBtn.setAttribute("data-index", i);
-            });
-          }
-        
-          // 所有点击/触摸交互处理，兼容 PC + iOS
-          function setupEvents() {
-            const eventType = isIOS ? "touchend" : "click";
-        
+          // 监听点击和触摸，保证 iOS 和 PC 都支持
+          ["click", "touchend"].forEach(function(eventType) {
             document.body.addEventListener(eventType, function (e) {
               const removeBtn = e.target.closest(".remove-bookmark");
-              const bookmark = e.target.closest(".bookmark-item");
+              const bookmarkItem = e.target.closest(".bookmark-item");
         
+              // ✅ 删除逻辑
               if (removeBtn) {
                 e.preventDefault();
-                e.stopPropagation();
-                handleRemoveBookmark(removeBtn);
+        
+                const confirmed = confirm("确定要删除这个书签吗？");
+                if (!confirmed) return;
+        
+                const sectionId = removeBtn.getAttribute("data-section-id");
+                const index = parseInt(removeBtn.getAttribute("data-index"));
+                const grid = document.getElementById("grid-" + sectionId);
+                if (!grid) return;
+        
+                const items = grid.querySelectorAll(`.bookmark-item[data-section-id="${sectionId}"]`);
+                if (items[index]) items[index].remove();
+        
+                // 删除本地存储中的对应书签
+                const saved = localStorage.getItem("bookmarkData");
+                if (saved) {
+                  try {
+                    const data = JSON.parse(saved);
+                    if (Array.isArray(data[sectionId])) {
+                      data[sectionId].splice(index, 1);
+                      localStorage.setItem("bookmarkData", JSON.stringify(data));
+                    }
+                  } catch (err) {
+                    console.error("localStorage 删除失败", err);
+                  }
+                }
+        
+                // 重新标记 data-index
+                grid.querySelectorAll(".bookmark-item").forEach((el, i) => {
+                  el.setAttribute("data-index", i);
+                  const remove = el.querySelector(".remove-bookmark");
+                  if (remove) remove.setAttribute("data-index", i);
+                });
+        
                 return;
               }
         
-              if (bookmark) {
-                e.preventDefault();
-                e.stopPropagation();
-        
-                // 避免拖拽时误触跳转
-                if (bookmark.classList.contains("dragging")) return;
-        
-                const url = bookmark.getAttribute("href");
-                if (url) window.open(url, "_blank");
+              // ✅ 跳转逻辑
+              if (bookmarkItem) {
+                if (bookmarkItem.classList.contains("dragging")) return;
+                const url = bookmarkItem.getAttribute("href");
+                if (url) {
+                  e.preventDefault();
+                  window.open(url, "_blank");
+                }
               }
-            });
-          }
-        
-          setupEvents();
+            }, { passive: false });
+          });
         });
     </script>
 
