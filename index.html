@@ -2331,46 +2331,75 @@
         createParticles();
         loadSections();
 
-document.addEventListener("DOMContentLoaded", function () {
-  // 用事件委托绑定 touchend，兼容 iOS 事件模型
-  document.body.addEventListener("touchend", function (e) {
-    const btn = e.target.closest(".remove-bookmark");
-    if (!btn) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    const sectionId = btn.getAttribute("data-section-id");
-    const index = parseInt(btn.getAttribute("data-index"));
-    const grid = document.getElementById("grid-" + sectionId);
-    if (!grid) return;
-
-    const items = grid.querySelectorAll(`.bookmark-item[data-section-id="${sectionId}"]`);
-    if (items[index]) {
-      items[index].remove();
-    }
-
-    // 删除本地存储中对应项
-    const saved = localStorage.getItem("bookmarkData");
-    if (!saved) return;
-
-    try {
-      const data = JSON.parse(saved);
-      if (!Array.isArray(data[sectionId])) return;
-      data[sectionId].splice(index, 1);
-      localStorage.setItem("bookmarkData", JSON.stringify(data));
-    } catch (err) {
-      console.error("localStorage 删除失败", err);
-    }
-
-    // 重设 data-index 保持一致
-    grid.querySelectorAll(".bookmark-item").forEach((el, i) => {
-      el.setAttribute("data-index", i);
-      const removeBtn = el.querySelector(".remove-bookmark");
-      if (removeBtn) removeBtn.setAttribute("data-index", i);
-    });
-  });
-});
+        document.addEventListener("DOMContentLoaded", function () {
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        
+          function handleRemoveBookmark(btn) {
+            const confirmed = confirm("确定要删除这个书签吗？");
+            if (!confirmed) return;
+        
+            const sectionId = btn.getAttribute("data-section-id");
+            const index = parseInt(btn.getAttribute("data-index"));
+            const grid = document.getElementById("grid-" + sectionId);
+            if (!grid) return;
+        
+            const items = grid.querySelectorAll(`.bookmark-item[data-section-id="${sectionId}"]`);
+            if (items[index]) {
+              items[index].remove();
+            }
+        
+            // 删除本地存储
+            const saved = localStorage.getItem("bookmarkData");
+            if (saved) {
+              try {
+                const data = JSON.parse(saved);
+                if (Array.isArray(data[sectionId])) {
+                  data[sectionId].splice(index, 1);
+                  localStorage.setItem("bookmarkData", JSON.stringify(data));
+                }
+              } catch (err) {
+                console.error("localStorage 删除失败", err);
+              }
+            }
+        
+            // 重新设置 data-index
+            grid.querySelectorAll(".bookmark-item").forEach((el, i) => {
+              el.setAttribute("data-index", i);
+              const removeBtn = el.querySelector(".remove-bookmark");
+              if (removeBtn) removeBtn.setAttribute("data-index", i);
+            });
+          }
+        
+          // 所有点击/触摸交互处理，兼容 PC + iOS
+          function setupEvents() {
+            const eventType = isIOS ? "touchend" : "click";
+        
+            document.body.addEventListener(eventType, function (e) {
+              const removeBtn = e.target.closest(".remove-bookmark");
+              const bookmark = e.target.closest(".bookmark-item");
+        
+              if (removeBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                handleRemoveBookmark(removeBtn);
+                return;
+              }
+        
+              if (bookmark) {
+                e.preventDefault();
+                e.stopPropagation();
+        
+                // 避免拖拽时误触跳转
+                if (bookmark.classList.contains("dragging")) return;
+        
+                const url = bookmark.getAttribute("href");
+                if (url) window.open(url, "_blank");
+              }
+            });
+          }
+        
+          setupEvents();
+        });
     </script>
 
 
