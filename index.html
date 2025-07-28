@@ -2332,25 +2332,6 @@
         loadSections();
 
         document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".bookmark-item").forEach((item) => {
-            item.addEventListener("touchend", function (e) {
-            // 拖拽中不跳转
-            if (item.classList.contains("dragging")) return;
-
-            // 点击的是删除按钮则不跳转
-            if (e.target.closest(".remove-bookmark")) return;
-
-            // 获取链接并跳转
-            const link = item.getAttribute("href");
-            if (link) {
-                window.open(link, "_blank");
-            }
-            });
-        });
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-          // 绑定删除按钮事件
           document.body.addEventListener("click", function (e) {
             const btn = e.target.closest(".remove-bookmark");
             if (!btn) return;
@@ -2359,13 +2340,34 @@
             e.stopPropagation();
         
             const sectionId = btn.getAttribute("data-section-id");
-            const index = btn.getAttribute("data-index");
-        
+            const index = parseInt(btn.getAttribute("data-index"));
             const grid = document.getElementById("grid-" + sectionId);
             if (!grid) return;
         
-            const item = grid.querySelector(`.bookmark-item[data-index="${index}"]`);
-            if (item) item.remove();
+            const items = grid.querySelectorAll(`.bookmark-item[data-section-id="${sectionId}"]`);
+            if (items[index]) {
+              items[index].remove();
+            }
+        
+            // 同步删除 localStorage 数据
+            const saved = localStorage.getItem("bookmarkData");
+            if (!saved) return;
+        
+            try {
+              const data = JSON.parse(saved);
+              if (!Array.isArray(data[sectionId])) return;
+              data[sectionId].splice(index, 1); // 删除对应项
+              localStorage.setItem("bookmarkData", JSON.stringify(data));
+            } catch (err) {
+              console.error("localStorage 解析失败", err);
+            }
+        
+            // 重新设置剩余书签的 data-index
+            grid.querySelectorAll(".bookmark-item").forEach((el, i) => {
+              el.setAttribute("data-index", i);
+              const removeBtn = el.querySelector(".remove-bookmark");
+              if (removeBtn) removeBtn.setAttribute("data-index", i);
+            });
           });
         });
     </script>
