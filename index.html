@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0058)file:///C:/Users/30341/Desktop/v3_optimized_startpage.html -->
 <html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
@@ -630,16 +629,22 @@
             top: 8px;
             right: 8px;
             background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
             border: none;
             width: 24px;
             height: 24px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 0.8rem;
             display: none;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .remove-bookmark .delete-icon {
+            width: 14px;
+            height: 14px;
+            fill: rgba(255, 255, 255, 0.7);
             transition: all 0.3s ease;
         }
 
@@ -649,8 +654,11 @@
 
         .remove-bookmark:hover {
             background: rgba(255, 50, 50, 0.4);
-            color: #ffffff;
             box-shadow: 0 0 20px rgba(255, 50, 50, 0.3);
+        }
+
+        .remove-bookmark:hover .delete-icon {
+            fill: #ffffff;
         }
 
         .modal {
@@ -991,7 +999,7 @@
 </head><body><svg style="display: none;">
     <defs>
         <symbol id="delete-icon" viewBox="0 0 24 24">
-            <path d="M13.414,12l3.293-3.293a1,1,0,1,0-1.414-1.414L12,10.586,8.707,7.293A1,1,0,1,0,7.293,8.707L10.586,12,7.293,15.293a1,1,0,1,0,1.414,1.414L12,13.414l3.293,3.293a1,1,0,0,0,1.414-1.414Z" fill="#ff4867" transform="scale(1.15) translate(-1.5, -1.5)"></path>
+            <path d="M13.414,12l3.293-3.293a1,1,0,1,0-1.414-1.414L12,10.586,8.707,7.293A1,1,0,1,0,7.293,8.707L10.586,12,7.293,15.293a1,1,0,1,0,1.414,1.414L12,13.414l3.293,3.293a1,1,0,0,0,1.414-1.414Z" fill="#ffffff" transform="scale(1.15) translate(-1.5, -1.5)"></path>
         </symbol>
         <symbol id="edit-icon" viewBox="0 0 24 24">
             <path clip-rule="evenodd" d="M15.2929 5.12132C15.6834 4.7308 16.3166 4.7308 16.7071 5.12132L18.8787 7.29289C19.2692 7.68342 19.2692 8.31658 18.8787 8.70711L17 10.5858L13.4142 7L15.2929 5.12132ZM12 8.41421L4.29289 16.1213C4.10536 16.3089 4 16.5632 4 16.8284V20H7.17157C7.43679 20 7.69114 19.8946 7.87868 19.7071L15.5858 12L12 8.41421ZM18.1213 3.70711C16.9497 2.53553 15.0502 2.53554 13.8787 3.70711L2.87868 14.7071C2.31607 15.2697 2 16.0328 2 16.8284V20C2 21.1046 2.89543 22 4 22H7.17157C7.96722 22 8.73028 21.6839 9.29289 21.1213L20.2929 10.1213C21.4645 8.94975 21.4645 7.05025 20.2929 5.87868L18.1213 3.70711Z" fill="#ffffff" fill-rule="evenodd"></path>
@@ -1884,7 +1892,11 @@
                         <h3>${bookmark.name}</h3>
                         <p>${bookmark.desc || ''}</p>
                     </div>
-                    <button class="remove-bookmark" data-section-id="${sectionId}" data-index="${index}">×</button>
+                    <button class="remove-bookmark" data-section-id="${sectionId}" data-index="${index}">
+                        <svg class="delete-icon">
+                            <use href="#delete-icon"></use>
+                        </svg>
+                    </button>
                 `;
                 
                 grid.appendChild(bookmarkItem);
@@ -2055,6 +2067,76 @@
             modal.classList.add('show');
             document.body.classList.add('modal-open');
             document.getElementById('bookmarkName').focus();
+        }
+
+        // Async title fetching functionality
+        async function fetchPageTitle(url) {
+            if (!url || !url.startsWith('http')) return null;
+            
+            try {
+                // Use a CORS proxy to fetch the page title
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+                const response = await fetch(proxyUrl);
+                const data = await response.json();
+                
+                if (data && data.contents) {
+                    // Parse the HTML to extract the title
+                    const titleMatch = data.contents.match(/<title[^>]*>([^<]+)<\/title>/i);
+                    if (titleMatch && titleMatch[1]) {
+                        return titleMatch[1].trim();
+                    }
+                }
+            } catch (error) {
+                console.warn('Failed to fetch page title:', error);
+            }
+            return null;
+        }
+
+        function setupTitleFetching() {
+            const urlInput = document.getElementById('bookmarkUrl');
+            const nameInput = document.getElementById('bookmarkName');
+            let fetchTimeout;
+
+            urlInput.addEventListener('input', () => {
+                clearTimeout(fetchTimeout);
+                fetchTimeout = setTimeout(async () => {
+                    const url = urlInput.value.trim();
+                    if (url && !nameInput.value) { // Only fetch if name field is empty
+                        const title = await fetchPageTitle(url);
+                        if (title) {
+                            nameInput.value = title;
+                            // Select the text so user can easily edit or overwrite
+                            nameInput.select();
+                        }
+                    }
+                }, 1000); // Wait 1 second after user stops typing
+            });
+
+            urlInput.addEventListener('blur', async () => {
+                const url = urlInput.value.trim();
+                if (url && !nameInput.value) {
+                    const title = await fetchPageTitle(url);
+                    if (title) {
+                        nameInput.value = title;
+                        nameInput.select();
+                    }
+                }
+            });
+
+            urlInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    clearTimeout(fetchTimeout);
+                    const url = urlInput.value.trim();
+                    if (url && !nameInput.value) {
+                        fetchPageTitle(url).then(title => {
+                            if (title) {
+                                nameInput.value = title;
+                                nameInput.select();
+                            }
+                        });
+                    }
+                }
+            });
         }
 
         function closeBookmarkModal() {
@@ -2754,6 +2836,9 @@
                 typewriterAnimation = new TypewriterAnimation(logoElement);
                 typewriterAnimation.start();
             }
+            
+            // Setup title fetching for bookmark modal
+            setupTitleFetching();
             
             // Modal click-outside-to-close
             document.getElementById('addBookmarkModal').addEventListener('click', function(e) {
