@@ -661,11 +661,12 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            z-index: 10000; /* Higher z-index to prevent bookmark overlay */
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none; /* Prevent interaction when hidden */
         }
 
         .modal.show {
@@ -1000,11 +1001,12 @@
                 <div class="search-selector">
                     <button class="search-select" id="searchEngineBtn">Bilibili</button>
                     <div class="search-engine-dropdown" id="searchEngineDropdown">
-                        <div class="search-engine-option" data-engine="bilibili">Bilibili</div>
+                        <div class="search-engine-option" data-engine="edge">Edge</div>
                         <div class="search-engine-option" data-engine="google">Google</div>
                         <div class="search-engine-option" data-engine="youtube">YouTube</div>
+                        <div class="search-engine-option" data-engine="bilibili">Bilibili</div>
+                        <div class="search-engine-option" data-engine="tiktok">TikTok</div>
                         <div class="search-engine-option" data-engine="zhihu">Zhihu</div>
-                        <div class="search-engine-option" data-engine="edge">Edge</div>
                     </div>
                 </div>
             </div>
@@ -1565,22 +1567,47 @@
         const searchInput = document.getElementById('searchInput');
         const searchButton = document.getElementById('searchButton');
         const searchEngineBtn = document.getElementById('searchEngineBtn');
+        
+        // Search engine persistence
+        let currentSearchEngine = localStorage.getItem('zane-search-engine') || 'edge';
+        
+        function loadSearchEngine() {
+            const engineName = getEngineDisplayName(currentSearchEngine);
+            searchEngineBtn.textContent = engineName;
+        }
+        
+        function getEngineDisplayName(engine) {
+            const names = {
+                edge: 'Edge',
+                google: 'Google',
+                youtube: 'YouTube',
+                bilibili: 'Bilibili',
+                tiktok: 'TikTok',
+                zhihu: 'Zhihu'
+            };
+            return names[engine] || 'Edge';
+        }
+        
+        function saveSearchEngine(engine) {
+            currentSearchEngine = engine;
+            localStorage.setItem('zane-search-engine', engine);
+        }
 
         const searchUrls = {
             bilibili: 'https://search.bilibili.com/all?keyword=',
             google: 'https://www.google.com/search?q=',
             youtube: 'https://www.youtube.com/results?search_query=',
             zhihu: 'https://www.zhihu.com/search?type=content&q=',
-            edge: 'https://www.bing.com/search?q='
+            edge: 'https://www.bing.com/search?q=',
+            tiktok: 'https://www.tiktok.com/search?q='
         };
 
         function performSearch() {
             const query = searchInput.value.trim();
-            const engine = searchEngineBtn.textContent.toLowerCase();
             
             if (query) {
                 const encodedQuery = encodeURIComponent(query);
-                const searchUrl = searchUrls[engine] + encodedQuery;
+                const searchUrl = searchUrls[currentSearchEngine] + encodedQuery;
                 window.open(searchUrl, '_blank');
             }
         }
@@ -2709,7 +2736,8 @@
         document.querySelectorAll('.search-engine-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 const engine = e.target.getAttribute('data-engine');
-                searchEngineBtn.textContent = e.target.textContent;
+                saveSearchEngine(engine);
+                searchEngineBtn.textContent = getEngineDisplayName(engine);
                 toggleDropdown(searchEngineDropdown, false);
                 searchEngineOpen = false;
             });
@@ -2722,6 +2750,9 @@
             currentLanguage = savedLanguage;
             document.documentElement.lang = savedLanguage;
         }
+        
+        // Load saved search engine
+        loadSearchEngine();
         
         // Apply language immediately
         updateUIText();
