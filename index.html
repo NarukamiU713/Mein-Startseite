@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0058)file:///C:/Users/30341/Desktop/v3_optimized_startpage.html -->
 <html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
@@ -619,15 +618,52 @@
             width: 100%;
         }
 
-        .bookmark-info p {
+        .bookmark-info {
+            flex: 1;
+            min-width: 0; /* Critical for flexbox truncation */
+            overflow: hidden;
+        }
+
+        .bookmark-info h3.bookmark-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: #ffffff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            width: 100%;
+            cursor: default;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .bookmark-info p.bookmark-desc {
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.6);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            max-width: calc(100% - 20px);
             display: block;
             width: 100%;
+            cursor: default;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Enhanced tooltip styling */
+        .bookmark-title[title]:hover,
+        .bookmark-desc[title]:hover {
+            cursor: help;
+        }
+
+        /* Ensure tooltips work on mobile */
+        @media (hover: none) {
+            .bookmark-title[title],
+            .bookmark-desc[title] {
+                cursor: default;
+            }
         }
 
         .remove-bookmark {
@@ -1929,8 +1965,8 @@
                 bookmarkItem.innerHTML = `
                     <div class="bookmark-icon">${initials}</div>
                     <div class="bookmark-info">
-                        <h3>${bookmark.name}</h3>
-                        <p>${bookmark.desc || ''}</p>
+                        <h3 title="${bookmark.name}" class="bookmark-title">${bookmark.name}</h3>
+                        <p title="${bookmark.desc || ''}" class="bookmark-desc">${bookmark.desc || ''}</p>
                     </div>
                     <button class="remove-bookmark" data-section-id="${sectionId}" data-index="${index}">
                         <svg class="delete-icon">
@@ -2109,26 +2145,88 @@
             document.getElementById('bookmarkName').focus();
         }
 
-        // Async title fetching functionality
+        // Async title fetching functionality with enhanced reliability
         async function fetchPageTitle(url) {
             if (!url || !url.startsWith('http')) return null;
             
+            // Add timeout to prevent hanging requests
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+            
             try {
-                // Use a CORS proxy to fetch the page title
-                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-                const response = await fetch(proxyUrl);
-                const data = await response.json();
+                // Try multiple CORS proxies for better reliability
+                const proxies = [
+                    `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+                    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+                    `https://cors-anywhere.herokuapp.com/${url}`
+                ];
                 
-                if (data && data.contents) {
-                    // Parse the HTML to extract the title
-                    const titleMatch = data.contents.match(/<title[^>]*>([^<]+)<\/title>/i);
+                let data = null;
+                let response = null;
+                
+                // Try each proxy until one succeeds
+                for (const proxyUrl of proxies) {
+                    try {
+                        response = await fetch(proxyUrl, {
+                            signal: controller.signal,
+                            headers: {
+                                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            if (proxyUrl.includes('allorigins.win')) {
+                                const json = await response.json();
+                                data = json.contents;
+                            } else {
+                                data = await response.text();
+                            }
+                            break;
+                        }
+                    } catch (proxyError) {
+                        continue; // Try next proxy
+                    }
+                }
+                
+                clearTimeout(timeoutId);
+                
+                if (data) {
+                    // More robust title extraction
+                    const titleMatch = data.match(/<title[^>]*>([^<]+)<\/title>/i) ||
+                                     data.match(/<meta[^>]*property="og:title"[^>]*content="([^"]+)"/i) ||
+                                     data.match(/<meta[^>]*name="title"[^>]*content="([^"]+)"/i);
+                    
                     if (titleMatch && titleMatch[1]) {
-                        return titleMatch[1].trim();
+                        let title = titleMatch[1].trim();
+                        
+                        // Clean up common title issues
+                        title = title
+                            .replace(/\s+/g, ' ') // Normalize whitespace
+                            .replace(/&/g, '&') // Decode HTML entities
+                            .replace(/</g, '<')
+                            .replace(/>/g, '>')
+                            .replace(/"/g, '"')
+                            .replace(/'/g, "'");
+                        
+                        // Limit title length
+                        if (title.length > 100) {
+                            title = title.substring(0, 97) + '...';
+                        }
+                        
+                        return title;
                     }
                 }
             } catch (error) {
-                console.warn('Failed to fetch page title:', error);
+                if (error.name === 'AbortError') {
+                    console.warn('Title fetch timeout:', url);
+                } else {
+                    console.warn('Failed to fetch page title:', error);
+                }
+            } finally {
+                clearTimeout(timeoutId);
             }
+            
             return null;
         }
 
@@ -2136,47 +2234,129 @@
             const urlInput = document.getElementById('bookmarkUrl');
             const nameInput = document.getElementById('bookmarkName');
             let fetchTimeout;
+            let lastFetchedUrl = '';
+            let isFetching = false;
 
-            urlInput.addEventListener('input', () => {
-                clearTimeout(fetchTimeout);
-                fetchTimeout = setTimeout(async () => {
-                    const url = urlInput.value.trim();
-                    if (url && !nameInput.value) { // Only fetch if name field is empty
-                        const title = await fetchPageTitle(url);
-                        if (title) {
-                            nameInput.value = title;
-                            // Select the text so user can easily edit or overwrite
-                            nameInput.select();
-                        }
-                    }
-                }, 1000); // Wait 1 second after user stops typing
-            });
+            // Create loading indicator
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.style.cssText = `
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 16px;
+                height: 16px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-top: 2px solid rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                display: none;
+                pointer-events: none;
+            `;
+            urlInput.parentElement.style.position = 'relative';
+            urlInput.parentElement.appendChild(loadingIndicator);
 
-            urlInput.addEventListener('blur', async () => {
-                const url = urlInput.value.trim();
-                if (url && !nameInput.value) {
+            // Add CSS for spinner animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: translateY(-50%) rotate(0deg); }
+                    100% { transform: translateY(-50%) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Debounced fetch with shorter delay for better responsiveness
+            const debouncedFetch = debounce(async (url) => {
+                if (!url || !url.startsWith('http') || isFetching) return;
+                
+                // Prevent duplicate fetches for same URL
+                if (url === lastFetchedUrl && nameInput.value && nameInput.value !== lastFetchedUrl) return;
+                
+                isFetching = true;
+                loadingIndicator.style.display = 'block';
+                
+                try {
                     const title = await fetchPageTitle(url);
-                    if (title) {
+                    if (title && (!nameInput.value || nameInput.value === lastFetchedUrl || nameInput.value === url)) {
                         nameInput.value = title;
                         nameInput.select();
+                        lastFetchedUrl = url;
+                    }
+                } catch (error) {
+                    console.warn('Title fetch failed:', error);
+                } finally {
+                    isFetching = false;
+                    loadingIndicator.style.display = 'none';
+                }
+            }, 400); // Further reduced to 400ms for even better responsiveness
+
+            // Enhanced input handling for all platforms
+            urlInput.addEventListener('input', (e) => {
+                const url = e.target.value.trim();
+                if (url && url.startsWith('http')) {
+                    debouncedFetch(url);
+                } else {
+                    loadingIndicator.style.display = 'none';
+                }
+            });
+
+            // Handle paste events immediately
+            urlInput.addEventListener('paste', (e) => {
+                setTimeout(() => {
+                    const url = e.target.value.trim();
+                    if (url && url.startsWith('http')) {
+                        debouncedFetch(url);
+                    }
+                }, 0);
+            });
+
+            // Handle blur with immediate fetch
+            urlInput.addEventListener('blur', () => {
+                const url = urlInput.value.trim();
+                if (url && url.startsWith('http') && (!nameInput.value || nameInput.value === url)) {
+                    debouncedFetch(url);
+                }
+            });
+
+            // Handle Enter key for immediate fetch
+            urlInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const url = urlInput.value.trim();
+                    if (url && url.startsWith('http')) {
+                        debouncedFetch(url);
                     }
                 }
             });
 
-            urlInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    clearTimeout(fetchTimeout);
-                    const url = urlInput.value.trim();
-                    if (url && !nameInput.value) {
-                        fetchPageTitle(url).then(title => {
-                            if (title) {
-                                nameInput.value = title;
-                                nameInput.select();
-                            }
-                        });
-                    }
+            // Handle mobile-specific events
+            urlInput.addEventListener('change', (e) => {
+                const url = e.target.value.trim();
+                if (url && url.startsWith('http') && (!nameInput.value || nameInput.value === url)) {
+                    debouncedFetch(url);
                 }
             });
+
+            // Handle focus events to clear loading
+            urlInput.addEventListener('focus', () => {
+                if (!isFetching) {
+                    loadingIndicator.style.display = 'none';
+                }
+            });
+
+            // Utility function for debouncing
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
         }
 
         function closeBookmarkModal() {
