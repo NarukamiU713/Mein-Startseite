@@ -250,6 +250,7 @@
         .search-engine-dropdown.show .search-engine-option:nth-child(3) { animation-delay: 0.15s; }
         .search-engine-dropdown.show .search-engine-option:nth-child(4) { animation-delay: 0.2s; }
         .search-engine-dropdown.show .search-engine-option:nth-child(5) { animation-delay: 0.25s; }
+        .search-engine-dropdown.show .search-engine-option:nth-child(6) { animation-delay: 0.3s; }
 
         @keyframes fadeInUp {
             to {
@@ -1576,14 +1577,31 @@
             searchEngineBtn.textContent = engineName;
         }
         
+        function updateSearchEngineDisplay() {
+            // Update display based on current language
+            const displayName = getEngineDisplayName(currentSearchEngine);
+            searchEngineBtn.textContent = displayName;
+            
+            // Update dropdown options
+            document.querySelectorAll('.search-engine-option').forEach(option => {
+                const engine = option.getAttribute('data-engine');
+                if (engine === 'tiktok') {
+                    option.textContent = currentLanguage === 'zh' ? '抖音' : 'TikTok';
+                } else if (engine === 'zhihu') {
+                    option.textContent = currentLanguage === 'zh' ? '知乎' : 'Zhihu';
+                }
+            });
+        }
+        
         function getEngineDisplayName(engine) {
             const names = {
                 edge: 'Edge',
                 google: 'Google',
                 youtube: 'YouTube',
                 bilibili: 'Bilibili',
-                tiktok: 'TikTok',
-                zhihu: 'Zhihu'
+                tiktok: currentLanguage === 'zh' ? '抖音' : 'TikTok',
+                zhihu: '知乎',
+                douyin: '抖音'
             };
             return names[engine] || 'Edge';
         }
@@ -1599,7 +1617,8 @@
             youtube: 'https://www.youtube.com/results?search_query=',
             zhihu: 'https://www.zhihu.com/search?type=content&q=',
             edge: 'https://www.bing.com/search?q=',
-            tiktok: 'https://www.tiktok.com/search?q='
+            tiktok: 'https://www.tiktok.com/search?q=',
+            douyin: 'https://www.douyin.com/search/'
         };
 
         function performSearch() {
@@ -1607,7 +1626,14 @@
             
             if (query) {
                 const encodedQuery = encodeURIComponent(query);
-                const searchUrl = searchUrls[currentSearchEngine] + encodedQuery;
+                let engine = currentSearchEngine;
+                
+                // Use Douyin for Chinese language when TikTok is selected
+                if (currentLanguage === 'zh' && engine === 'tiktok') {
+                    engine = 'douyin';
+                }
+                
+                const searchUrl = searchUrls[engine] + encodedQuery;
                 window.open(searchUrl, '_blank');
             }
         }
@@ -2053,14 +2079,28 @@
             const titleEl = document.getElementById('confirmTitle');
             const messageEl = document.getElementById('confirmMessage');
             const confirmBtn = document.getElementById('confirmButton');
+            const cancelBtn = modal.querySelector('.cancel');
             
             titleEl.textContent = title;
             messageEl.textContent = message;
             
+            // Prevent event bubbling to avoid bookmark navigation
+            const preventBubbling = (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+            };
+            
             // Set up confirm button action
-            confirmBtn.onclick = () => {
+            confirmBtn.onclick = (e) => {
+                preventBubbling(e);
                 closeConfirmModal();
                 onConfirm();
+            };
+            
+            // Set up cancel button action
+            cancelBtn.onclick = (e) => {
+                preventBubbling(e);
+                closeConfirmModal();
             };
             
             modal.style.display = 'flex';
@@ -2543,6 +2583,9 @@
             
             // Update bookmark descriptions for default bookmarks
             updateBookmarkDescriptions();
+            
+            // Update search engine display for language change
+            updateSearchEngineDisplay();
             
             // Re-render sections to update all text
             renderSections();
