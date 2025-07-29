@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- saved from url=(0058)file:///C:/Users/30341/Desktop/v3_optimized_startpage.html -->
 <html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
@@ -17,6 +18,8 @@
             color: #e0e0e0;
             overflow-x: hidden;
             position: relative;
+            overscroll-behavior: none;
+            -webkit-overflow-scrolling: touch;
         }
 
         .particles {
@@ -25,12 +28,15 @@
             left: 0;
             width: 100%;
             height: 100%;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
             pointer-events: none;
             z-index: 1;
-            background: radial-gradient(ellipse at center, 
-                rgba(25, 25, 60, 0.3) 0%, 
-                rgba(15, 15, 35, 0.6) 40%, 
+            background: radial-gradient(ellipse at center,
+                rgba(25, 25, 60, 0.3) 0%,
+                rgba(15, 15, 35, 0.6) 40%,
                 rgba(5, 5, 15, 0.9) 100%);
+            overscroll-behavior: none;
         }
 
         .particle {
@@ -679,6 +685,7 @@
             isolation: isolate; /* Create new stacking context */
             transform: scale(0.9);
             visibility: visible;
+            overscroll-behavior: contain;
         }
         
         .modal-backdrop {
@@ -690,6 +697,7 @@
             background: transparent;
             z-index: 99998; /* Just below modal */
             display: none;
+            overscroll-behavior: contain;
         }
 
         .modal.show {
@@ -994,6 +1002,38 @@
         }
     }
 
+    </style>
+    <style>
+        /* Additional mobile fixes for overscroll and flash issues */
+        html {
+            overscroll-behavior: none;
+            -webkit-overflow-scrolling: touch;
+            height: 100%;
+        }
+        
+        body {
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        /* Prevent white flash on mobile overscroll */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        /* Ensure modal backdrop covers viewport properly */
+        .modal.show {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
     </style>
 <!-- SVG Icons -->
 </head><body><svg style="display: none;">
