@@ -110,6 +110,39 @@
             margin-bottom: 2rem;
             letter-spacing: -2px;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            min-height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .typewriter-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .typewriter-text {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: none;
+            line-height: 1.2;
+        }
+
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: rgba(255, 255, 255, 0.8);
+            animation: blinkCursor 1s infinite;
+            margin-left: 2px;
+            vertical-align: baseline;
+        }
+
+        @keyframes blinkCursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         .search-container {
@@ -155,10 +188,24 @@
             backdrop-filter: blur(5px);
             color: #ffffff;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             outline: none;
             appearance: none;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-select:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15), 0 0 60px rgba(255, 255, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .search-select:active {
+            transform: translateY(0) scale(0.98);
+            transition: transform 0.1s ease;
         }
 
         .search-engine-dropdown {
@@ -172,13 +219,43 @@
             border-radius: 10px;
             padding: 0.5rem 0;
             margin-top: 0.5rem;
-            display: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: block;
+            opacity: 0;
+            transform: translateY(-10px) scaleY(0.8);
+            transform-origin: top;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             z-index: 1000;
+            max-height: 0;
+            overflow: hidden;
+            pointer-events: none;
         }
 
         .search-engine-dropdown.show {
-            display: block;
+            opacity: 1;
+            transform: translateY(0) scaleY(1);
+            max-height: 300px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            pointer-events: auto;
+        }
+
+        .search-engine-dropdown.show .search-engine-option {
+            animation: fadeInUp 0.3s ease forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .search-engine-dropdown.show .search-engine-option:nth-child(1) { animation-delay: 0.05s; }
+        .search-engine-dropdown.show .search-engine-option:nth-child(2) { animation-delay: 0.1s; }
+        .search-engine-dropdown.show .search-engine-option:nth-child(3) { animation-delay: 0.15s; }
+        .search-engine-dropdown.show .search-engine-option:nth-child(4) { animation-delay: 0.2s; }
+        .search-engine-dropdown.show .search-engine-option:nth-child(5) { animation-delay: 0.25s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .search-engine-option {
@@ -187,10 +264,15 @@
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .search-engine-option:hover {
             background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            transform: translateY(0);
+            border-radius: 0;
         }
 
         .search-input::placeholder {
@@ -389,6 +471,10 @@
             font-weight: 300;
             color: #ffffff;
             letter-spacing: -0.5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: calc(100% - 120px);
         }
 
         .add-bookmark {
@@ -469,7 +555,8 @@
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             user-select: none;
-            touch-action: none;
+            touch-action: manipulation; /* Better for mobile */
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
         }
 
         .bookmark-item.dragging {
@@ -518,11 +605,19 @@
             font-weight: 500;
             margin-bottom: 0.3rem;
             color: #ffffff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
         }
 
         .bookmark-info p {
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
         }
 
         .remove-bookmark {
@@ -665,13 +760,35 @@
             color: #ffffff;
             cursor: pointer;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(4px);
+            position: relative;
+            overflow: hidden;
         }
 
         .language-btn:hover {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .language-btn:active {
+            transform: translateY(0) scale(0.98);
+            transition: transform 0.1s ease;
+        }
+
+        /* Enhanced button press feedback - simplified hover */
+        .search-engine-option,
+        .language-option {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-engine-option:active,
+        .language-option:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
         }
 
         .language-dropdown {
@@ -685,23 +802,54 @@
             padding: 0.5rem 0;
             margin-top: 0.5rem;
             min-width: 150px;
-            display: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: block;
+            opacity: 0;
+            transform: translateY(-10px) scaleY(0.8);
+            transform-origin: top;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-height: 0;
+            overflow: hidden;
+            pointer-events: none;
         }
 
         .language-dropdown.show {
-            display: block;
+            opacity: 1;
+            transform: translateY(0) scaleY(1);
+            max-height: 400px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            pointer-events: auto;
         }
+
+        .language-dropdown.show .language-option {
+            animation: fadeInUp 0.3s ease forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .language-dropdown.show .language-option:nth-child(1) { animation-delay: 0.05s; }
+        .language-dropdown.show .language-option:nth-child(2) { animation-delay: 0.1s; }
+        .language-dropdown.show .language-option:nth-child(3) { animation-delay: 0.15s; }
+        .language-dropdown.show .language-option:nth-child(4) { animation-delay: 0.2s; }
+        .language-dropdown.show .language-option:nth-child(5) { animation-delay: 0.25s; }
+        .language-dropdown.show .language-option:nth-child(6) { animation-delay: 0.3s; }
+        .language-dropdown.show .language-option:nth-child(7) { animation-delay: 0.35s; }
+        .language-dropdown.show .language-option:nth-child(8) { animation-delay: 0.4s; }
 
         .language-option {
             padding: 0.5rem 1rem;
             color: #ffffff;
             cursor: pointer;
             transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .language-option:hover {
             background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            transform: translateY(0);
+            border-radius: 0;
         }
         /* Icon styles */
         .delete-icon, .edit-icon {
@@ -828,7 +976,7 @@
 
     <div class="container fade-in">
         <div class="header">
-            <h1 class="logo">Zanes Startseite</h1>
+            <h1 class="logo typewriter-container" id="typewriterLogo">Zanes Startseite</h1>
             <div class="search-container">
                 <div class="search-wrapper">
                     <input type="text" class="search-input" placeholder="Suchbegriff eingeben..." id="searchInput">
@@ -1082,9 +1230,9 @@
                 item.addEventListener('mousedown', handleMouseDown);
                 item.addEventListener('touchstart', handleTouchStart, { passive: false });
                 
-                // Prevent default link behavior during long press
+                // Prevent default link behavior during drag operations
                 item.addEventListener('click', (e) => {
-                    if (dragState.isLongPress) {
+                    if (dragState.isLongPress || dragState.isDragging) {
                         e.preventDefault();
                         dragState.isLongPress = false;
                     }
@@ -1131,18 +1279,41 @@
             const startY = touch.clientY;
             const item = e.currentTarget;
             
+            // Enhanced touch tracking
+            let isTap = true;
+            let hasMoved = false;
+            let startTime = Date.now();
+            
+            // Prevent accidental navigation during scroll/swipe
+            const maxTapDistance = 10; // pixels
+            const maxTapDuration = 300; // milliseconds
+            
             dragState.longPressTimer = setTimeout(() => {
                 startDragging(item, startX, startY);
+                isTap = false;
                 // Add haptic feedback if available
                 if (navigator.vibrate) {
                     navigator.vibrate(50);
                 }
             }, 600); // 600ms long press for touch
             
-            const touchEndHandler = () => {
+            const touchEndHandler = (e) => {
                 clearTimeout(dragState.longPressTimer);
                 document.removeEventListener('touchend', touchEndHandler);
                 document.removeEventListener('touchmove', touchMoveHandler);
+                
+                const endTime = Date.now();
+                const duration = endTime - startTime;
+                
+                // Enhanced tap detection
+                if (isTap && !dragState.isDragging && !hasMoved && duration < maxTapDuration) {
+                    // This was a deliberate tap
+                    const url = item.getAttribute('href');
+                    if (url) {
+                        e.preventDefault();
+                        window.open(url, '_blank');
+                    }
+                }
             };
             
             const touchMoveHandler = (e) => {
@@ -1150,8 +1321,11 @@
                 const distance = Math.sqrt(
                     Math.pow(touch.clientX - startX, 2) + Math.pow(touch.clientY - startY, 2)
                 );
-                if (distance > 15) {
+                
+                if (distance > maxTapDistance) {
+                    hasMoved = true;
                     clearTimeout(dragState.longPressTimer);
+                    isTap = false;
                 }
             };
             
@@ -1631,7 +1805,20 @@
                     e.stopPropagation();
                     const sectionId = e.target.getAttribute('data-section-id');
                     const index = parseInt(e.target.getAttribute('data-index'));
-                    removeBookmark(sectionId, index);
+                    
+                    const langData = translations[currentLanguage] || translations.de;
+                    showConfirm(
+                        langData.deleteBookmarkConfirm.split('?')[0] + '?',
+                        langData.deleteBookmarkConfirm,
+                        () => {
+                            const section = bookmarkSections.find(s => s.id === sectionId);
+                            if (section) {
+                                section.bookmarks.splice(index, 1);
+                                saveSections();
+                                renderBookmarks(sectionId);
+                            }
+                        }
+                    );
                 });
             });
         }
@@ -1836,16 +2023,28 @@
         // Language Menu Functionality
         const languageBtn = document.getElementById('languageBtn');
         const languageDropdown = document.getElementById('languageDropdown');
+        let languageOpen = false;
         
-        // Toggle dropdown visibility
         languageBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            languageDropdown.classList.toggle('show');
+            languageOpen = !languageOpen;
+            toggleDropdown(languageDropdown, languageOpen);
+            
+            // Close other dropdown
+            if (languageOpen) {
+                toggleDropdown(searchEngineDropdown, false);
+                searchEngineOpen = false;
+            }
         });
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', () => {
-            languageDropdown.classList.remove('show');
+        // Enhanced close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-selector') && !e.target.closest('.language-menu')) {
+                toggleDropdown(searchEngineDropdown, false);
+                toggleDropdown(languageDropdown, false);
+                searchEngineOpen = false;
+                languageOpen = false;
+            }
         });
 
         // Translations dictionary
@@ -1884,7 +2083,13 @@
                 githubDesc: "Code-Repository",
                 googleTranslateDesc: "Übersetzungsdienst",
                 bilibiliDesc: "Video-Community",
-                youtubeDesc: "Video-Plattform"
+                youtubeDesc: "Video-Plattform",
+                typewriterPhrases: [
+                    "Zanes Startseite",
+                    "Jeder Tag ist ein neuer Commit.",
+                    "Nur wer sich traut, kann sich verändern.",
+                    "Nicht jeder Fehler ist ein Rückschritt."
+                ]
             },
             en: {
                 logo: "Zane's Startpage",
@@ -1920,7 +2125,13 @@
                 githubDesc: "Code repository",
                 googleTranslateDesc: "Translation service",
                 bilibiliDesc: "Video community",
-                youtubeDesc: "Video platform"
+                youtubeDesc: "Video platform",
+                typewriterPhrases: [
+                    "Zane's Startpage",
+                    "Every day is a new commit.",
+                    "Only those who dare can change.",
+                    "Not every error is a setback."
+                ]
             },
             nl: {
                 logo: "Zane's Startpagina",
@@ -1956,7 +2167,13 @@
                 githubDesc: "Code-repository",
                 googleTranslateDesc: "Vertaaldienst",
                 bilibiliDesc: "Videogemeenschap",
-                youtubeDesc: "Videoplatform"
+                youtubeDesc: "Videoplatform",
+                typewriterPhrases: [
+                    "Zane's Startpagina",
+                    "Elke dag is een nieuwe commit",
+                    "Alleen wie durft, kan veranderen",
+                    "Niet elke fout is een tegenslag"
+                ]
             },
             gsw: {
                 logo: "Zanes Startsiite",
@@ -1992,7 +2209,13 @@
                 githubDesc: "Code-Repository",
                 googleTranslateDesc: "Übersetzigsdienst",
                 bilibiliDesc: "Video-Gmeinschaft",
-                youtubeDesc: "Video-Plattform"
+                youtubeDesc: "Video-Plattform",
+                typewriterPhrases: [
+                    "Zanes Startsiite",
+                    "Jede Tag isch en neue Commit",
+                    "Nur wer sich traut, cha sich verändere",
+                    "Nid jede Fehler isch es Zrugg"
+                ]
             },
             fi: {
                 logo: "Zanen Aloitussivu",
@@ -2028,7 +2251,13 @@
                 githubDesc: "Koodivarasto",
                 googleTranslateDesc: "Käännöspalvelu",
                 bilibiliDesc: "Videoyhteisö",
-                youtubeDesc: "Videopalvelu"
+                youtubeDesc: "Videopalvelu",
+                typewriterPhrases: [
+                    "Zanen Aloitussivu",
+                    "Jokainen päivä on uusi commit",
+                    "Vain ne, jotka uskaltavat, voivat muuttua",
+                    "Ei jokainen virhe ole takapakki"
+                ]
             },
             fr: {
                 logo: "Page d'accueil de Zane",
@@ -2064,7 +2293,13 @@
                 githubDesc: "Dépôt de code",
                 googleTranslateDesc: "Service de traduction",
                 bilibiliDesc: "Communauté vidéo",
-                youtubeDesc: "Plateforme vidéo"
+                youtubeDesc: "Plateforme vidéo",
+                typewriterPhrases: [
+                    "Page d'accueil de Zane",
+                    "Chaque jour est un nouveau commit",
+                    "Seuls ceux qui osent peuvent changer",
+                    "Chaque erreur n'est pas un échec"
+                ]
             },
             zh: {
                 logo: "Zane的标签页",
@@ -2100,7 +2335,13 @@
                 githubDesc: "代码仓库",
                 googleTranslateDesc: "翻译服务",
                 bilibiliDesc: "视频社区",
-                youtubeDesc: "视频平台"
+                youtubeDesc: "视频平台",
+                typewriterPhrases: [
+                    "Zane的标签页",
+                    "「苟日新，日日新」",
+                    "「变者非疵，实乃天工」",
+                    "「过者非退，或跃在渊」"
+                ]
             },
             ja: {
                 logo: "Zaneのスタートページ",
@@ -2136,7 +2377,13 @@
                 githubDesc: "コードリポジトリ",
                 googleTranslateDesc: "翻訳サービス",
                 bilibiliDesc: "動画コミュニティ",
-                youtubeDesc: "動画プラットフォーム"
+                youtubeDesc: "動画プラットフォーム",
+                typewriterPhrases: [
+                    "Zaneのスタートページ",
+                    "「日々是新たなコミット」",
+                    "「変化は不具合ではなく、仕様です」",
+                    "「エラーもまた、進化の一歩」"
+                ]
             }
         };
 
@@ -2152,13 +2399,19 @@
         // Language selection handler
         document.querySelectorAll('.language-option').forEach(option => {
             option.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const lang = e.target.getAttribute('data-lang');
-                if (lang && lang !== currentLanguage) {
+                if (lang) {
                     currentLanguage = lang;
                     localStorage.setItem('zane-language', lang);
                     document.documentElement.lang = lang;
+                    
+                    // Force immediate UI update
                     updateUIText();
-                    languageDropdown.classList.remove('show');
+                    
+                    // Close dropdown
+                    toggleDropdown(languageDropdown, false);
+                    languageOpen = false;
                 }
             });
         });
@@ -2190,8 +2443,7 @@
         function updateUIText() {
             const langData = translations[currentLanguage] || translations.de;
             
-            // Update logo
-            document.querySelector('.logo').textContent = langData.logo;
+            // Update logo - handled by typewriter animation
             
             // Update search elements
             document.getElementById('searchInput').placeholder = langData.searchPlaceholder;
@@ -2239,13 +2491,114 @@
             
             // Re-render sections to update all text
             renderSections();
+            
+            // Restart typewriter animation with new language
+            if (typewriterAnimation) {
+                typewriterAnimation.stop();
+                typewriterAnimation.start();
+            }
         }
+
+        // Typewriter Animation Class
+        class TypewriterAnimation {
+            constructor(element) {
+                this.element = element;
+                this.currentPhraseIndex = 0;
+                this.currentText = '';
+                this.isDeleting = false;
+                this.isPaused = false;
+                this.typeSpeed = 100;
+                this.deleteSpeed = 50;
+                this.pauseTime = 2000;
+                this.animationId = null;
+                this.init();
+            }
+
+            init() {
+                this.element.innerHTML = '';
+                
+                const textSpan = document.createElement('span');
+                textSpan.className = 'typewriter-text';
+                this.element.appendChild(textSpan);
+                
+                this.cursorElement = document.createElement('span');
+                this.cursorElement.className = 'typewriter-cursor';
+                this.element.appendChild(this.cursorElement);
+                
+                this.textElement = textSpan;
+            }
+
+            type() {
+                if (this.isPaused) return;
+
+                const phrases = translations[currentLanguage]?.typewriterPhrases || translations.de.typewriterPhrases;
+                const current = phrases[this.currentPhraseIndex];
+                
+                if (this.isDeleting) {
+                    this.currentText = current.substring(0, this.currentText.length - 1);
+                    this.textElement.textContent = this.currentText;
+                    
+                    if (this.currentText === '') {
+                        this.isDeleting = false;
+                        this.currentPhraseIndex = (this.currentPhraseIndex + 1) % phrases.length;
+                        this.animationId = setTimeout(() => this.type(), 500);
+                    } else {
+                        this.animationId = setTimeout(() => this.type(), this.deleteSpeed);
+                    }
+                } else {
+                    this.currentText = current.substring(0, this.currentText.length + 1);
+                    this.textElement.textContent = this.currentText;
+                    
+                    if (this.currentText === current) {
+                        this.isPaused = true;
+                        this.animationId = setTimeout(() => {
+                            this.isPaused = false;
+                            this.isDeleting = true;
+                            this.type();
+                        }, this.pauseTime);
+                    } else {
+                        this.animationId = setTimeout(() => this.type(), this.typeSpeed);
+                    }
+                }
+            }
+
+            start() {
+                this.stop();
+                this.currentPhraseIndex = 0;
+                this.currentText = '';
+                this.isDeleting = false;
+                this.isPaused = false;
+                this.init();
+                this.type();
+            }
+
+            stop() {
+                if (this.animationId) {
+                    clearTimeout(this.animationId);
+                    this.animationId = null;
+                }
+                this.isPaused = true;
+            }
+
+            restart() {
+                this.start();
+            }
+        }
+
+        let typewriterAnimation;
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
             const addSectionBtn = document.getElementById('addSectionBtn');
             if (addSectionBtn) {
                 addSectionBtn.addEventListener('click', openSectionModal);
+            }
+            
+            // Initialize typewriter animation
+            const logoElement = document.getElementById('typewriterLogo');
+            if (logoElement) {
+                typewriterAnimation = new TypewriterAnimation(logoElement);
+                typewriterAnimation.start();
             }
             
             // Modal click-outside-to-close
@@ -2293,18 +2646,35 @@
             }
         });
 
+        // Enhanced Dropdown Animations
+        function toggleDropdown(dropdown, show) {
+            if (show) {
+                dropdown.style.display = 'block';
+                // Force reflow to ensure transition starts from correct state
+                dropdown.offsetHeight;
+                dropdown.classList.add('show');
+            } else {
+                dropdown.classList.remove('show');
+                setTimeout(() => {
+                    dropdown.style.display = 'none';
+                }, 400); // Match transition duration
+            }
+        }
+
         // Search Engine Dropdown Functionality
         const searchEngineDropdown = document.getElementById('searchEngineDropdown');
+        let searchEngineOpen = false;
         
-        // Toggle dropdown visibility
         searchEngineBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            searchEngineDropdown.classList.toggle('show');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', () => {
-            searchEngineDropdown.classList.remove('show');
+            searchEngineOpen = !searchEngineOpen;
+            toggleDropdown(searchEngineDropdown, searchEngineOpen);
+            
+            // Close other dropdown
+            if (searchEngineOpen) {
+                toggleDropdown(languageDropdown, false);
+                languageOpen = false;
+            }
         });
 
         // Handle engine selection
@@ -2312,7 +2682,8 @@
             option.addEventListener('click', (e) => {
                 const engine = e.target.getAttribute('data-engine');
                 searchEngineBtn.textContent = e.target.textContent;
-                searchEngineDropdown.classList.remove('show');
+                toggleDropdown(searchEngineDropdown, false);
+                searchEngineOpen = false;
             });
         });
 
@@ -2331,64 +2702,7 @@
         createParticles();
         loadSections();
 
-        document.addEventListener("DOMContentLoaded", function () {
-          // 监听点击和触摸，保证 iOS 和 PC 都支持
-          ["click", "touchend"].forEach(function(eventType) {
-            document.body.addEventListener(eventType, function (e) {
-              const removeBtn = e.target.closest(".remove-bookmark");
-              const bookmarkItem = e.target.closest(".bookmark-item");
-        
-              // ✅ 删除逻辑
-              if (removeBtn) {
-                e.preventDefault();
-        
-                const confirmed = confirm("确定要删除这个书签吗？");
-                if (!confirmed) return;
-        
-                const sectionId = removeBtn.getAttribute("data-section-id");
-                const index = parseInt(removeBtn.getAttribute("data-index"));
-                const grid = document.getElementById("grid-" + sectionId);
-                if (!grid) return;
-        
-                const items = grid.querySelectorAll(`.bookmark-item[data-section-id="${sectionId}"]`);
-                if (items[index]) items[index].remove();
-        
-                // 删除本地存储中的对应书签
-                const saved = localStorage.getItem("bookmarkData");
-                if (saved) {
-                  try {
-                    const data = JSON.parse(saved);
-                    if (Array.isArray(data[sectionId])) {
-                      data[sectionId].splice(index, 1);
-                      localStorage.setItem("bookmarkData", JSON.stringify(data));
-                    }
-                  } catch (err) {
-                    console.error("localStorage 删除失败", err);
-                  }
-                }
-        
-                // 重新标记 data-index
-                grid.querySelectorAll(".bookmark-item").forEach((el, i) => {
-                  el.setAttribute("data-index", i);
-                  const remove = el.querySelector(".remove-bookmark");
-                  if (remove) remove.setAttribute("data-index", i);
-                });
-        
-                return;
-              }
-        
-              // ✅ 跳转逻辑
-              if (bookmarkItem) {
-                if (bookmarkItem.classList.contains("dragging")) return;
-                const url = bookmarkItem.getAttribute("href");
-                if (url) {
-                  e.preventDefault();
-                  window.open(url, "_blank");
-                }
-              }
-            }, { passive: false });
-          });
-        });
+        // Remove the conflicting touch handler - it's now handled by the drag system
     </script>
 
 
