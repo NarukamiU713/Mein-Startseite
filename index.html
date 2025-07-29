@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="nl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
     <title>Zanes Startseite</title>
@@ -1072,7 +1072,12 @@
         }
     </style>
 <!-- SVG Icons -->
-</head><body><svg style="display: none;">
+<style>
+                @keyframes spin {
+                    0% { transform: translateY(-50%) rotate(0deg); }
+                    100% { transform: translateY(-50%) rotate(360deg); }
+                }
+            </style></head><body class=""><svg style="display: none;">
     <defs>
         <symbol id="delete-icon" viewBox="0 0 24 24">
             <path d="M13.414,12l3.293-3.293a1,1,0,1,0-1.414-1.414L12,10.586,8.707,7.293A1,1,0,1,0,7.293,8.707L10.586,12,7.293,15.293a1,1,0,1,0,1.414,1.414L12,13.414l3.293,3.293a1,1,0,0,0,1.414-1.414Z" fill="#ffffff" transform="scale(1.15) translate(-1.5, -1.5)"></path>
@@ -1091,8 +1096,8 @@
     
 
     <div class="language-menu">
-        <button class="language-btn" id="languageBtn">Mehr</button>
-        <div class="language-dropdown" id="languageDropdown">
+        <button class="language-btn" id="languageBtn">Meer</button>
+        <div class="language-dropdown" id="languageDropdown" style="display: none;">
             <div class="language-option" data-lang="de">Deutsch</div>
             <div class="language-option" data-lang="nl">Nederlands</div>
             <div class="language-option" data-lang="gsw">Schweizerdeutsch</div>
@@ -1104,24 +1109,24 @@
         </div>
     </div>
 
-    <div class="particles" id="particles"><div class="particle star" style="width: 1.68507px; height: 1.68507px; left: 69.674%; top: 95.8739%; animation-delay: 1.85398s; animation-duration: 3.01759s;"></div><div class="particle star" style="width: 1.84186px; height: 1.84186px; left: 73.102%; top: 13.3767%; animation-delay: 0.0440057s; animation-duration: 4.66588s;"></div><div class="particle star" style="width: 1.26293px; height: 1.26293px; left: 38.7269%; top: 39.1185%; animation-delay: 2.03321s; animation-duration: 4.32671s;"></div><div class="particle star" style="width: 2.92666px; height: 2.92666px; left: 15.2064%; top: 97.3542%; animation-delay: 2.65494s; animation-duration: 3.06506s;"></div><div class="particle star" style="width: 2.08626px; height: 2.08626px; left: 28.3777%; top: 42.1552%; animation-delay: 0.623483s; animation-duration: 5.34909s;"></div><div class="particle blue-star" style="width: 1.01111px; height: 1.01111px; left: 50.9548%; top: 80.226%; animation-delay: 0.410315s; animation-duration: 5.51853s;"></div><div class="particle star" style="width: 1.09149px; height: 1.09149px; left: 94.4766%; top: 62.6472%; animation-delay: 0.561395s; animation-duration: 5.13616s;"></div><div class="particle blue-star" style="width: 1.19538px; height: 1.19538px; left: 74.3354%; top: 35.7971%; animation-delay: 0.743021s; animation-duration: 4.25332s;"></div><div class="particle star" style="width: 1.2549px; height: 1.2549px; left: 9.35174%; top: 75.1774%; animation-delay: 3.13592s; animation-duration: 3.03516s;"></div><div class="particle star" style="width: 2.23397px; height: 2.23397px; left: 96.1%; top: 92.1393%; animation-delay: 3.0928s; animation-duration: 5.5023s;"></div><div class="particle blue-star" style="width: 1.28726px; height: 1.28726px; left: 35.7188%; top: 85.7232%; animation-delay: 1.6866s; animation-duration: 3.51417s;"></div><div class="particle star" style="width: 2.40808px; height: 2.40808px; left: 98.6941%; top: 29.8743%; animation-delay: 0.935268s; animation-duration: 5.68119s;"></div><div class="particle star" style="width: 1.85343px; height: 1.85343px; left: 10.1957%; top: 5.63621%; animation-delay: 1.64251s; animation-duration: 3.95792s;"></div><div class="particle star" style="width: 2.01587px; height: 2.01587px; left: 37.2698%; top: 37.7998%; animation-delay: 1.6342s; animation-duration: 5.33994s;"></div><div class="particle blue-star" style="width: 1.68047px; height: 1.68047px; left: 20.8303%; top: 6.78075%; animation-delay: 1.68212s; animation-duration: 5.50282s;"></div><div class="particle star" style="width: 2.66128px; height: 2.66128px; left: 12.0543%; top: 36.2218%; animation-delay: 3.16185s; animation-duration: 3.59745s;"></div><div class="particle star" style="width: 2.30706px; height: 2.30706px; left: 59.4705%; top: 13.0618%; animation-delay: 3.41058s; animation-duration: 3.64523s;"></div><div class="particle star" style="width: 1.59347px; height: 1.59347px; left: 78.2334%; top: 52.9317%; animation-delay: 2.42559s; animation-duration: 5.36379s;"></div><div class="particle star" style="width: 1.31412px; height: 1.31412px; left: 30.2799%; top: 36.48%; animation-delay: 2.85321s; animation-duration: 3.46164s;"></div><div class="particle distant-star" style="width: 1.14334px; height: 1.14334px; left: 91.4352%; top: 72.5448%; animation-delay: 0.0617177s; animation-duration: 4.70075s;"></div><div class="particle star" style="width: 1.60598px; height: 1.60598px; left: 99.7895%; top: 0.248786%; animation-delay: 0.701794s; animation-duration: 3.42371s;"></div><div class="particle star" style="width: 2.77667px; height: 2.77667px; left: 73.8355%; top: 79.1413%; animation-delay: 1.54446s; animation-duration: 4.39222s;"></div><div class="particle star" style="width: 1.21162px; height: 1.21162px; left: 23.1574%; top: 17.1284%; animation-delay: 0.13205s; animation-duration: 4.99726s;"></div><div class="particle star" style="width: 1.14452px; height: 1.14452px; left: 64.4711%; top: 32.3958%; animation-delay: 3.61686s; animation-duration: 5.75912s;"></div><div class="particle distant-star" style="width: 0.611323px; height: 0.611323px; left: 6.38344%; top: 46.3379%; animation-delay: 2.40422s; animation-duration: 4.91457s;"></div><div class="particle blue-star" style="width: 1.5226px; height: 1.5226px; left: 56.4163%; top: 76.7963%; animation-delay: 0.51504s; animation-duration: 4.92928s;"></div><div class="particle star" style="width: 2.45455px; height: 2.45455px; left: 47.6398%; top: 41.9983%; animation-delay: 3.58111s; animation-duration: 3.04406s;"></div><div class="particle blue-star" style="width: 0.860128px; height: 0.860128px; left: 59.6046%; top: 89.44%; animation-delay: 0.96429s; animation-duration: 4.31939s;"></div><div class="particle star" style="width: 2.31572px; height: 2.31572px; left: 82.131%; top: 37.837%; animation-delay: 2.45894s; animation-duration: 3.58281s;"></div><div class="particle star" style="width: 2.80094px; height: 2.80094px; left: 69.5664%; top: 36.6505%; animation-delay: 0.919256s; animation-duration: 5.77723s;"></div><div class="particle star" style="width: 2.58177px; height: 2.58177px; left: 45.0619%; top: 61.7368%; animation-delay: 3.29781s; animation-duration: 3.0581s;"></div><div class="particle blue-star" style="width: 1.54689px; height: 1.54689px; left: 41.1735%; top: 67.5927%; animation-delay: 2.59162s; animation-duration: 3.09191s;"></div><div class="particle star" style="width: 2.25307px; height: 2.25307px; left: 35.9192%; top: 46.3454%; animation-delay: 3.65813s; animation-duration: 4.16721s;"></div><div class="particle star" style="width: 2.86361px; height: 2.86361px; left: 56.083%; top: 9.65354%; animation-delay: 1.47714s; animation-duration: 4.55208s;"></div><div class="particle blue-star" style="width: 2.19768px; height: 2.19768px; left: 48.668%; top: 45.6341%; animation-delay: 0.457183s; animation-duration: 3.05668s;"></div><div class="particle blue-star" style="width: 2.29362px; height: 2.29362px; left: 59.0137%; top: 61.0513%; animation-delay: 3.0363s; animation-duration: 5.20443s;"></div><div class="particle star" style="width: 1.4492px; height: 1.4492px; left: 48.4676%; top: 88.3923%; animation-delay: 3.06936s; animation-duration: 4.14039s;"></div><div class="particle star" style="width: 2.29681px; height: 2.29681px; left: 15.5542%; top: 49.6361%; animation-delay: 3.5654s; animation-duration: 4.00676s;"></div><div class="particle star" style="width: 1.74566px; height: 1.74566px; left: 85.4038%; top: 56.5509%; animation-delay: 3.15983s; animation-duration: 5.0631s;"></div><div class="particle blue-star" style="width: 0.867136px; height: 0.867136px; left: 50.3392%; top: 70.555%; animation-delay: 0.66798s; animation-duration: 4.48327s;"></div><div class="particle star" style="width: 2.64829px; height: 2.64829px; left: 44.8222%; top: 13.5219%; animation-delay: 2.04876s; animation-duration: 4.14456s;"></div><div class="particle blue-star" style="width: 2.08387px; height: 2.08387px; left: 34.2296%; top: 29.427%; animation-delay: 3.85976s; animation-duration: 3.13403s;"></div><div class="particle blue-star" style="width: 1.74579px; height: 1.74579px; left: 98.7779%; top: 90.8719%; animation-delay: 1.38897s; animation-duration: 4.72048s;"></div><div class="particle blue-star" style="width: 1.20902px; height: 1.20902px; left: 64.8883%; top: 3.52707%; animation-delay: 2.22991s; animation-duration: 3.95644s;"></div><div class="particle star" style="width: 1.17338px; height: 1.17338px; left: 44.8088%; top: 31.1641%; animation-delay: 0.956085s; animation-duration: 3.3897s;"></div><div class="particle blue-star" style="width: 1.93068px; height: 1.93068px; left: 79.5963%; top: 78.6173%; animation-delay: 3.28174s; animation-duration: 4.30812s;"></div><div class="particle star" style="width: 2.36473px; height: 2.36473px; left: 36.2411%; top: 68.4821%; animation-delay: 2.65474s; animation-duration: 4.71454s;"></div><div class="particle star" style="width: 2.77338px; height: 2.77338px; left: 3.11955%; top: 82.8294%; animation-delay: 2.43903s; animation-duration: 3.77941s;"></div><div class="particle star" style="width: 1.70381px; height: 1.70381px; left: 86.1466%; top: 9.76799%; animation-delay: 0.434579s; animation-duration: 4.05628s;"></div><div class="particle star" style="width: 1.01574px; height: 1.01574px; left: 61.7208%; top: 23.1014%; animation-delay: 1.66127s; animation-duration: 5.55461s;"></div><div class="particle star" style="width: 2.88023px; height: 2.88023px; left: 40.0597%; top: 57.8082%; animation-delay: 1.6946s; animation-duration: 4.36137s;"></div><div class="particle star" style="width: 2.57409px; height: 2.57409px; left: 54.5057%; top: 25.0372%; animation-delay: 1.99231s; animation-duration: 4.0721s;"></div><div class="particle distant-star" style="width: 0.879216px; height: 0.879216px; left: 38.6353%; top: 38.796%; animation-delay: 3.1455s; animation-duration: 4.7995s;"></div><div class="particle star" style="width: 2.83516px; height: 2.83516px; left: 7.13434%; top: 91.356%; animation-delay: 1.37824s; animation-duration: 5.09761s;"></div><div class="particle star" style="width: 1.09618px; height: 1.09618px; left: 34.8929%; top: 91.5419%; animation-delay: 2.0544s; animation-duration: 4.52335s;"></div><div class="particle star" style="width: 2.45221px; height: 2.45221px; left: 80.3246%; top: 64.7349%; animation-delay: 2.55146s; animation-duration: 3.31402s;"></div><div class="particle star" style="width: 2.82619px; height: 2.82619px; left: 84.344%; top: 32.8%; animation-delay: 3.47018s; animation-duration: 4.87542s;"></div><div class="particle star" style="width: 1.35655px; height: 1.35655px; left: 19.4263%; top: 52.6024%; animation-delay: 3.72939s; animation-duration: 5.31455s;"></div><div class="particle star" style="width: 1.08865px; height: 1.08865px; left: 17.3817%; top: 57.9119%; animation-delay: 0.354745s; animation-duration: 3.51194s;"></div><div class="particle blue-star" style="width: 1.91704px; height: 1.91704px; left: 28.3585%; top: 60.0607%; animation-delay: 0.821103s; animation-duration: 5.76217s;"></div><div class="particle star" style="width: 2.34527px; height: 2.34527px; left: 6.92083%; top: 2.44754%; animation-delay: 0.96256s; animation-duration: 5.51815s;"></div><div class="particle star" style="width: 2.45383px; height: 2.45383px; left: 6.96347%; top: 61.1347%; animation-delay: 0.508147s; animation-duration: 4.29325s;"></div><div class="particle star" style="width: 1.37455px; height: 1.37455px; left: 80.0545%; top: 57.5211%; animation-delay: 3.78243s; animation-duration: 5.5722s;"></div><div class="particle blue-star" style="width: 1.28551px; height: 1.28551px; left: 4.92647%; top: 12.3041%; animation-delay: 3.23582s; animation-duration: 5.95273s;"></div><div class="particle star" style="width: 1.07312px; height: 1.07312px; left: 7.86476%; top: 61.4634%; animation-delay: 2.54708s; animation-duration: 4.0851s;"></div><div class="particle star" style="width: 1.45905px; height: 1.45905px; left: 49.632%; top: 61.4176%; animation-delay: 1.27317s; animation-duration: 5.31869s;"></div><div class="particle star" style="width: 1.72189px; height: 1.72189px; left: 24.2823%; top: 41.203%; animation-delay: 2.47208s; animation-duration: 3.46982s;"></div><div class="particle star" style="width: 2.10356px; height: 2.10356px; left: 98.8629%; top: 29.9117%; animation-delay: 0.833306s; animation-duration: 3.57051s;"></div><div class="particle star" style="width: 2.35199px; height: 2.35199px; left: 65.2691%; top: 39.7438%; animation-delay: 0.0468105s; animation-duration: 4.74509s;"></div><div class="particle star" style="width: 1.16864px; height: 1.16864px; left: 70.4231%; top: 32.7153%; animation-delay: 3.18236s; animation-duration: 5.77054s;"></div><div class="particle blue-star" style="width: 1.80822px; height: 1.80822px; left: 77.9616%; top: 31.3182%; animation-delay: 3.43169s; animation-duration: 3.8772s;"></div><div class="particle blue-star" style="width: 1.43776px; height: 1.43776px; left: 21.8442%; top: 10.9317%; animation-delay: 0.615542s; animation-duration: 5.12615s;"></div><div class="particle blue-star" style="width: 0.959346px; height: 0.959346px; left: 88.1122%; top: 78.3521%; animation-delay: 3.41266s; animation-duration: 3.59063s;"></div><div class="particle star" style="width: 1.31286px; height: 1.31286px; left: 67.62%; top: 87.5281%; animation-delay: 2.29029s; animation-duration: 3.75448s;"></div><div class="particle star" style="width: 2.37558px; height: 2.37558px; left: 18.6412%; top: 79.9703%; animation-delay: 2.35437s; animation-duration: 4.90795s;"></div><div class="particle star" style="width: 1.71855px; height: 1.71855px; left: 41.4347%; top: 47.6409%; animation-delay: 2.19448s; animation-duration: 3.74447s;"></div><div class="particle star" style="width: 2.43131px; height: 2.43131px; left: 67.4883%; top: 29.5509%; animation-delay: 1.50761s; animation-duration: 4.99926s;"></div><div class="particle star" style="width: 2.52243px; height: 2.52243px; left: 89.0674%; top: 61.0477%; animation-delay: 1.0707s; animation-duration: 5.58915s;"></div><div class="particle star" style="width: 2.72355px; height: 2.72355px; left: 29.6005%; top: 92.8236%; animation-delay: 3.51556s; animation-duration: 4.60493s;"></div><div class="particle star" style="width: 1.1156px; height: 1.1156px; left: 37.945%; top: 21.1755%; animation-delay: 2.01556s; animation-duration: 3.62508s;"></div><div class="particle star" style="width: 1.18875px; height: 1.18875px; left: 16.12%; top: 53.3453%; animation-delay: 2.11911s; animation-duration: 4.85655s;"></div><div class="particle star" style="width: 1.27786px; height: 1.27786px; left: 73.593%; top: 40.903%; animation-delay: 1.20225s; animation-duration: 3.72837s;"></div><div class="particle star" style="width: 1.49448px; height: 1.49448px; left: 26.259%; top: 85.4967%; animation-delay: 1.60663s; animation-duration: 3.91571s;"></div><div class="particle distant-star" style="width: 0.547371px; height: 0.547371px; left: 13.6135%; top: 92.3913%; animation-delay: 3.72769s; animation-duration: 4.39538s;"></div><div class="particle star" style="width: 1.07415px; height: 1.07415px; left: 76.7854%; top: 63.6722%; animation-delay: 1.65782s; animation-duration: 3.13172s;"></div><div class="particle star" style="width: 2.46905px; height: 2.46905px; left: 4.37599%; top: 67.5191%; animation-delay: 1.49059s; animation-duration: 3.77677s;"></div><div class="particle star" style="width: 2.11009px; height: 2.11009px; left: 43.6426%; top: 65.0056%; animation-delay: 1.88927s; animation-duration: 4.60183s;"></div><div class="particle blue-star" style="width: 1.24475px; height: 1.24475px; left: 87.987%; top: 55.0581%; animation-delay: 0.200288s; animation-duration: 5.3797s;"></div><div class="particle star" style="width: 2.37052px; height: 2.37052px; left: 56.5176%; top: 8.47687%; animation-delay: 1.86498s; animation-duration: 3.28336s;"></div><div class="particle star" style="width: 1.61649px; height: 1.61649px; left: 99.8823%; top: 87.9362%; animation-delay: 1.38537s; animation-duration: 4.19612s;"></div><div class="particle star" style="width: 1.2601px; height: 1.2601px; left: 85.6434%; top: 62.9688%; animation-delay: 0.812347s; animation-duration: 4.01975s;"></div><div class="particle star" style="width: 2.14002px; height: 2.14002px; left: 39.3062%; top: 98.4496%; animation-delay: 0.133065s; animation-duration: 4.34541s;"></div><div class="particle star" style="width: 2.91226px; height: 2.91226px; left: 34.109%; top: 2.89306%; animation-delay: 0.843681s; animation-duration: 5.59611s;"></div><div class="particle star" style="width: 2.13066px; height: 2.13066px; left: 14.8317%; top: 36.7041%; animation-delay: 1.72543s; animation-duration: 5.29423s;"></div><div class="particle star" style="width: 1.78657px; height: 1.78657px; left: 6.9736%; top: 34.3863%; animation-delay: 0.100751s; animation-duration: 5.35437s;"></div><div class="particle star" style="width: 2.68818px; height: 2.68818px; left: 69.3782%; top: 3.8866%; animation-delay: 0.972148s; animation-duration: 4.28462s;"></div><div class="particle star" style="width: 1.87469px; height: 1.87469px; left: 41.7232%; top: 69.3887%; animation-delay: 3.21061s; animation-duration: 4.00761s;"></div><div class="particle star" style="width: 1.64873px; height: 1.64873px; left: 18.5597%; top: 52.2319%; animation-delay: 3.87675s; animation-duration: 3.13507s;"></div><div class="particle blue-star" style="width: 1.51709px; height: 1.51709px; left: 27.7393%; top: 38.7907%; animation-delay: 3.49477s; animation-duration: 5.24285s;"></div><div class="particle star" style="width: 2.9603px; height: 2.9603px; left: 15.1594%; top: 61.0971%; animation-delay: 0.0729984s; animation-duration: 4.46292s;"></div></div>
+    <div class="particles" id="particles"><div class="particle blue-star" style="width: 1.28181px; height: 1.28181px; left: 26.8596%; top: 47.7704%; animation-delay: 1.93586s; animation-duration: 3.92483s;"></div><div class="particle star" style="width: 2.3011px; height: 2.3011px; left: 14.7749%; top: 39.478%; animation-delay: 1.83179s; animation-duration: 4.46783s;"></div><div class="particle distant-star" style="width: 1.43061px; height: 1.43061px; left: 22.8601%; top: 28.5028%; animation-delay: 2.15637s; animation-duration: 5.02819s;"></div><div class="particle star" style="width: 2.45641px; height: 2.45641px; left: 72.4063%; top: 0.565338%; animation-delay: 1.89441s; animation-duration: 5.69198s;"></div><div class="particle star" style="width: 2.80556px; height: 2.80556px; left: 76.6546%; top: 35.9389%; animation-delay: 1.63935s; animation-duration: 5.17537s;"></div><div class="particle star" style="width: 1.1474px; height: 1.1474px; left: 92.3302%; top: 42.8654%; animation-delay: 0.942087s; animation-duration: 3.19236s;"></div><div class="particle distant-star" style="width: 0.836371px; height: 0.836371px; left: 85.3369%; top: 28.6564%; animation-delay: 2.48625s; animation-duration: 5.06848s;"></div><div class="particle star" style="width: 2.53427px; height: 2.53427px; left: 34.6635%; top: 79.8725%; animation-delay: 0.0859559s; animation-duration: 4.60641s;"></div><div class="particle star" style="width: 2.87052px; height: 2.87052px; left: 60.7133%; top: 24.9822%; animation-delay: 2.2929s; animation-duration: 3.86306s;"></div><div class="particle blue-star" style="width: 2.09188px; height: 2.09188px; left: 6.52831%; top: 47.9829%; animation-delay: 3.24098s; animation-duration: 5.20211s;"></div><div class="particle star" style="width: 1.78979px; height: 1.78979px; left: 5.61626%; top: 7.28376%; animation-delay: 0.555907s; animation-duration: 4.50657s;"></div><div class="particle blue-star" style="width: 0.893374px; height: 0.893374px; left: 40.8317%; top: 53.2881%; animation-delay: 0.394455s; animation-duration: 4.04374s;"></div><div class="particle star" style="width: 2.69091px; height: 2.69091px; left: 22.1598%; top: 91.0549%; animation-delay: 2.22012s; animation-duration: 3.97595s;"></div><div class="particle star" style="width: 1.9615px; height: 1.9615px; left: 36.2855%; top: 5.01673%; animation-delay: 2.78412s; animation-duration: 3.54377s;"></div><div class="particle star" style="width: 2.65179px; height: 2.65179px; left: 72.1658%; top: 93.7467%; animation-delay: 2.15596s; animation-duration: 5.30579s;"></div><div class="particle star" style="width: 2.64332px; height: 2.64332px; left: 41.7225%; top: 45.4375%; animation-delay: 0.561059s; animation-duration: 3.60548s;"></div><div class="particle star" style="width: 1.13135px; height: 1.13135px; left: 97.9015%; top: 57.55%; animation-delay: 0.470004s; animation-duration: 5.01688s;"></div><div class="particle star" style="width: 1.40393px; height: 1.40393px; left: 88.9441%; top: 76.5124%; animation-delay: 0.65061s; animation-duration: 4.99302s;"></div><div class="particle star" style="width: 2.84131px; height: 2.84131px; left: 89.3252%; top: 8.93774%; animation-delay: 0.43445s; animation-duration: 3.77881s;"></div><div class="particle blue-star" style="width: 0.877px; height: 0.877px; left: 35.6149%; top: 13.5768%; animation-delay: 1.77417s; animation-duration: 4.95909s;"></div><div class="particle blue-star" style="width: 0.992652px; height: 0.992652px; left: 52.8741%; top: 49.4848%; animation-delay: 2.11122s; animation-duration: 4.89925s;"></div><div class="particle star" style="width: 2.37196px; height: 2.37196px; left: 72.1285%; top: 76.1678%; animation-delay: 2.64069s; animation-duration: 3.08913s;"></div><div class="particle blue-star" style="width: 1.11287px; height: 1.11287px; left: 14.5729%; top: 23.5662%; animation-delay: 3.64048s; animation-duration: 5.45614s;"></div><div class="particle star" style="width: 2.11856px; height: 2.11856px; left: 27.0254%; top: 99.9474%; animation-delay: 1.98512s; animation-duration: 3.58612s;"></div><div class="particle blue-star" style="width: 1.04029px; height: 1.04029px; left: 95.5352%; top: 50.5895%; animation-delay: 1.75338s; animation-duration: 4.2979s;"></div><div class="particle star" style="width: 1.23357px; height: 1.23357px; left: 24.028%; top: 34.005%; animation-delay: 3.13555s; animation-duration: 5.18636s;"></div><div class="particle star" style="width: 2.94228px; height: 2.94228px; left: 78.6904%; top: 69.079%; animation-delay: 3.20851s; animation-duration: 5.28115s;"></div><div class="particle blue-star" style="width: 1.53454px; height: 1.53454px; left: 83.9214%; top: 1.81986%; animation-delay: 0.802724s; animation-duration: 3.97267s;"></div><div class="particle blue-star" style="width: 1.78974px; height: 1.78974px; left: 70.3247%; top: 84.9162%; animation-delay: 0.795343s; animation-duration: 5.09236s;"></div><div class="particle star" style="width: 2.24116px; height: 2.24116px; left: 35.4923%; top: 90.6958%; animation-delay: 3.75242s; animation-duration: 5.41661s;"></div><div class="particle star" style="width: 2.99725px; height: 2.99725px; left: 43.3205%; top: 19.083%; animation-delay: 0.975984s; animation-duration: 3.80948s;"></div><div class="particle star" style="width: 1.43514px; height: 1.43514px; left: 21.7413%; top: 82.8167%; animation-delay: 1.78122s; animation-duration: 4.61899s;"></div><div class="particle star" style="width: 1.85405px; height: 1.85405px; left: 75.0863%; top: 5.69889%; animation-delay: 1.73508s; animation-duration: 4.55858s;"></div><div class="particle blue-star" style="width: 1.74293px; height: 1.74293px; left: 10.0576%; top: 83.1125%; animation-delay: 2.00068s; animation-duration: 4.93848s;"></div><div class="particle star" style="width: 1.37864px; height: 1.37864px; left: 68.6075%; top: 23.9402%; animation-delay: 3.38467s; animation-duration: 4.5128s;"></div><div class="particle star" style="width: 1.19875px; height: 1.19875px; left: 66.8275%; top: 52.2631%; animation-delay: 1.39218s; animation-duration: 5.76746s;"></div><div class="particle distant-star" style="width: 1.36634px; height: 1.36634px; left: 75.1846%; top: 54.9936%; animation-delay: 3.09693s; animation-duration: 4.20813s;"></div><div class="particle blue-star" style="width: 1.59457px; height: 1.59457px; left: 34.8684%; top: 98.7841%; animation-delay: 3.45306s; animation-duration: 5.53254s;"></div><div class="particle distant-star" style="width: 0.550451px; height: 0.550451px; left: 55.6614%; top: 69.0488%; animation-delay: 2.52629s; animation-duration: 5.66284s;"></div><div class="particle star" style="width: 1.53097px; height: 1.53097px; left: 44.0883%; top: 23.3772%; animation-delay: 1.42034s; animation-duration: 3.3322s;"></div><div class="particle star" style="width: 2.15061px; height: 2.15061px; left: 78.6646%; top: 47.204%; animation-delay: 0.727383s; animation-duration: 3.97372s;"></div><div class="particle star" style="width: 1.55521px; height: 1.55521px; left: 98.5144%; top: 20.6685%; animation-delay: 1.94254s; animation-duration: 4.83416s;"></div><div class="particle star" style="width: 1.29313px; height: 1.29313px; left: 60.9383%; top: 64.3514%; animation-delay: 1.23635s; animation-duration: 3.15461s;"></div><div class="particle star" style="width: 1.34316px; height: 1.34316px; left: 46.7857%; top: 66.0331%; animation-delay: 3.22874s; animation-duration: 3.18048s;"></div><div class="particle star" style="width: 1.72525px; height: 1.72525px; left: 20.5124%; top: 95.6864%; animation-delay: 3.12963s; animation-duration: 4.49178s;"></div><div class="particle star" style="width: 2.76588px; height: 2.76588px; left: 86.0537%; top: 32.3578%; animation-delay: 2.86242s; animation-duration: 4.18812s;"></div><div class="particle star" style="width: 2.72546px; height: 2.72546px; left: 3.92468%; top: 99.0127%; animation-delay: 3.76646s; animation-duration: 3.32485s;"></div><div class="particle star" style="width: 1.32358px; height: 1.32358px; left: 3.14967%; top: 31.703%; animation-delay: 2.84328s; animation-duration: 5.67462s;"></div><div class="particle blue-star" style="width: 1.95446px; height: 1.95446px; left: 48.1887%; top: 76.6114%; animation-delay: 1.40906s; animation-duration: 3.24412s;"></div><div class="particle distant-star" style="width: 1.38999px; height: 1.38999px; left: 96.3623%; top: 1.73667%; animation-delay: 3.73975s; animation-duration: 4.24667s;"></div><div class="particle star" style="width: 1.27185px; height: 1.27185px; left: 47.5204%; top: 93.3895%; animation-delay: 1.11808s; animation-duration: 3.82597s;"></div><div class="particle star" style="width: 2.57928px; height: 2.57928px; left: 57.1381%; top: 47.2862%; animation-delay: 3.41005s; animation-duration: 4.76328s;"></div><div class="particle distant-star" style="width: 1.25118px; height: 1.25118px; left: 90.3599%; top: 35.1147%; animation-delay: 0.366221s; animation-duration: 5.68018s;"></div><div class="particle star" style="width: 2.29242px; height: 2.29242px; left: 94.5977%; top: 30.2273%; animation-delay: 1.17603s; animation-duration: 5.57411s;"></div><div class="particle star" style="width: 1.37413px; height: 1.37413px; left: 41.6899%; top: 80.5034%; animation-delay: 2.28014s; animation-duration: 4.67287s;"></div><div class="particle star" style="width: 1.45747px; height: 1.45747px; left: 52.5658%; top: 55.6889%; animation-delay: 3.55966s; animation-duration: 4.73102s;"></div><div class="particle star" style="width: 2.65751px; height: 2.65751px; left: 3.33093%; top: 91.1814%; animation-delay: 1.12341s; animation-duration: 4.17598s;"></div><div class="particle distant-star" style="width: 1.03171px; height: 1.03171px; left: 91.0282%; top: 35.8455%; animation-delay: 0.807179s; animation-duration: 4.09808s;"></div><div class="particle distant-star" style="width: 1.03712px; height: 1.03712px; left: 91.5787%; top: 12.1474%; animation-delay: 1.39146s; animation-duration: 5.01331s;"></div><div class="particle star" style="width: 2.54954px; height: 2.54954px; left: 56.413%; top: 12.4619%; animation-delay: 3.18803s; animation-duration: 3.74261s;"></div><div class="particle star" style="width: 2.83021px; height: 2.83021px; left: 59.2629%; top: 84.7673%; animation-delay: 1.28699s; animation-duration: 3.9551s;"></div><div class="particle star" style="width: 1.11573px; height: 1.11573px; left: 19.1375%; top: 91.1292%; animation-delay: 1.27826s; animation-duration: 4.79885s;"></div><div class="particle star" style="width: 2.10993px; height: 2.10993px; left: 95.7452%; top: 92.7531%; animation-delay: 3.28415s; animation-duration: 4.63282s;"></div><div class="particle star" style="width: 1.32182px; height: 1.32182px; left: 84.9493%; top: 19.7405%; animation-delay: 2.60001s; animation-duration: 3.95081s;"></div><div class="particle blue-star" style="width: 1.13592px; height: 1.13592px; left: 71.9545%; top: 64.7544%; animation-delay: 3.96001s; animation-duration: 5.72147s;"></div><div class="particle star" style="width: 2.10383px; height: 2.10383px; left: 89.2964%; top: 16.5623%; animation-delay: 3.25545s; animation-duration: 5.78278s;"></div><div class="particle star" style="width: 1.61954px; height: 1.61954px; left: 60.2769%; top: 33.8696%; animation-delay: 1.17089s; animation-duration: 3.42681s;"></div><div class="particle star" style="width: 2.12274px; height: 2.12274px; left: 43.5459%; top: 55.5714%; animation-delay: 0.713465s; animation-duration: 3.17638s;"></div><div class="particle star" style="width: 1.99666px; height: 1.99666px; left: 41.4272%; top: 83.8457%; animation-delay: 3.78339s; animation-duration: 5.12423s;"></div><div class="particle star" style="width: 2.84887px; height: 2.84887px; left: 60.737%; top: 75.2438%; animation-delay: 1.37721s; animation-duration: 4.48438s;"></div><div class="particle star" style="width: 1.633px; height: 1.633px; left: 41.6691%; top: 22.3446%; animation-delay: 2.90971s; animation-duration: 3.19131s;"></div><div class="particle star" style="width: 1.72631px; height: 1.72631px; left: 31.0294%; top: 0.831688%; animation-delay: 3.50303s; animation-duration: 4.97547s;"></div><div class="particle blue-star" style="width: 1.01213px; height: 1.01213px; left: 10.7794%; top: 73.5065%; animation-delay: 2.04641s; animation-duration: 4.66535s;"></div><div class="particle distant-star" style="width: 0.536525px; height: 0.536525px; left: 23.1423%; top: 57.331%; animation-delay: 1.65721s; animation-duration: 3.84505s;"></div><div class="particle star" style="width: 2.27541px; height: 2.27541px; left: 13.0876%; top: 97.8163%; animation-delay: 0.336172s; animation-duration: 3.84984s;"></div><div class="particle star" style="width: 2.64648px; height: 2.64648px; left: 21.636%; top: 53.4435%; animation-delay: 3.40488s; animation-duration: 3.77608s;"></div><div class="particle star" style="width: 2.82315px; height: 2.82315px; left: 10.7979%; top: 10.947%; animation-delay: 0.0804596s; animation-duration: 4.21305s;"></div><div class="particle blue-star" style="width: 2.1136px; height: 2.1136px; left: 43.1842%; top: 20.3353%; animation-delay: 1.62972s; animation-duration: 3.37347s;"></div><div class="particle blue-star" style="width: 1.08294px; height: 1.08294px; left: 92.4743%; top: 99.2194%; animation-delay: 3.77416s; animation-duration: 5.17319s;"></div><div class="particle star" style="width: 2.98421px; height: 2.98421px; left: 50.9182%; top: 60.4443%; animation-delay: 3.16878s; animation-duration: 4.25645s;"></div><div class="particle star" style="width: 1.34592px; height: 1.34592px; left: 74.1822%; top: 24.5172%; animation-delay: 3.88342s; animation-duration: 4.50695s;"></div><div class="particle blue-star" style="width: 1.60169px; height: 1.60169px; left: 64.3395%; top: 75.6493%; animation-delay: 3.98714s; animation-duration: 4.33599s;"></div><div class="particle star" style="width: 1.21305px; height: 1.21305px; left: 7.34239%; top: 88.6628%; animation-delay: 0.408565s; animation-duration: 4.56532s;"></div><div class="particle star" style="width: 1.04435px; height: 1.04435px; left: 44.0327%; top: 49.4543%; animation-delay: 3.02797s; animation-duration: 5.75142s;"></div><div class="particle star" style="width: 1.94396px; height: 1.94396px; left: 52.2474%; top: 91.4529%; animation-delay: 0.72986s; animation-duration: 3.61856s;"></div><div class="particle star" style="width: 2.47053px; height: 2.47053px; left: 5.98991%; top: 32.4335%; animation-delay: 0.905665s; animation-duration: 5.76784s;"></div><div class="particle star" style="width: 1.73477px; height: 1.73477px; left: 37.1786%; top: 9.62376%; animation-delay: 3.28855s; animation-duration: 5.83887s;"></div><div class="particle star" style="width: 2.04452px; height: 2.04452px; left: 60.7474%; top: 0.548317%; animation-delay: 1.63541s; animation-duration: 4.249s;"></div><div class="particle star" style="width: 1.4547px; height: 1.4547px; left: 43.8375%; top: 46.4758%; animation-delay: 0.653421s; animation-duration: 3.54487s;"></div><div class="particle distant-star" style="width: 1.00572px; height: 1.00572px; left: 39.5385%; top: 6.97684%; animation-delay: 3.02835s; animation-duration: 3.1378s;"></div><div class="particle star" style="width: 2.14697px; height: 2.14697px; left: 36.3386%; top: 52.159%; animation-delay: 2.81588s; animation-duration: 4.34412s;"></div><div class="particle star" style="width: 2.19353px; height: 2.19353px; left: 9.71963%; top: 92.5015%; animation-delay: 3.28628s; animation-duration: 3.22139s;"></div><div class="particle blue-star" style="width: 1.63463px; height: 1.63463px; left: 95.5373%; top: 45.2333%; animation-delay: 1.26328s; animation-duration: 4.841s;"></div><div class="particle star" style="width: 1.73325px; height: 1.73325px; left: 69.023%; top: 86.4896%; animation-delay: 3.3524s; animation-duration: 3.31126s;"></div><div class="particle star" style="width: 2.05404px; height: 2.05404px; left: 61.3204%; top: 66.4754%; animation-delay: 2.15795s; animation-duration: 3.18251s;"></div><div class="particle star" style="width: 1.00854px; height: 1.00854px; left: 8.04256%; top: 33.3774%; animation-delay: 2.86937s; animation-duration: 3.32734s;"></div><div class="particle blue-star" style="width: 1.96652px; height: 1.96652px; left: 86.1778%; top: 12.2479%; animation-delay: 1.46103s; animation-duration: 3.15897s;"></div><div class="particle star" style="width: 2.18265px; height: 2.18265px; left: 18.7719%; top: 39.906%; animation-delay: 3.91175s; animation-duration: 3.4518s;"></div><div class="particle star" style="width: 2.06416px; height: 2.06416px; left: 99.5335%; top: 57.8116%; animation-delay: 1.65048s; animation-duration: 3.35348s;"></div><div class="particle distant-star" style="width: 1.12461px; height: 1.12461px; left: 86.8806%; top: 91.3744%; animation-delay: 0.439921s; animation-duration: 4.62934s;"></div><div class="particle shooting-star" style="width: 2.59503px; height: 0.86501px; left: -100px; top: 220.761px;"></div></div>
 
     <div class="container fade-in">
         <div class="header">
-            <h1 class="logo typewriter-container" id="typewriterLogo">Zanes Startseite</h1>
+            <h1 class="logo typewriter-container" id="typewriterLogo"><span class="typewriter-text">Niet elke fout is een tegenslag</span><span class="typewriter-cursor"></span></h1>
             <div class="search-container">
                 <div class="search-wrapper">
-                    <input type="text" class="search-input" placeholder="Suchbegriff eingeben..." id="searchInput">
+                    <input type="text" class="search-input" placeholder="Zoekterm invoeren..." id="searchInput">
                     <button class="search-button" id="searchButton">
                         <svg class="search-icon-svg">
                             <use href="#search-icon"></use>
                         </svg>
-                        <span class="search-text">Suchen</span>
+                        <span class="search-text">Zoeken</span>
                     </button>
                 </div>
                 <div class="search-selector">
-                    <button class="search-select" id="searchEngineBtn">Bilibili</button>
-                    <div class="search-engine-dropdown" id="searchEngineDropdown">
+                    <button class="search-select" id="searchEngineBtn">Edge</button>
+                    <div class="search-engine-dropdown" id="searchEngineDropdown" style="display: none;">
                         <div class="search-engine-option" data-engine="edge">Edge</div>
                         <div class="search-engine-option" data-engine="google">Google</div>
                         <div class="search-engine-option" data-engine="youtube">YouTube</div>
@@ -1136,13 +1141,13 @@
         <div class="bookmarks">
             <div id="bookmarkSections"><div class="bookmark-section">
                     <div class="section-header">
-                        <h2 class="section-title">Meine Lesezeichen</h2>
+                        <h2 class="section-title">Mijn bladwijzers</h2>
                         <div class="section-controls">
                             <button class="add-bookmark" data-section-id="main">
                                 <svg class="plus-icon">
                                     <use href="#plus-icon"></use>
                                 </svg>
-                                <span class="add-text">Hinzufügen</span>
+                                <span class="add-text">Toevoegen</span>
                             </button>
                             
                         </div>
@@ -1150,49 +1155,65 @@
                     <div class="bookmark-grid" id="grid-main"><a href="https://www.youtube.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="0" draggable="false">
                     <div class="bookmark-icon">Y</div>
                     <div class="bookmark-info">
-                        <h3>YouTube</h3>
-                        <p>Video-Plattform</p>
+                        <h3 title="YouTube" class="bookmark-title">YouTube</h3>
+                        <p title="Videoplatform" class="bookmark-desc">Videoplatform</p>
                     </div>
-                    <button class="remove-bookmark" data-section-id="main" data-index="0">×</button>
-                </a><a href="https://github.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="1" draggable="false">
-                    <div class="bookmark-icon">G</div>
-                    <div class="bookmark-info">
-                        <h3>GitHub</h3>
-                        <p>Code-Repository</p>
-                    </div>
-                    <button class="remove-bookmark" data-section-id="main" data-index="1">×</button>
-                </a><a href="https://translate.google.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="2" draggable="false">
+                    <button class="remove-bookmark" data-section-id="main" data-index="0">
+                        <svg class="delete-icon">
+                            <use href="#delete-icon"></use>
+                        </svg>
+                    </button>
+                </a><a href="https://translate.google.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="1" draggable="false">
                     <div class="bookmark-icon">GT</div>
                     <div class="bookmark-info">
-                        <h3>Google Translate</h3>
-                        <p>Übersetzungsdienst</p>
+                        <h3 title="Google Translate" class="bookmark-title">Google Translate</h3>
+                        <p title="Vertaaldienst" class="bookmark-desc">Vertaaldienst</p>
                     </div>
-                    <button class="remove-bookmark" data-section-id="main" data-index="2">×</button>
+                    <button class="remove-bookmark" data-section-id="main" data-index="1">
+                        <svg class="delete-icon">
+                            <use href="#delete-icon"></use>
+                        </svg>
+                    </button>
+                </a><a href="https://github.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="2" draggable="false">
+                    <div class="bookmark-icon">G</div>
+                    <div class="bookmark-info">
+                        <h3 title="GitHub" class="bookmark-title">GitHub</h3>
+                        <p title="Code-repository" class="bookmark-desc">Code-repository</p>
+                    </div>
+                    <button class="remove-bookmark" data-section-id="main" data-index="2">
+                        <svg class="delete-icon">
+                            <use href="#delete-icon"></use>
+                        </svg>
+                    </button>
                 </a><a href="https://www.bilibili.com/" target="_blank" class="bookmark-item" data-section-id="main" data-index="3" draggable="false">
                     <div class="bookmark-icon">B</div>
                     <div class="bookmark-info">
-                        <h3>Bilibili</h3>
-                        <p>Video-Community</p>
+                        <h3 title="Bilibili" class="bookmark-title">Bilibili</h3>
+                        <p title="Videogemeenschap" class="bookmark-desc">Videogemeenschap</p>
                     </div>
-                    <button class="remove-bookmark" data-section-id="main" data-index="3">×</button>
+                    <button class="remove-bookmark" data-section-id="main" data-index="3">
+                        <svg class="delete-icon">
+                            <use href="#delete-icon"></use>
+                        </svg>
+                    </button>
                 </a></div>
                 </div><div class="bookmark-section">
                     <div class="section-header">
-                        <h2 class="section-title">Weitere Lesezeichen</h2>
+                        <h2 class="section-title">Extra bladwijzers</h2>
                         <div class="section-controls">
                             <button class="add-bookmark" data-section-id="additional">
                                 <svg class="plus-icon">
                                     <use href="#plus-icon"></use>
                                 </svg>
-                                <span class="add-text">Hinzufügen</span>
+                                <span class="add-text">Toevoegen</span>
                             </button>
                             
-                                <button class="rename-section" data-section-id="additional" title="Klicken Sie zum Bearbeiten">
+                                <button class="rename-section" data-section-id="additional" title="Klik om te bewerken">
                                     <svg class="edit-icon">
                                         <use href="#edit-icon"></use>
                                     </svg>
                                 </button>
-                                <button class="delete-section" data-section-id="additional" title="Klicken Sie zum Löschen">
+                                <button class="delete-section" data-section-id="additional" title="Klik om te verwijderen">
                                     <svg class="delete-icon">
                                         <use href="#delete-icon"></use>
                                     </svg>
@@ -1203,17 +1224,36 @@
                     <div class="bookmark-grid" id="grid-additional"><a href="file:///C:/Users/30341/Desktop/1" target="_blank" class="bookmark-item" data-section-id="additional" data-index="0" draggable="false">
                     <div class="bookmark-icon">1</div>
                     <div class="bookmark-info">
-                        <h3>1</h3>
-                        <p></p>
+                        <h3 title="1" class="bookmark-title">1</h3>
+                        <p title="" class="bookmark-desc"></p>
                     </div>
-                    <button class="remove-bookmark" data-section-id="additional" data-index="0">×</button>
-                </a><a href="file:///C:/Users/30341/Desktop/2" target="_blank" class="bookmark-item" data-section-id="additional" data-index="1" draggable="false">
+                    <button class="remove-bookmark" data-section-id="additional" data-index="0">
+                        <svg class="delete-icon">
+                            <use href="#delete-icon"></use>
+                        </svg>
+                    </button>
+                </a><a href="https://leetcode.cn/" target="_blank" class="bookmark-item" data-section-id="additional" data-index="1" draggable="false">
+                    <div class="bookmark-icon">L</div>
+                    <div class="bookmark-info">
+                        <h3 title="Leetcode" class="bookmark-title">Leetcode</h3>
+                        <p title="" class="bookmark-desc"></p>
+                    </div>
+                    <button class="remove-bookmark" data-section-id="additional" data-index="1">
+                        <svg class="delete-icon">
+                            <use href="#delete-icon"></use>
+                        </svg>
+                    </button>
+                </a><a href="file:///C:/Users/30341/Desktop/2" target="_blank" class="bookmark-item" data-section-id="additional" data-index="2" draggable="false">
                     <div class="bookmark-icon">2</div>
                     <div class="bookmark-info">
-                        <h3>2</h3>
-                        <p></p>
+                        <h3 title="2" class="bookmark-title">2</h3>
+                        <p title="" class="bookmark-desc"></p>
                     </div>
-                    <button class="remove-bookmark" data-section-id="additional" data-index="1">×</button>
+                    <button class="remove-bookmark" data-section-id="additional" data-index="2">
+                        <svg class="delete-icon">
+                            <use href="#delete-icon"></use>
+                        </svg>
+                    </button>
                 </a></div>
                 </div><div class="bookmark-section">
                     <div class="section-header">
@@ -1223,15 +1263,15 @@
                                 <svg class="plus-icon">
                                     <use href="#plus-icon"></use>
                                 </svg>
-                                <span class="add-text">Hinzufügen</span>
+                                <span class="add-text">Toevoegen</span>
                             </button>
                             
-                                <button class="rename-section" data-section-id="section_1753518318759" title="Klicken Sie zum Bearbeiten">
+                                <button class="rename-section" data-section-id="section_1753518318759" title="Klik om te bewerken">
                                     <svg class="edit-icon">
                                         <use href="#edit-icon"></use>
                                     </svg>
                                 </button>
-                                <button class="delete-section" data-section-id="section_1753518318759" title="Klicken Sie zum Löschen">
+                                <button class="delete-section" data-section-id="section_1753518318759" title="Klik om te verwijderen">
                                     <svg class="delete-icon">
                                         <use href="#delete-icon"></use>
                                     </svg>
@@ -1242,28 +1282,32 @@
                     <div class="bookmark-grid" id="grid-section_1753518318759"><a href="file:///C:/Users/30341/Desktop/1" target="_blank" class="bookmark-item" data-section-id="section_1753518318759" data-index="0" draggable="false">
                     <div class="bookmark-icon">1</div>
                     <div class="bookmark-info">
-                        <h3>1</h3>
-                        <p>1</p>
+                        <h3 title="1" class="bookmark-title">1</h3>
+                        <p title="1" class="bookmark-desc">1</p>
                     </div>
-                    <button class="remove-bookmark" data-section-id="section_1753518318759" data-index="0">×</button>
+                    <button class="remove-bookmark" data-section-id="section_1753518318759" data-index="0">
+                        <svg class="delete-icon">
+                            <use href="#delete-icon"></use>
+                        </svg>
+                    </button>
                 </a></div>
                 </div><div class="bookmark-section">
                     <div class="section-header">
                         <h2 class="section-title">2</h2>
                         <div class="section-controls">
-                            <button class="add-bookmark" data-section-id="section_1753689726237">
+                            <button class="add-bookmark" data-section-id="section_1753784927213">
                                 <svg class="plus-icon">
                                     <use href="#plus-icon"></use>
                                 </svg>
-                                <span class="add-text">Hinzufügen</span>
+                                <span class="add-text">Toevoegen</span>
                             </button>
                             
-                                <button class="rename-section" data-section-id="section_1753689726237" title="Klicken Sie zum Bearbeiten">
+                                <button class="rename-section" data-section-id="section_1753784927213" title="Klik om te bewerken">
                                     <svg class="edit-icon">
                                         <use href="#edit-icon"></use>
                                     </svg>
                                 </button>
-                                <button class="delete-section" data-section-id="section_1753689726237" title="Klicken Sie zum Löschen">
+                                <button class="delete-section" data-section-id="section_1753784927213" title="Klik om te verwijderen">
                                     <svg class="delete-icon">
                                         <use href="#delete-icon"></use>
                                     </svg>
@@ -1271,34 +1315,34 @@
                             
                         </div>
                     </div>
-                    <div class="bookmark-grid" id="grid-section_1753689726237"></div>
+                    <div class="bookmark-grid" id="grid-section_1753784927213"></div>
                 </div></div>
-            <button class="add-section" id="addSectionBtn">+ Neuen Bereich hinzufügen</button>
+            <button class="add-section" id="addSectionBtn">+ Nieuwe sectie toevoegen</button>
         </div>
     </div>
 
     <!-- Add Bookmark Modal -->
     <div class="modal" id="addBookmarkModal" style="display: none;">
-        <div class="modal-content">
-            <h3>Neues Lesezeichen hinzufügen</h3>
-            <input type="text" id="bookmarkName" placeholder="Name der Website">
+        <div class="modal-content" style="position: relative;">
+            <h3>Nieuw bladwijzer toevoegen</h3>
+            <input type="text" id="bookmarkName" placeholder="Website naam">
             <input type="url" id="bookmarkUrl" placeholder="https://example.com">
-            <input type="text" id="bookmarkDesc" placeholder="Kurze Beschreibung">
+            <input type="text" id="bookmarkDesc" placeholder="Korte beschrijving">
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeBookmarkModal()">Abbrechen</button>
-                <button onclick="addBookmark()">Hinzufügen</button>
+                <button class="cancel" onclick="closeBookmarkModal()">Annuleren</button>
+                <button onclick="addBookmark()">Toevoegen</button>
             </div>
-        </div>
+        <div style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; border-width: 2px; border-style: solid; border-color: rgba(255, 255, 255, 0.8) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3); border-image: initial; border-radius: 50%; animation: 1s linear 0s infinite normal none running spin; display: none; pointer-events: none;"></div></div>
     </div>
 
     <!-- Add Section Modal -->
     <div class="modal" id="addSectionModal" style="display: none;">
         <div class="modal-content">
-            <h3>Neuen Bereich erstellen</h3>
-            <input type="text" id="sectionName" placeholder="Name des Bereichs">
+            <h3>Nieuwe sectie maken</h3>
+            <input type="text" id="sectionName" placeholder="Sectienaam">
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeSectionModal()">Abbrechen</button>
-                <button onclick="addSection()">Erstellen</button>
+                <button class="cancel" onclick="closeSectionModal()">Annuleren</button>
+                <button onclick="addSection()">Maken</button>
             </div>
         </div>
     </div>
@@ -1306,11 +1350,11 @@
     <!-- Rename Section Modal -->
     <div class="modal" id="renameSectionModal" style="display: none;">
         <div class="modal-content">
-            <h3>Bereich umbenennen</h3>
-            <input type="text" id="newSectionName" placeholder="Neuer Name">
+            <h3>Sectie hernoemen</h3>
+            <input type="text" id="newSectionName" placeholder="Nieuwe naam">
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeRenameModal()">Abbrechen</button>
-                <button onclick="confirmRename()">Umbenennen</button>
+                <button class="cancel" onclick="closeRenameModal()">Annuleren</button>
+                <button onclick="confirmRename()">Hernoemen</button>
             </div>
         </div>
     </div>
@@ -1332,7 +1376,7 @@
             <h3 id="confirmTitle" style="margin-bottom: 0.8rem;">确定删除分区吗？所有书签都将丢失！?</h3>
             <p id="confirmMessage" style="margin-top: 0; margin-bottom: 1.5rem;">确定删除分区吗？所有书签都将丢失！</p>
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeConfirmModal()">Abbrechen</button>
+                <button class="cancel" onclick="closeConfirmModal()">Annuleren</button>
                 <button id="confirmButton">OK</button>
             </div>
         </div>
@@ -2145,91 +2189,168 @@
             document.getElementById('bookmarkName').focus();
         }
 
-        // Async title fetching functionality with enhanced reliability
+        // Enhanced website title recognition with debugging
         async function fetchPageTitle(url) {
-            if (!url || !url.startsWith('http')) return null;
+            if (!url || !url.trim()) {
+                console.log('❌ Empty URL provided');
+                return null;
+            }
             
-            // Add timeout to prevent hanging requests
+            let cleanUrl = url.trim();
+            if (!cleanUrl.match(/^https?:\/\//i)) {
+                cleanUrl = 'https://' + cleanUrl;
+            }
+            
+            console.log('🔍 Fetching title for:', cleanUrl);
+            
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+            const timeoutId = setTimeout(() => {
+                console.log('⏰ Timeout after 3 seconds');
+                controller.abort();
+            }, 3000);
             
             try {
-                // Try multiple CORS proxies for better reliability
-                const proxies = [
-                    `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
-                    `https://corsproxy.io/?${encodeURIComponent(url)}`,
-                    `https://cors-anywhere.herokuapp.com/${url}`
-                ];
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(cleanUrl)}`;
+                console.log('🌐 Using proxy:', proxyUrl);
                 
-                let data = null;
-                let response = null;
-                
-                // Try each proxy until one succeeds
-                for (const proxyUrl of proxies) {
-                    try {
-                        response = await fetch(proxyUrl, {
-                            signal: controller.signal,
-                            headers: {
-                                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-                            }
-                        });
-                        
-                        if (response.ok) {
-                            if (proxyUrl.includes('allorigins.win')) {
-                                const json = await response.json();
-                                data = json.contents;
-                            } else {
-                                data = await response.text();
-                            }
-                            break;
-                        }
-                    } catch (proxyError) {
-                        continue; // Try next proxy
+                const response = await fetch(proxyUrl, {
+                    signal: controller.signal,
+                    headers: {
+                        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
                     }
-                }
+                });
                 
-                clearTimeout(timeoutId);
+                console.log('📡 Response status:', response.status);
                 
-                if (data) {
-                    // More robust title extraction
-                    const titleMatch = data.match(/<title[^>]*>([^<]+)<\/title>/i) ||
-                                     data.match(/<meta[^>]*property="og:title"[^>]*content="([^"]+)"/i) ||
-                                     data.match(/<meta[^>]*name="title"[^>]*content="([^"]+)"/i);
+                if (response.ok) {
+                    const data = await response.json();
+                    const html = data.contents;
                     
-                    if (titleMatch && titleMatch[1]) {
-                        let title = titleMatch[1].trim();
-                        
-                        // Clean up common title issues
-                        title = title
-                            .replace(/\s+/g, ' ') // Normalize whitespace
-                            .replace(/&/g, '&') // Decode HTML entities
-                            .replace(/</g, '<')
-                            .replace(/>/g, '>')
-                            .replace(/"/g, '"')
-                            .replace(/'/g, "'");
-                        
-                        // Limit title length
-                        if (title.length > 100) {
-                            title = title.substring(0, 97) + '...';
-                        }
-                        
-                        return title;
+                    console.log('📄 HTML length:', html.length);
+                    
+                    // Enhanced debugging extraction
+                    let title = null;
+                    let source = 'unknown';
+                    
+                    // Title tag
+                    const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+                    if (titleMatch) {
+                        title = titleMatch[1].trim();
+                        source = '<title>';
+                        console.log('✅ Found title in <title>:', title);
                     }
-                }
-            } catch (error) {
-                if (error.name === 'AbortError') {
-                    console.warn('Title fetch timeout:', url);
+                    
+                    // Open Graph
+                    if (!title) {
+                        const ogMatch = html.match(/<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']*)["']/i);
+                        if (ogMatch) {
+                            title = ogMatch[1].trim();
+                            source = 'og:title';
+                            console.log('✅ Found title in og:title:', title);
+                        }
+                    }
+                    
+                    // Meta title
+                    if (!title) {
+                        const metaMatch = html.match(/<meta[^>]*name=["']title["'][^>]*content=["']([^"']*)["']/i);
+                        if (metaMatch) {
+                            title = metaMatch[1].trim();
+                            source = 'meta title';
+                            console.log('✅ Found title in meta title:', title);
+                        }
+                    }
+                    
+                    // H1 fallback
+                    if (!title) {
+                        const h1Match = html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
+                        if (h1Match) {
+                            title = h1Match[1].trim();
+                            source = '<h1>';
+                            console.log('✅ Found title in <h1>:', title);
+                        }
+                    }
+                    
+                    if (title && title.trim()) {
+                        const cleaned = cleanTitle(title.trim());
+                        console.log('🎯 Final title from', source + ':', cleaned);
+                        return cleaned;
+                    } else {
+                        console.log('⚠️ No title found in HTML');
+                    }
                 } else {
-                    console.warn('Failed to fetch page title:', error);
+                    console.log('❌ HTTP error:', response.status, response.statusText);
                 }
+                
+            } catch (error) {
+                console.error('❌ Fetch error:', error.message);
+                console.error('Error type:', error.name);
             } finally {
                 clearTimeout(timeoutId);
             }
             
-            return null;
+            console.log('🔄 Using fallback title');
+            const fallback = generateFallbackTitle(cleanUrl);
+            console.log('📋 Fallback title:', fallback);
+            return fallback;
         }
 
+        // Fast URL-based fallback
+        function generateFallbackTitle(url) {
+            try {
+                const urlObj = new URL(url);
+                let domain = urlObj.hostname;
+                
+                // Remove www and common prefixes
+                domain = domain.replace(/^www\./, '');
+                
+                // Get main domain
+                const parts = domain.split('.');
+                if (parts.length >= 2) {
+                    domain = parts[parts.length - 2];
+                }
+                
+                // Capitalize and clean
+                return domain.charAt(0).toUpperCase() + domain.slice(1);
+                
+            } catch (error) {
+                return 'Website';
+            }
+        }
+
+        // Fast title cleaning
+        function cleanTitle(title) {
+            if (!title) return 'Website';
+            
+            let cleaned = title.trim();
+            
+            // Basic entity decoding
+            cleaned = cleaned.replace(/&/g, '&')
+                           .replace(/</g, '<')
+                           .replace(/>/g, '>')
+                           .replace(/"/g, '"')
+                           .replace(/'/g, "'");
+            
+            // Clean whitespace
+            cleaned = cleaned.replace(/\s+/g, ' ').trim();
+            
+            // Remove common suffixes
+            const suffixes = [' - Home', ' | Home', ' - Official', ' - Website'];
+            for (const suffix of suffixes) {
+                if (cleaned.endsWith(suffix)) {
+                    cleaned = cleaned.slice(0, -suffix.length).trim();
+                }
+            }
+            
+            // Limit length
+            if (cleaned.length > 60) {
+                cleaned = cleaned.substring(0, 57) + '...';
+            }
+            
+            return cleaned || 'Website';
+        }
+
+        // Enhanced title fetching with instant recognition and edge case handling
         function setupTitleFetching() {
             const urlInput = document.getElementById('bookmarkUrl');
             const nameInput = document.getElementById('bookmarkName');
@@ -2266,56 +2387,90 @@
             `;
             document.head.appendChild(style);
 
-            // Debounced fetch with shorter delay for better responsiveness
-            const debouncedFetch = debounce(async (url) => {
-                if (!url || !url.startsWith('http') || isFetching) return;
+            // URL normalization helper
+            function normalizeUrl(url) {
+                if (!url) return '';
+                let cleanUrl = url.trim();
+                if (!cleanUrl.match(/^https?:\/\//i)) {
+                    cleanUrl = 'https://' + cleanUrl;
+                }
+                return cleanUrl;
+            }
+
+            // Instant recognition with aggressive caching
+            const instantFetch = debounce(async (url) => {
+                if (!url || isFetching) return;
                 
-                // Prevent duplicate fetches for same URL
-                if (url === lastFetchedUrl && nameInput.value && nameInput.value !== lastFetchedUrl) return;
+                const normalizedUrl = normalizeUrl(url);
+                if (!normalizedUrl || !normalizedUrl.startsWith('http')) return;
+                
+                // Prevent duplicate fetches
+                if (normalizedUrl === lastFetchedUrl && nameInput.value && nameInput.value !== normalizedUrl) return;
                 
                 isFetching = true;
                 loadingIndicator.style.display = 'block';
                 
                 try {
-                    const title = await fetchPageTitle(url);
-                    if (title && (!nameInput.value || nameInput.value === lastFetchedUrl || nameInput.value === url)) {
+                    // Try cache first
+                    const cached = sessionStorage.getItem(`title_${normalizedUrl}`);
+                    if (cached) {
+                        const title = JSON.parse(cached);
+                        if (title && (!nameInput.value || nameInput.value === normalizedUrl)) {
+                            nameInput.value = title;
+                            nameInput.select();
+                            lastFetchedUrl = normalizedUrl;
+                            return;
+                        }
+                    }
+                    
+                    // Fetch with enhanced recognition
+                    const title = await fetchPageTitle(normalizedUrl);
+                    if (title && (!nameInput.value || nameInput.value === normalizedUrl || nameInput.value === lastFetchedUrl)) {
                         nameInput.value = title;
                         nameInput.select();
-                        lastFetchedUrl = url;
+                        lastFetchedUrl = normalizedUrl;
+                        
+                        // Cache for instant future use
+                        sessionStorage.setItem(`title_${normalizedUrl}`, JSON.stringify(title));
                     }
                 } catch (error) {
                     console.warn('Title fetch failed:', error);
+                    // Use fallback without showing error to user
+                    const fallback = generateFallbackTitle(normalizedUrl);
+                    if (!nameInput.value) {
+                        nameInput.value = fallback;
+                    }
                 } finally {
                     isFetching = false;
                     loadingIndicator.style.display = 'none';
                 }
-            }, 400); // Further reduced to 400ms for even better responsiveness
+            }, 200); // Ultra-fast 200ms debounce for instant recognition
 
             // Enhanced input handling for all platforms
             urlInput.addEventListener('input', (e) => {
                 const url = e.target.value.trim();
-                if (url && url.startsWith('http')) {
-                    debouncedFetch(url);
+                if (url) {
+                    instantFetch(url);
                 } else {
                     loadingIndicator.style.display = 'none';
                 }
             });
 
-            // Handle paste events immediately
+            // Handle paste events with immediate processing
             urlInput.addEventListener('paste', (e) => {
                 setTimeout(() => {
                     const url = e.target.value.trim();
-                    if (url && url.startsWith('http')) {
-                        debouncedFetch(url);
+                    if (url) {
+                        instantFetch(url);
                     }
-                }, 0);
+                }, 50); // Increased timeout for paste processing
             });
 
-            // Handle blur with immediate fetch
+            // Handle blur with instant fetch
             urlInput.addEventListener('blur', () => {
                 const url = urlInput.value.trim();
-                if (url && url.startsWith('http') && (!nameInput.value || nameInput.value === url)) {
-                    debouncedFetch(url);
+                if (url && (!nameInput.value || nameInput.value === url)) {
+                    instantFetch(url);
                 }
             });
 
@@ -2324,8 +2479,8 @@
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     const url = urlInput.value.trim();
-                    if (url && url.startsWith('http')) {
-                        debouncedFetch(url);
+                    if (url) {
+                        instantFetch(url);
                     }
                 }
             });
@@ -2333,12 +2488,12 @@
             // Handle mobile-specific events
             urlInput.addEventListener('change', (e) => {
                 const url = e.target.value.trim();
-                if (url && url.startsWith('http') && (!nameInput.value || nameInput.value === url)) {
-                    debouncedFetch(url);
+                if (url && (!nameInput.value || nameInput.value === url)) {
+                    instantFetch(url);
                 }
             });
 
-            // Handle focus events to clear loading
+            // Handle focus events
             urlInput.addEventListener('focus', () => {
                 if (!isFetching) {
                     loadingIndicator.style.display = 'none';
@@ -3094,15 +3249,49 @@
 
         // Keyboard shortcuts
         document.addEventListener('keydown', function(e) {
-            if (e.key === '/' && e.target !== searchInput) {
+            // Check if any modal is open
+            const isModalOpen = document.querySelector('.modal.show') !== null;
+            
+            // Only capture '/' for search if no modal is open and not already focused on search
+            if (e.key === '/' && e.target !== searchInput && !isModalOpen) {
                 e.preventDefault();
                 searchInput.focus();
             }
+            
+            // Escape key closes all modals
             if (e.key === 'Escape') {
                 closeBookmarkModal();
                 closeSectionModal();
                 closeRenameModal();
+                closeAlertModal();
+                closeConfirmModal();
             }
+        });
+
+        // Prevent modal inputs from triggering global keyboard shortcuts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to all modal inputs
+            const modalInputs = document.querySelectorAll('.modal input');
+            modalInputs.forEach(input => {
+                input.addEventListener('keydown', function(e) {
+                    // Stop propagation to prevent global shortcuts
+                    e.stopPropagation();
+                    
+                    // Allow normal typing including '/'
+                    if (e.key === 'Escape') {
+                        // Close the modal when Escape is pressed in any input
+                        const modal = this.closest('.modal');
+                        if (modal) {
+                            const modalId = modal.id;
+                            if (modalId === 'addBookmarkModal') closeBookmarkModal();
+                            else if (modalId === 'addSectionModal') closeSectionModal();
+                            else if (modalId === 'renameSectionModal') closeRenameModal();
+                            else if (modalId === 'alertModal') closeAlertModal();
+                            else if (modalId === 'confirmModal') closeConfirmModal();
+                        }
+                    }
+                });
+            });
         });
 
         // Enhanced Dropdown Animations
