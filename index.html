@@ -662,16 +662,43 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
-            z-index: 10000; /* Higher z-index to prevent bookmark overlay */
+            z-index: 99999; /* Maximum z-index to ensure top layer */
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none; /* Prevent interaction when hidden */
+            isolation: isolate; /* Create new stacking context */
+        }
+        
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 99998; /* Just below modal */
+            display: none;
         }
 
         .modal.show {
             opacity: 1;
+            pointer-events: auto; /* Enable interaction when visible */
+        }
+        
+        /* Prevent background interaction when any modal is open */
+        body.modal-open {
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        body.modal-open .modal {
+            pointer-events: auto;
+        }
+        
+        body.modal-open .modal * {
+            pointer-events: auto;
         }
 
         .modal-content {
@@ -685,6 +712,8 @@
             transform: scale(0.8);
             transition: transform 0.3s ease;
             font-size: 1.1rem;
+            position: relative;
+            z-index: 100000; /* Ensure content is above modal background */
         }
 
         .modal.show .modal-content {
@@ -1949,7 +1978,8 @@
             const modal = document.getElementById('renameSectionModal');
             document.getElementById('newSectionName').value = section.name;
             modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
+            modal.classList.add('show');
+            document.body.classList.add('modal-open');
             document.getElementById('newSectionName').focus();
         }
 
@@ -2011,7 +2041,8 @@
             currentSectionId = sectionId;
             const modal = document.getElementById('addBookmarkModal');
             modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
+            modal.classList.add('show');
+            document.body.classList.add('modal-open');
             document.getElementById('bookmarkName').focus();
         }
 
@@ -2024,13 +2055,15 @@
                 document.getElementById('bookmarkUrl').value = '';
                 document.getElementById('bookmarkDesc').value = '';
                 currentSectionId = null;
+                document.body.classList.remove('modal-open');
             }, 300);
         }
 
         function openSectionModal() {
             const modal = document.getElementById('addSectionModal');
             modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
+            modal.classList.add('show');
+            document.body.classList.add('modal-open');
             document.getElementById('sectionName').focus();
         }
 
@@ -2040,6 +2073,7 @@
             setTimeout(() => {
                 modal.style.display = 'none';
                 document.getElementById('sectionName').value = '';
+                document.body.classList.remove('modal-open');
             }, 300);
         }
 
@@ -2050,6 +2084,7 @@
                 modal.style.display = 'none';
                 document.getElementById('newSectionName').value = '';
                 currentRenameId = null;
+                document.body.classList.remove('modal-open');
             }, 300);
         }
 
@@ -2063,7 +2098,8 @@
             messageEl.textContent = message;
             
             modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
+            modal.classList.add('show');
+            document.body.classList.add('modal-open');
         }
 
         function closeAlertModal() {
@@ -2071,6 +2107,7 @@
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
             }, 300);
         }
 
@@ -2104,7 +2141,8 @@
             };
             
             modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
+            modal.classList.add('show');
+            document.body.classList.add('modal-open');
         }
 
         function closeConfirmModal() {
@@ -2112,6 +2150,7 @@
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
             }, 300);
         }
 
