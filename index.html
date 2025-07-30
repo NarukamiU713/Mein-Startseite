@@ -608,7 +608,7 @@
         .bookmark-info h3 {
             font-size: 1.1rem;
             font-weight: 500;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
             color: #ffffff;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -759,11 +759,11 @@
         }
 
         .modal-content {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 25px;
-            padding: 2.375rem; /* 5% reduction from 2.5rem */
+            padding: 2.1rem; /* 进一步减少内边距 */
             max-width: 475px; /* 5% reduction from 500px */
             width: 90%;
             transform: scale(0.9) translateY(20px); /* Start smaller and slightly lower */
@@ -816,6 +816,45 @@
             gap: 1.14rem; /* 5% reduction from 1.2rem */
             justify-content: flex-end;
             margin-top: 1.425rem; /* 5% reduction from 1.5rem */
+        }
+
+        .contact-me-btn {
+            background: rgba(0, 150, 255, 0.3) !important;
+            border-color: rgba(0, 150, 255, 0.6) !important;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .mail-icon {
+            width: 14px;
+            height: 10px;
+            position: relative;
+            border: 1.5px solid white;
+            border-radius: 1px;
+            background: transparent;
+        }
+
+        .mail-icon::before {
+            content: '';
+            position: absolute;
+            top: -1.5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid white;
+        }
+
+        .contact-me-btn:hover {
+            background: rgba(0, 150, 255, 0.3) !important;
+            box-shadow: 0 0 25px rgba(0, 150, 255, 0.2) !important;
         }
 
         .modal button {
@@ -913,6 +952,79 @@
             pointer-events: none;
         }
 
+        .dropdown-option {
+            padding: 0.8rem 1rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dropdown-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            transform: translateY(0);
+            border-radius: 0;
+        }
+
+
+
+        .language-submenu {
+            position: absolute;
+            top: 0;
+            right: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            margin-right: 0.5rem;
+            min-width: 150px;
+            display: block;
+            opacity: 0;
+            transform: translateX(10px) scaleX(0.8);
+            transform-origin: right;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-height: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .language-submenu.show {
+            opacity: 1;
+            transform: translateX(0) scaleX(1);
+            max-height: 400px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            pointer-events: auto;
+        }
+
+        .language-submenu.show .language-option {
+            animation: fadeInLeft 0.3s ease forwards;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .language-submenu.show .language-option:nth-child(1) { animation-delay: 0.05s; }
+        .language-submenu.show .language-option:nth-child(2) { animation-delay: 0.1s; }
+        .language-submenu.show .language-option:nth-child(3) { animation-delay: 0.15s; }
+        .language-submenu.show .language-option:nth-child(4) { animation-delay: 0.2s; }
+        .language-submenu.show .language-option:nth-child(5) { animation-delay: 0.25s; }
+        .language-submenu.show .language-option:nth-child(6) { animation-delay: 0.3s; }
+        .language-submenu.show .language-option:nth-child(7) { animation-delay: 0.35s; }
+        .language-submenu.show .language-option:nth-child(8) { animation-delay: 0.4s; }
+
+        @keyframes fadeInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .language-dropdown.show {
             opacity: 1;
             transform: translateY(0) scaleY(1);
@@ -998,6 +1110,192 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
+        /* About Modal Styles */
+        .about-modal-content {
+            max-width: 600px;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .about-tabs-container {
+            margin-bottom: 0.8rem;
+        }
+
+        .about-tabs {
+            position: relative;
+            display: flex;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 0.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: scale(0.95);
+            transform-origin: center;
+        }
+
+        .about-tab {
+            position: relative;
+            padding: 0.7rem 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            font-weight: 500;
+            flex: 1;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .about-tab.active {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .about-tab-highlight {
+            position: absolute;
+            top: 0.25rem;
+            left: 0.25rem;
+            width: calc(50% - 0.25rem);
+            height: calc(100% - 0.5rem);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            z-index: 1; /* 滑块在下 */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 0 30px rgba(255, 255, 255, 0.3),
+                0 0 60px rgba(255, 255, 255, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .about-tabs:hover .about-tab-highlight {
+            transition: all 0.2s ease;
+        }
+
+        .about-tab-highlight[data-tab="me"] {
+            transform: translateX(100%);
+        }
+
+        .about-content {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 0.3rem;
+            max-height: calc(95vh - 140px);
+        }
+
+        .about-tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        }
+
+        .about-tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-text {
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        .about-text h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            font-size: 1.3rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .about-text ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .about-text li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Custom scrollbar styling */
+        .about-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .about-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .about-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .about-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Firefox scrollbar styling */
+        .about-content {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+        }
+
+        /* Global scrollbar styling for homepage */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            backdrop-filter: blur(5px);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.25));
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.35));
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.4));
+        }
+
+        /* Firefox global scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(246, 244, 244, 0.255) rgba(0, 6, 17, 0.972);
+        }
+
         @media (max-width: 600px) {
         .container {
             padding: 1rem 0.5rem;
@@ -1035,6 +1333,20 @@
             width: 40px;
             height: 40px;
             font-size: 1rem;
+        }
+
+        .about-modal-content {
+            max-width: 95vw;
+            max-height: 95vh;
+        }
+
+        .about-tab {
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .about-content {
+            max-height: calc(95vh - 160px);
         }
     }
 
@@ -1098,6 +1410,10 @@
     <div class="language-menu">
         <button class="language-btn" id="languageBtn">Meer</button>
         <div class="language-dropdown" id="languageDropdown" style="display: none;">
+            <div class="dropdown-option" data-action="language">Taal</div>
+            <div class="dropdown-option" data-action="about">Over</div>
+        </div>
+        <div class="language-submenu" id="languageSubmenu" style="display: none;">
             <div class="language-option" data-lang="de">Deutsch</div>
             <div class="language-option" data-lang="nl">Nederlands</div>
             <div class="language-option" data-lang="gsw">Schweizerdeutsch</div>
@@ -1324,13 +1640,13 @@
     <!-- Add Bookmark Modal -->
     <div class="modal" id="addBookmarkModal" style="display: none;">
         <div class="modal-content" style="position: relative;">
-            <h3>Nieuw bladwijzer toevoegen</h3>
+            <h3 id="addBookmarkTitle">Nieuw bladwijzer toevoegen</h3>
             <input type="text" id="bookmarkName" placeholder="Website naam">
             <input type="url" id="bookmarkUrl" placeholder="https://example.com">
             <input type="text" id="bookmarkDesc" placeholder="Korte beschrijving">
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeBookmarkModal()">Annuleren</button>
-                <button onclick="addBookmark()">Toevoegen</button>
+                <button id="bookmarkCancelBtn" class="cancel" onclick="closeBookmarkModal()">Annuleren</button>
+                <button id="addBookmarkBtn" onclick="addBookmark()">Toevoegen</button>
             </div>
         <div style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; border-width: 2px; border-style: solid; border-color: rgba(255, 255, 255, 0.8) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3); border-image: initial; border-radius: 50%; animation: 1s linear 0s infinite normal none running spin; display: none; pointer-events: none;"></div></div>
     </div>
@@ -1338,11 +1654,11 @@
     <!-- Add Section Modal -->
     <div class="modal" id="addSectionModal" style="display: none;">
         <div class="modal-content">
-            <h3>Nieuwe sectie maken</h3>
+            <h3 id="createSectionTitle">Nieuwe sectie maken</h3>
             <input type="text" id="sectionName" placeholder="Sectienaam">
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeSectionModal()">Annuleren</button>
-                <button onclick="addSection()">Maken</button>
+                <button id="sectionCancelBtn" class="cancel" onclick="closeSectionModal()">Annuleren</button>
+                <button id="addSectionBtn" onclick="addSection()">Maken</button>
             </div>
         </div>
     </div>
@@ -1350,11 +1666,11 @@
     <!-- Rename Section Modal -->
     <div class="modal" id="renameSectionModal" style="display: none;">
         <div class="modal-content">
-            <h3>Sectie hernoemen</h3>
+            <h3 id="renameSectionTitle">Sectie hernoemen</h3>
             <input type="text" id="newSectionName" placeholder="Nieuwe naam">
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeRenameModal()">Annuleren</button>
-                <button onclick="confirmRename()">Hernoemen</button>
+                <button id="renameCancelBtn" class="cancel" onclick="closeRenameModal()">Annuleren</button>
+                <button id="confirmRenameBtn" onclick="confirmRename()">Hernoemen</button>
             </div>
         </div>
     </div>
@@ -1365,7 +1681,7 @@
             <h3 id="alertTitle" style="margin-bottom: 0.8rem;">名前を入力してください！</h3>
             <p id="alertMessage" style="margin-top: 0; margin-bottom: 1.5rem;">名前を入力してください！</p>
             <div class="modal-buttons">
-                <button onclick="closeAlertModal()">OK</button>
+                <button id="alertOkBtn" onclick="closeAlertModal()">OK</button>
             </div>
         </div>
     </div>
@@ -1376,8 +1692,39 @@
             <h3 id="confirmTitle" style="margin-bottom: 0.8rem;">确定删除分区吗？所有书签都将丢失！?</h3>
             <p id="confirmMessage" style="margin-top: 0; margin-bottom: 1.5rem;">确定删除分区吗？所有书签都将丢失！</p>
             <div class="modal-buttons">
-                <button class="cancel" onclick="closeConfirmModal()">Annuleren</button>
+                <button id="confirmCancelBtn" class="cancel" onclick="closeConfirmModal()">Annuleren</button>
                 <button id="confirmButton">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal" id="aboutModal" style="display: none;">
+        <div class="modal-content about-modal-content">
+            <div class="about-tabs-container">
+                <div class="about-tabs">
+                    <div class="about-tab active" data-tab="site" id="aboutSiteTab">Over de site</div>
+                    <div class="about-tab" data-tab="me" id="aboutMeTab">Over mij</div>
+                    <div class="about-tab-highlight"></div>
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="about-tab-content active" data-tab="site">
+                    <div class="about-text" id="aboutSiteText">
+                        <!-- Placeholder content - will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="about-tab-content" data-tab="me">
+                    <div class="about-text" id="aboutMeText">
+                        <!-- Placeholder content - will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button id="contactMeBtn" class="contact-me-btn" onclick="contactMe()" style="display: none;">
+                    <div class="mail-icon"></div>
+                </button>
+                <button id="aboutCloseBtn" onclick="closeAboutModal()">Sluiten</button>
             </div>
         </div>
     </div>
@@ -2628,15 +2975,903 @@
             }, 300);
         }
 
+        // About Modal Functions
+        function openAboutModal() {
+            const modal = document.getElementById('aboutModal');
+            modal.style.display = 'flex';
+            modal.offsetHeight;
+            modal.classList.add('show');
+            document.body.classList.add('modal-open');
+            updateAboutContent();
+            
+            // Ensure the "About Website" tab is active by default
+            const aboutSiteTab = document.getElementById('aboutSiteTab');
+            const aboutMeTab = document.getElementById('aboutMeTab');
+            const aboutTabHighlight = document.querySelector('.about-tab-highlight');
+            
+            if (aboutSiteTab && aboutMeTab && aboutTabHighlight) {
+                // Remove active class from all tabs
+                aboutSiteTab.classList.remove('active');
+                aboutMeTab.classList.remove('active');
+                
+                // Add active class to site tab
+                aboutSiteTab.classList.add('active');
+                
+                // Update tab content
+                const aboutTabContents = document.querySelectorAll('.about-tab-content');
+                aboutTabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.getAttribute('data-tab') === 'site') {
+                        content.classList.add('active');
+                    }
+                });
+                
+                // Update highlight position
+                aboutTabHighlight.setAttribute('data-tab', 'site');
+                
+                // Hide contact me button by default
+                const contactMeBtn = document.getElementById('contactMeBtn');
+                if (contactMeBtn) {
+                    contactMeBtn.style.display = 'none';
+                    contactMeBtn.style.opacity = '0';
+                }
+            }
+        }
+
+        function closeAboutModal() {
+            const modal = document.getElementById('aboutModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+            }, 300);
+        }
+
+        function contactMe() {
+            window.open('mailto:narukamiu@outlook.com', '_blank');
+        }
+
+        // About content for each language
+        const aboutContent = {
+            de: {
+                site: {
+                    title: "Über die Website",
+                    content: `
+                        <h3>Welcome to Zanes Startseite!🎉🎉</h3>
+                        <h3>Version 1.5</h3>
+                        <p>Neue "Über"-Sektion hinzugefügt mit detaillierten Beschreibungen</p>
+                        
+                        <h3>Anleitung</h3>
+                        <p>Diese Website wurde für Nutzer entwickelt, die eine reine Browser-Erfahrung suchen und <strong>effizient</strong> mit mehreren Suchmaschinen gleichzeitig suchen können. Der ursprüngliche Zweck war es, bei der Suche auf verschiedenen Plattformen die ablenkenden personalisierten Empfehlungen auf den Hauptseiten zu <strong>überspringen</strong>, um die Suchleistung zu verbessern und zu vermeiden, in Informationsblasen zu geraten und die Jugend zu verschwenden.</p>
+                        
+                        <p>Während die Website eine minimalistische und leichte ästhetische Erfahrung und einfache Bedienungslogik beibehält, bietet sie auch mehrsprachige Unterstützung - Nutzer können zwischen <strong>8</strong> verschiedenen Sprachen in der oberen rechten Ecke wechseln. Warum diese <strong>8</strong> Sprachen? Weil der Autor derzeit nur an diesen Sprachen interessiert ist.</p>
+                        
+                        <p>Obwohl die Benutzerinteraktionen für mobile Geräte angepasst und optimiert wurden, wird derzeit die Nutzung auf <strong>Computer/Tablet-Geräten</strong> empfohlen, da die Erfahrung auf dem Computer besser ist. Viel Spaß beim Surfen!</p>
+                        
+                        <h4>Funktionsindex</h4>
+                        <ul>
+                            <li>Tippen Sie auf den runden Block rechts neben der Suchleiste, um zwischen 6 gängigen Suchmaschinen zu wechseln</li>
+                            <li>Der "Meine Lesezeichen"-Bereich ist ein voreingestelltes Modul, Sie können auf das Plus-Symbol oben rechts klicken, um Lesezeichen hinzuzufügen</li>
+                            <li>Beim Hinzufügen neuer Lesezeichen kann der Websitename automatisch erkannt und ausgefüllt werden, nachdem Sie die URL eingefügt haben</li>
+                            <li>Lesezeichen können durch langes Drücken gezogen und sortiert werden, fahren Sie mit der Maus über die obere rechte Ecke des Lesezeichens, um es zu löschen</li>
+                            <li>Der "Weitere Lesezeichen"-Bereich kann gelöscht und benannt werden, am unteren Rand der Seite können neue Bereiche hinzugefügt werden</li>
+                        </ul>
+                        
+                        <h3>Versionsverlauf</h3>
+                        <h4>Version 1.4</h4>
+                        <ul>
+                            <li>Neue Titel-Typing-Effekte und verschiedene Mottos hinzugefügt</li>
+                            <li>Neue Übergangsanimationen für Menüs nach Klick auf "Mehr" und Suchmaschinen-Rundblock</li>
+                            <li>Neue automatische Namenserkennung beim Hinzufügen neuer Lesezeichen</li>
+                            <li>Neue "Douyin"-Suchmaschine hinzugefügt</li>
+                            <li>Pop-up-Größe angemessen vergrößert für harmonischeres Erscheinungsbild auf mobilen Geräten</li>
+                            <li>Einheitliches Aussehen und Farbe des "×"-Löschsymbols</li>
+                            <li>Problem mit zu langem Textüberlauf behoben</li>
+                            <li>Problem mit versehentlichem Berühren von Webseiten auf mobilen Geräten behoben</li>
+                            <li>Problem mit iOS-Lösch-Pop-ups, die nicht die Web-UI verwenden, behoben</li>
+                        </ul>
+                        
+                        <h4>Version 1.3</h4>
+                        <ul>
+                            <li>Neue Icons und Hover-Übergangsanimationen für "Suchen"- und "Hinzufügen"-Tasten</li>
+                            <li>Neue UI für alle Hinweis-Pop-ups, einheitlich mit dem Webdesign-Stil</li>
+                            <li>Löschsymbol "×" vergrößert und auffälligere Farbe ersetzt</li>
+                            <li>Beim Sprachwechsel ändern sich auch die Beschreibungen von "Weitere Lesezeichen" und voreingestellten Lesezeichen</li>
+                            <li>Problem mit zu vielen Sternen im Hintergrund behoben</li>
+                        </ul>
+                        
+                        <h4>Version 1.2</h4>
+                        <ul>
+                            <li>Neue Icons und Hover-Übergangsanimationen für "Bearbeiten"- und "Löschen"-Tasten</li>
+                            <li>Neue "Mehr"-Sektion und sieben neue Sprachen hinzugefügt</li>
+                            <li>Neue UI für Dropdown-Menü nach Klick auf Suchmaschinen-Rundblock</li>
+                        </ul>
+                        
+                        <h4>Version 1.1</h4>
+                        <ul>
+                            <li>Gaußsche Unschärfe-Elemente zur gesamten UI hinzugefügt</li>
+                            <li>Drag & Drop-Sortierlogik und -genauigkeit optimiert</li>
+                            <li>Ursprünglicher Tag-Modus entfernt</li>
+                        </ul>
+                        
+                        <h4>Version 1.0</h4>
+                        <ul>
+                            <li>Neuer "Sternenhimmel"-Hintergrund, der besser zum Webseiten-Charakter passt</li>
+                            <li>Neue Drag & Drop-Funktion zum Sortieren von Lesezeichen</li>
+                            <li>Neue "Hinzufügen"- und "Bearbeiten"-Tasten für freie Lesezeichen-Bearbeitung</li>
+                            <li>Neue "Neuen Bereich hinzufügen"-Funktion</li>
+                        </ul>
+                    `
+                },
+                me: {
+                    title: "Über mich",
+                    content: `
+                        <h3>Hallo! Ich bin Zane</h3>
+                        <p>Ich bin ein <strong>Student</strong>, der <strong>Sprachen</strong> und <strong>Programmierung</strong> liebt, aber wie Sie sehen können, habe ich keine Grundlagen in der Webentwicklung, daher wurde der gesamte Entwicklungsprozess dieser Website von <strong>KI</strong> durchgeführt.</p>
+                        
+                        <p>Ursprünglich hatte ich zwei Themes für diese Webseite eingerichtet, aber ich fand das Tagesthema immer zu monoton und ohne Schönheit, also habe ich es einfach gelöscht. Ich bevorzuge jetzt den dunklen Sternenhimmel. Das Öffnen der Website ist wie das Betrachten des Sternenhimmels - jedes Funkeln der Sterne vertreibt die Oberflächlichkeit des Internets, und zwischen Ein- und Ausatmen, zwischen Funkeln und Glitzern kehren sie schließlich zur Nacht zurück, zur Stille.</p>
+                        
+                        <p>Wie ist mein Sternenhimmel? Er ist nicht so abstrakt und übertrieben wie van Goghs, noch so grandios und weitläufig wie Cao Caos. In meinem Universum wird jeder Stern in der Galaxie geboren, jeder Stern hat seine Bedeutung. Er könnte eine Erinnerung sein, ein Wort oder eine Person. Manche Sterne verschwinden mit der Galaxie, andere verdunkeln allmählich ihr Licht. Ich möchte das Leuchten dieser Sterne einfangen, damit sie nicht verschwinden, denn jeder Stern verdient es, bewahrt zu werden, jede Erinnerung ist kostbar.</p>
+                        
+                        <p>Es ist auch in Ordnung, wenn Sie keine Sterne einfangen konnten, <strong><em>Dunkelheit und Helligkeit gehen nicht verloren, sie springen vielleicht in die Tiefe</em></strong>, solange Sie bereit sind, in der Tiefe zu suchen, werden Sie eines Tages seinen Versteck finden.</p>
+                        
+                        <p>Ich hoffe, dass Sie vor dem Bildschirm auch Ihren eigenen Sternenhimmel haben und Ihre kostbaren Sterne bewahren.</p>
+                        
+                        <p><em>Hier danke ich der KI, die meine Gedanken möglich gemacht hat<br>
+                        Ich freue mich auch darauf, eines Tages solche Werke mit eigenen Händen zu schaffen</em></p>
+                        
+                        <p><strong>Wenn Sie bei der Nutzung auf Probleme stoßen, kontaktieren Sie mich gerne</strong></p>
+                    `
+                }
+            },
+            en: {
+                site: {
+                    title: "About the Website",
+                    content: `
+                        <h3>Welcome to Zanes Startseite!🎉🎉</h3>
+                        <h3>Version 1.5</h3>
+                        <p>Added "About" section with detailed descriptions</p>
+                        
+                        <h3>Instructions</h3>
+                        <p>This website was built for users pursuing a pure browsing experience, capable of <strong>efficiently</strong> searching across multiple engines simultaneously. The original purpose was to <strong>skip</strong> distracting personalized recommendations on platform homepages when searching content on different platforms, thereby improving search efficiency and avoiding information cocoons that waste youth.</p>
+                        
+                        <p>While maintaining a minimalist and light aesthetic experience and simple operation logic, the website also provides users with multi-language support - users can switch between <strong>8</strong> different languages in the upper right corner. Why these <strong>8</strong> languages? Because the author is currently only interested in these languages.</p>
+                        
+                        <p>Although user operations for mobile devices have been adapted and optimized, it is currently recommended for <strong>computer/tablet</strong> users to use this webpage, as the experience on computer is better. Happy surfing!</p>
+                        
+                        <h4>Feature Index</h4>
+                        <ul>
+                            <li>Tap the round block to the right of the search bar to switch between 6 mainstream engines</li>
+                            <li>The "My Bookmarks" section is a preset module, you can click the plus sign in the upper right to add bookmarks</li>
+                            <li>When adding new bookmarks, the website name can be automatically recognized and filled after pasting the URL</li>
+                            <li>Bookmarks can be dragged and sorted by long press, hover over the upper right corner of the bookmark to delete it</li>
+                            <li>The "Other Bookmarks" section can be deleted and named, new sections can be added at the bottom of the page</li>
+                        </ul>
+                        
+                        <h3>Version History</h3>
+                        <h4>Version 1.4</h4>
+                        <ul>
+                            <li>Added title typing effects and several different mottos</li>
+                            <li>Added transition animations for menus after clicking "More" and engine round blocks</li>
+                            <li>Added automatic name recognition when adding new bookmarks</li>
+                            <li>Added "Douyin" search engine</li>
+                            <li>Appropriately enlarged popup size for more harmonious appearance on mobile devices</li>
+                            <li>Unified the appearance and color of the "×" delete symbol</li>
+                            <li>Fixed text overflow issues</li>
+                            <li>Fixed issues with mobile operations accidentally touching web pages</li>
+                            <li>Fixed iOS delete popup not using web UI issues</li>
+                        </ul>
+                        
+                        <h4>Version 1.3</h4>
+                        <ul>
+                            <li>Added icons and hover transition animations for "Search" and "Add" buttons</li>
+                            <li>Added UI for all prompt popups, unified with web design style</li>
+                            <li>Enlarged the "×" delete symbol and replaced with more eye-catching color</li>
+                            <li>When switching languages, "Other Bookmarks" and preset bookmark descriptions also change accordingly</li>
+                            <li>Fixed the issue of too many stars in the background</li>
+                        </ul>
+                        
+                        <h4>Version 1.2</h4>
+                        <ul>
+                            <li>Added icons and hover transition animations for "Edit" and "Delete" buttons</li>
+                            <li>Added "More" section and seven new languages</li>
+                            <li>Added UI for dropdown menu after clicking search engine round block</li>
+                        </ul>
+                        
+                        <h4>Version 1.1</h4>
+                        <ul>
+                            <li>Added Gaussian blur effect elements to the overall UI</li>
+                            <li>Optimized drag and drop sorting logic and accuracy</li>
+                            <li>Deleted the original day mode</li>
+                        </ul>
+                        
+                        <h4>Version 1.0</h4>
+                        <ul>
+                            <li>Added "Starry Sky" background, more fitting to the webpage's temperament</li>
+                            <li>Added drag bookmark sorting functionality</li>
+                            <li>Added "Add" and "Edit" buttons for free bookmark editing</li>
+                            <li>Added "Add New Section" functionality</li>
+                        </ul>
+                    `
+                },
+                me: {
+                    title: "About me",
+                    content: `
+                        <h3>Hello! I'm Zane</h3>
+                        <p>I am a <strong>university student</strong> who loves <strong>languages</strong> and <strong>programming</strong>, but as you can see, I have no web development foundation, so the entire development process of this website was completed by <strong>AI</strong>.</p>
+                        
+                        <p>I originally set up two themes for this webpage, but I always felt the day theme was too monotonous and lacked beauty, so I simply deleted it. I prefer the current dark starry sky. Opening the website is like gazing at the starry sky - every twinkle of the stars dispels the superficiality of the internet, and between breaths, between twinkles and sparkles, they eventually return to the night, to silence.</p>
+                        
+                        <p>What is my starry sky like? It's not as abstract and exaggerated as van Gogh's, nor as grand and vast as Cao Cao's. In my universe, every star is born in the galaxy, every star has its meaning. It might be a memory, a word, or a person. Some stars disappear with the galaxy, others gradually dim their light. I want to capture the brilliance of these stars, so they don't disappear, because every star deserves to be preserved, every memory is precious.</p>
+                        
+                        <p>It's also okay if you haven't captured any stars, <strong><em>darkness and brightness are not lost, they may leap into the depths</em></strong>, as long as you're willing to search in the depths, you will one day find its hiding place.</p>
+                        
+                        <p>I hope you in front of the screen also have your own starry sky and preserve your precious stars.</p>
+                        
+                        <p><em>Here I thank AI for making my thoughts possible<br>
+                        I also look forward to one day being able to create such works with my own hands</em></p>
+                        
+                        <p><strong>If you encounter any problems during use, feel free to contact me</strong></p>
+                    `
+                }
+            },
+            nl: {
+                site: {
+                    title: "Over de website",
+                    content: `
+                        <h3>Welcome to Zanes Startseite!🎉🎉</h3>
+                        <h3>Versie 1.5</h3>
+                        <p>Nieuwe "Over"-sectie toegevoegd met gedetailleerde beschrijvingen</p>
+                        
+                        <h3>Gebruiksaanwijzing</h3>
+                        <p>Deze website is gebouwd voor gebruikers die een pure browse-ervaring nastreven en <strong>efficiënt</strong> kunnen zoeken met meerdere engines tegelijk. Het oorspronkelijke doel was om bij het zoeken naar content op verschillende platforms de afleidende gepersonaliseerde aanbevelingen op platform homepages te <strong>overslaan</strong>, waardoor de zoekefficiëntie wordt verbeterd en informatiecocons worden vermeden die jeugd verspillen.</p>
+                        
+                        <p>Terwijl de website een minimalistische en lichte esthetische ervaring en eenvoudige bedieningslogica behoudt, biedt ze gebruikers ook meertalige ondersteuning - gebruikers kunnen schakelen tussen <strong>8</strong> verschillende talen in de rechterbovenhoek. Waarom deze <strong>8</strong> talen? Omdat de auteur momenteel alleen geïnteresseerd is in deze talen.</p>
+                        
+                        <p>Hoewel gebruikersoperaties voor mobiele apparaten zijn aangepast en geoptimaliseerd, wordt momenteel aanbevolen voor <strong>computer/tablet</strong>-gebruikers om deze webpagina te gebruiken, omdat de ervaring op computer beter is. Veel surfplezier!</p>
+                        
+                        <h4>Functie-index</h4>
+                        <ul>
+                            <li>Tik op de ronde blok rechts van de zoekbalk om te schakelen tussen 6 mainstream engines</li>
+                            <li>De "Mijn bladwijzers"-sectie is een vooraf ingestelde module, u kunt op het plus-symbool rechtsboven klikken om bladwijzers toe te voegen</li>
+                            <li>Bij het toevoegen van nieuwe bladwijzers kan de websitenaam automatisch worden herkend en ingevuld na het plakken van de URL</li>
+                            <li>Bladwijzers kunnen worden gesleept en gesorteerd door lang te drukken, zweef over de rechterbovenhoek van de bladwijzer om deze te verwijderen</li>
+                            <li>De "Extra bladwijzers"-sectie kan worden verwijderd en benoemd, nieuwe secties kunnen onderaan de pagina worden toegevoegd</li>
+                        </ul>
+                        
+                        <h3>Versiegeschiedenis</h3>
+                        <h4>Versie 1.4</h4>
+                        <ul>
+                            <li>Nieuwe titel-typing-effecten en verschillende motto's toegevoegd</li>
+                            <li>Nieuwe overgangsanimaties voor menu's na klikken op "Meer" en engine ronde blokken</li>
+                            <li>Nieuwe automatische naamherkenning bij het toevoegen van nieuwe bladwijzers</li>
+                            <li>Nieuwe "Douyin" zoekmachine toegevoegd</li>
+                            <li>Popup-grootte adequaat vergroot voor harmonieuzer uiterlijk op mobiele apparaten</li>
+                            <li>Uniform uiterlijk en kleur van het "×" verwijder-symbool</li>
+                            <li>Probleem met te lange tekstoverloop opgelost</li>
+                            <li>Probleem met mobiele operaties die per ongeluk webpagina's aanraken opgelost</li>
+                            <li>Probleem met iOS verwijder-popups die geen web-UI gebruiken opgelost</li>
+                        </ul>
+                        
+                        <h4>Versie 1.3</h4>
+                        <ul>
+                            <li>Nieuwe iconen en hover-overgangsanimaties voor "Zoeken"- en "Toevoegen"-knoppen</li>
+                            <li>Nieuwe UI voor alle prompt-popups, verenigd met webdesign-stijl</li>
+                            <li>Verwijder-symbool "×" vergroot en vervangen door opvallendere kleur</li>
+                            <li>Bij het schakelen van taal veranderen ook de beschrijvingen van "Extra bladwijzers" en vooraf ingestelde bladwijzers</li>
+                            <li>Probleem met te veel sterren in de achtergrond opgelost</li>
+                        </ul>
+                        
+                        <h4>Versie 1.2</h4>
+                        <ul>
+                            <li>Nieuwe iconen en hover-overgangsanimaties voor "Bewerken"- en "Verwijderen"-knoppen</li>
+                            <li>Nieuwe "Meer"-sectie en zeven nieuwe talen toegevoegd</li>
+                            <li>Nieuwe UI voor dropdown-menu na klikken op zoekmachine ronde blok</li>
+                        </ul>
+                        
+                        <h4>Versie 1.1</h4>
+                        <ul>
+                            <li>Gaussische vervagingselementen toegevoegd aan de algehele UI</li>
+                            <li>Drag & drop-sorteerlogica en -nauwkeurigheid geoptimaliseerd</li>
+                            <li>Originele dagmodus verwijderd</li>
+                        </ul>
+                        
+                        <h4>Versie 1.0</h4>
+                        <ul>
+                            <li>Nieuwe "Sterrenhemel"-achtergrond, beter passend bij de webpagina-temperament</li>
+                            <li>Nieuwe drag bladwijzer-sorteerfunctionaliteit</li>
+                            <li>Nieuwe "Toevoegen"- en "Bewerken"-knoppen voor vrije bladwijzer-bewerking</li>
+                            <li>Nieuwe "Nieuwe sectie toevoegen"-functionaliteit</li>
+                        </ul>
+                    `
+                },
+                me: {
+                    title: "Over mij",
+                    content: `
+                        <h3>Hallo! Ik ben Zane</h3>
+                        <p>Ik ben een <strong>universiteitsstudent</strong> die <strong>talen</strong> en <strong>programmeren</strong> liefheeft, maar zoals u kunt zien, heb ik geen webontwikkeling-basis, dus het hele ontwikkelingsproces van deze website werd voltooid door <strong>AI</strong>.</p>
+                        
+                        <p>Ik had oorspronkelijk twee thema's ingesteld voor deze webpagina, maar ik vond het dagthema altijd te monotoon en zonder schoonheid, dus heb ik het gewoon verwijderd. Ik geef de voorkeur aan de huidige donkere sterrenhemel. Het openen van de website is als naar de sterrenhemel kijken - elke glinstering van de sterren verdrijft de oppervlakkigheid van het internet, en tussen in- en uitademen, tussen glinstering en glinsteren, keren ze uiteindelijk terug naar de nacht, naar stilte.</p>
+                        
+                        <p>Hoe is mijn sterrenhemel? Het is niet zo abstract en overdreven als van Gogh's, noch zo grandioos en uitgestrekt als Cao Cao's. In mijn universum wordt elke ster geboren in de melkweg, elke ster heeft zijn betekenis. Het zou een herinnering kunnen zijn, een woord of een persoon. Sommige sterren verdwijnen met de melkweg, anderen verduisteren geleidelijk hun licht. Ik wil de glans van deze sterren vangen, zodat ze niet verdwijnen, omdat elke ster het verdient om bewaard te worden, elke herinnering is kostbaar.</p>
+                        
+                        <p>Het is ook goed als u geen sterren heeft kunnen vangen, <strong><em>duisternis en helderheid gaan niet verloren, ze springen misschien in de diepte</em></strong>, zolang u bereid bent om in de diepte te zoeken, zult u op een dag zijn schuilplaats vinden.</p>
+                        
+                        <p>Ik hoop dat u voor het scherm ook uw eigen sterrenhemel heeft en uw kostbare sterren bewaart.</p>
+                        
+                        <p><em>Hier dank ik AI voor het mogelijk maken van mijn gedachten<br>
+                        Ik kijk ook uit naar de dag dat ik dergelijke werken met eigen handen kan creëren</em></p>
+                        
+                        <p><strong>Als u problemen ondervindt tijdens gebruik, neem dan gerust contact met me op</strong></p>
+                    `
+                }
+            },
+            gsw: {
+                site: {
+                    title: "Über d Website",
+                    content: `
+                        <h3>Welcome to Zanes Startseite!🎉🎉</h3>
+                        <h3>Version 1.5</h3>
+                        <p>Neui "Über"-Sektion hinzuegfügt mit detaillierte Beschriibige</p>
+                        
+                        <h3>Aaleitig</h3>
+                        <p>Die Website isch für Nutzer entwicklet worde, wo e pure Browser-Erfahrig sueche und <strong>effizient</strong> mit mehreri Suechmaschine gliichzitig chönne sueche. De ursprünglichi Zweck isch gsi, bi de Suechi uf verschiedene Plattforme d ablenkende personalisierte Empfehlige uf de Hauptsiite z <strong>überspringe</strong>, um d Suechleistig z verbessere und z vermiide, in Informationsblase z ghere und d Jugend z verschwende.</p>
+                        
+                        <p>Während d Website e minimalistischi und liichti ästhetischi Erfahrig und eifachi Bedienigslogik bihaltet, bietet si au mehrsprochigi Unterstützig - Nutzer chönne zwüsche <strong>8</strong> verschiedene Sproche in de obere rächte Egge wächsle. Warum die <strong>8</strong> Sproche? Wil de Autor momentan nur a dene Sproche interessiert isch.</p>
+                        
+                        <p>Obwohl d Benutzerinteraktione für mobili Gätä aapasst und optimiert worde sind, wird momentan d Nutzig uf <strong>Computer/Tablet-Gätä</strong> empfohle, wil d Erfahrig uf em Computer besser isch. Viel Spass bim Surfe!</p>
+                        
+                        <h4>Funktionsindex</h4>
+                        <ul>
+                            <li>Tippe uf de runde Block rächts näbe de Suechleiste, um zwüsche 6 gängige Suechmaschine z wächsle</li>
+                            <li>De "Mini Lesezeiche"-Bereich isch e voreingstellts Modul, du chasch uf s Plus-Symbol obe rächts klicke, um Lesezeiche hinzuezfüege</li>
+                            <li>Bi de Hinzufüegig vo neue Lesezeiche cha de Websitename automatisch erkennt und usgfüllt werde, nachdem du d URL iigfüegt hesch</li>
+                            <li>Lesezeiche chönne dur langes Drücke zoge und sortiert werde, fahre mit de Muus über d oberi rächti Egge vom Lesezeiche, um es z lösche</li>
+                            <li>De "Weiteri Lesezeiche"-Bereich cha glöscht und benennt werde, am untere Rand vo de Siite chönne neue Bereiche hinzuegfüegt werde</li>
+                        </ul>
+                        
+                        <h3>Versionsverlauf</h3>
+                        <h4>Version 1.4</h4>
+                        <ul>
+                            <li>Neui Titel-Typing-Effekt und verschiedene Motto hinzuegfügt</li>
+                            <li>Neui Übergangsanimatione für Menü nach Klick uf "Meh" und Suechmaschine-Rundblock</li>
+                            <li>Neui automatischi Namenserkenntnis bi de Hinzufüegig vo neue Lesezeiche</li>
+                            <li>Neui "Douyin"-Suechmaschine hinzuegfügt</li>
+                            <li>Popup-Grössi angemesse vergrösseret für harmonischeres Ussihe uf mobile Gätä</li>
+                            <li>Einheitlichs Ussihe und Farbe vom "×"-Löschsymbol</li>
+                            <li>Problem mit zue langem Textüberlauf glöst</li>
+                            <li>Problem mit versehentlichem Berüehre vo Websiite uf mobile Gätä glöst</li>
+                            <li>Problem mit iOS-Lösch-Popup, wo d Web-UI nid verwende, glöst</li>
+                        </ul>
+                        
+                        <h4>Version 1.3</h4>
+                        <ul>
+                            <li>Neui Icon und Hover-Übergangsanimatione für "Sueche"- und "Hinzufüege"-Taste</li>
+                            <li>Neui UI für alli Hinweis-Popup, einheitlich mit em Webdesign-Stil</li>
+                            <li>Löschsymbol "×" vergrösseret und auffälligeri Farbe ersetzt</li>
+                            <li>Bi de Sprochwächsel ändere sich au d Beschriibige vo "Weiteri Lesezeiche" und voreingstellte Lesezeiche</li>
+                            <li>Problem mit zue viele Stern im Hintergrund glöst</li>
+                        </ul>
+                        
+                        <h4>Version 1.2</h4>
+                        <ul>
+                            <li>Neui Icon und Hover-Übergangsanimatione für "Bearbeite"- und "Lösche"-Taste</li>
+                            <li>Neui "Meh"-Sektion und siibe neue Sproche hinzuegfügt</li>
+                            <li>Neui UI für Dropdown-Menü nach Klick uf Suechmaschine-Rundblock</li>
+                        </ul>
+                        
+                        <h4>Version 1.1</h4>
+                        <ul>
+                            <li>Gaußsche Unschärfe-Element zur gesamte UI hinzuegfügt</li>
+                            <li>Drag & Drop-Sortierlogik und -Gnauigkeit optimiert</li>
+                            <li>Ursprüngliche Tag-Modus entfernt</li>
+                        </ul>
+                        
+                        <h4>Version 1.0</h4>
+                        <ul>
+                            <li>Neue "Sternenhimmel"-Hintergrund, wo besser zur Websiite-Charakter passt</li>
+                            <li>Neui Drag & Drop-Funktion zum Sortiere vo Lesezeiche</li>
+                            <li>Neui "Hinzufüege"- und "Bearbeite"-Taste für freii Lesezeiche-Bearbeitig</li>
+                            <li>Neui "Neue Bereich hinzufüege"-Funktion</li>
+                        </ul>
+                    `
+                },
+                me: {
+                    title: "Über mich",
+                    content: `
+                        <h3>Hallo! Ich bi Zane</h3>
+                        <p>Ich bi e <strong>Student</strong>, wo <strong>Sproche</strong> und <strong>Programmierung</strong> liebt, aber wie du gseh chasch, ha ich kei Grundlage in de Webentwicklig, drum isch de ganzi Entwickligsprozess vo dere Website vo <strong>KI</strong> gmacht worde.</p>
+                        
+                        <p>Ursprünglich ha ich zwei Theme für die Websiite iigrichtet, aber ich ha s Tagesthema immer z monotoon und ohni Schönheit gfunde, drum ha ich es eifach glöscht. Ich bevorzuge jetzt de dunkli Sternenhimmel. S Öffne vo de Website isch wie s Betrachte vom Sternenhimmel - jedes Funkle vo de Stern vertribt d Oberflächlichkeit vom Internet, und zwüsche Ii- und Usaatme, zwüsche Funkle und Glitzere, kehre si schliesslich zur Nacht zrugg, zur Stille.</p>
+                        
+                        <p>Wie isch mini Sternenhimmel? Er isch nid so abstrakt und übertriibe wie van Goghs, au nid so grandios und weitläufig wie Cao Caos. In mim Universum wird jede Stern in de Galaxie geboren, jede Stern het siini Bedütig. Er chönnt e Erinnerig si, e Wort oder e Person. Eini Stern verschwinde mit de Galaxie, anderi verdunkle allmählich ihres Liecht. Ich möcht de Glanz vo dene Stern fange, damit si nid verschwinde, wil jede Stern es verdient, bewahrt z werde, jede Erinnerig isch kostbar.</p>
+                        
+                        <p>Es isch au in Ordnig, wenn du kei Stern chasch gfanget ha, <strong><em>Dunkelheit und Helligkeit gön nid verlore, si springe vilicht in d Tiefi</em></strong>, solang du bereit bisch, in de Tiefi z sueche, wirsch du eines Tages siini Versteck finde.</p>
+                        
+                        <p>Ich hoffe, dass du vor em Bildschirm au din eigene Sternenhimmel hesch und dini kostbare Stern bewahre.</p>
+                        
+                        <p><em>Do danke ich de KI, wo mini Gedanke möglich gmacht het<br>
+                        Ich freue mich au uf de Tag, wo ich mit eigene Händ dergliche Wärch chönne schaffe</em></p>
+                        
+                        <p><strong>Wenn du bi de Nutzig uf Problem stössch, kontaktiere mich gern</strong></p>
+                    `
+                }
+            },
+            fi: {
+                site: {
+                    title: "Tietoja sivustosta",
+                    content: `
+                        <h3>Welcome to Zanes Startseite!🎉🎉</h3>
+                        <h3>Versio 1.5</h3>
+                        <p>Lisätty "Tietoja"-osio yksityiskohtaisilla kuvauksilla</p>
+                        
+                        <h3>Käyttöohjeet</h3>
+                        <p>Tämä sivusto on rakennettu käyttäjille, jotka tavoittelevat puhdasta selauskokemusta ja pystyvät <strong>tehokkaasti</strong> hakemaan useilla moottoreilla samanaikaisesti. Alkuperäinen tarkoitus oli <strong>ohittaa</strong> häiritsevät personoidut suositukset alustojen kotisivuilla eri alustoilla sisältöä haettaessa, parantaen näin hakutehokkuutta ja välttäen informaatiokuplia, jotka tuhlaavat nuoruutta.</p>
+                        
+                        <p>Vaikka sivusto säilyttää minimalistisen ja kevyen esteettisen kokemuksen ja yksinkertaisen toimintalogiikan, se tarjoaa käyttäjille myös monikielisen tuen - käyttäjät voivat vaihtaa <strong>8</strong> eri kielen välillä oikeassa yläkulmassa. Miksi nämä <strong>8</strong> kieltä? Koska kirjoittaja on tällä hetkellä kiinnostunut vain näistä kielistä.</p>
+                        
+                        <p>Vaikka käyttäjien toiminnot mobiililaitteille on mukautettu ja optimoitu, suositellaan tällä hetkellä <strong>tietokone/tabletti</strong>-käyttäjille käyttämään tätä verkkosivua, koska kokemus tietokoneella on parempi. Hauskaa surffausta!</p>
+                        
+                        <h4>Toimintoindeksi</h4>
+                        <ul>
+                            <li>Napauta hakupalkin oikealla puolella olevaa pyöreää lohkoa vaihtaaksesi 6 päämoottorin välillä</li>
+                            <li>"Omat kirjanmerkit"-osio on esiasetettu moduuli, voit klikata oikeassa yläkulmassa olevaa plus-kuvaketta lisätäksesi kirjanmerkkejä</li>
+                            <li>Uusia kirjanmerkkejä lisätessä verkkosivun nimi voidaan tunnistaa ja täyttää automaattisesti URL:n liittämisen jälkeen</li>
+                            <li>Kirjanmerkkejä voidaan raahata ja lajitella pitämällä pohjassa, vie hiiri kirjanmerkin oikeaan yläkulmaan poistaaksesi sen</li>
+                            <li>"Muut kirjanmerkit"-osio voidaan poistaa ja nimetä, uusia osioita voidaan lisätä sivun alareunaan</li>
+                        </ul>
+                        
+                        <h3>Versiohistoria</h3>
+                        <h4>Versio 1.4</h4>
+                        <ul>
+                            <li>Lisätty otsikon kirjoituseffektit ja useita eri mottoja</li>
+                            <li>Lisätty siirtymäanimaatiot valikoille "Lisää"- ja moottorin pyöreän lohkon klikkauksen jälkeen</li>
+                            <li>Lisätty automaattinen nimentunnistus uusia kirjanmerkkejä lisätessä</li>
+                            <li>Lisätty "Douyin"-hakukone</li>
+                            <li>Popup-koko asianmukaisesti suurennettu harmonisemman ulkoasun saavuttamiseksi mobiililaitteilla</li>
+                            <li>Yhtenäistetty "×"-poistokuvakkeen ulkoasu ja väri</li>
+                            <li>Korjattu liian pitkän tekstin ylivuotoon liittyvät ongelmat</li>
+                            <li>Korjattu mobiililaitteiden toiminnot, jotka vahingossa koskettavat verkkosivuja</li>
+                            <li>Korjattu iOS-poistopopup-ongelmat, jotka eivät käytä web-UI:ta</li>
+                        </ul>
+                        
+                        <h4>Versio 1.3</h4>
+                        <ul>
+                            <li>Lisätty kuvakkeet ja hover-siirtymäanimaatiot "Hae"- ja "Lisää"-napeille</li>
+                            <li>Lisätty UI kaikille kehotepopupeille, yhtenäinen webdesign-tyylin kanssa</li>
+                            <li>Suurennettu "×"-poistokuvaketta ja korvattu silmiinpistävämmällä värillä</li>
+                            <li>Kielen vaihtamisen yhteydessä "Muut kirjanmerkit"- ja esiasetettujen kirjanmerkkien kuvaukset muuttuvat myös</li>
+                            <li>Korjattu taustassa olevien tähtien liikakasvuongelma</li>
+                        </ul>
+                        
+                        <h4>Versio 1.2</h4>
+                        <ul>
+                            <li>Lisätty kuvakkeet ja hover-siirtymäanimaatiot "Muokkaa"- ja "Poista"-napeille</li>
+                            <li>Lisätty "Lisää"-osio ja seitsemän uutta kieltä</li>
+                            <li>Lisätty UI pudotusvalikolle hakukoneen pyöreän lohkon klikkauksen jälkeen</li>
+                        </ul>
+                        
+                        <h4>Versio 1.1</h4>
+                        <ul>
+                            <li>Lisätty Gaussin sumennuselementit kokonaisvaltaiseen UI:hin</li>
+                            <li>Optimoitu raaha-ja-pudota-lajittelulogiikka ja -tarkkuus</li>
+                            <li>Poistettu alkuperäinen päivätilamuoto</li>
+                        </ul>
+                        
+                        <h4>Versio 1.0</h4>
+                        <ul>
+                            <li>Lisätty "Tähtitaivas"-tausta, joka sopii paremmin verkkosivun luonteeseen</li>
+                            <li>Lisätty kirjanmerkkien raahaamiseen perustuva lajittelutoiminto</li>
+                            <li>Lisätty "Lisää"- ja "Muokkaa"-napit vapaaseen kirjanmerkkien muokkaamiseen</li>
+                            <li>Lisätty "Lisää uusi osio"-toiminto</li>
+                        </ul>
+                    `
+                },
+                me: {
+                    title: "Tietoja minusta",
+                    content: `
+                        <h3>Hei! Olen Zane</h3>
+                        <p>Olen <strong>yliopisto-opiskelija</strong>, joka rakastaa <strong>kieliä</strong> ja <strong>ohjelmointia</strong>, mutta kuten näet, minulla ei ole web-kehityksen perusteita, joten tämän sivuston koko kehitysprosessi suoritettiin <strong>tekoälyn</strong> toimesta.</p>
+                        
+                        <p>Aluksi asetin tälle verkkosivulle kaksi teemaa, mutta pidin päiväteemaa aina liian monotonisena ja kauneudettomana, joten poistin sen yksinkertaisesti. Pidän nyt enemmän nykyisestä tummasta tähtitaivaasta. Sivuston avaaminen on kuin tähtitaivaan katsominen - jokainen tähtien tuikinta karkottaa internetin pinnallisuuden, ja hengitysten välissä, tuikintojen ja kimalteiden välissä, he palaavat lopulta yöhön, hiljaisuuteen.</p>
+                        
+                        <p>Millainen on tähtitaivaani? Se ei ole yhtä abstrakti ja yliampuvainen kuin van Goghin, eikä yhtä suurenmoinen ja laaja kuin Cao Caon. Universumissani jokainen tähti syntyy galaksissa, jokaisella tähdellä on merkityksensä. Se voi olla muisto, sana tai henkilö. Jotkut tähdet katoavat galaksin mukana, toiset himmentävät vähitellen valoaan. Haluan siepata näiden tähtien loisteen, jotta ne eivät katoa, koska jokainen tähti ansaitsee säilyttää, jokainen muisto on kallisarvoinen.</p>
+                        
+                        <p>On myös hyvä, jos et ole saanut siepata tähtiä, <strong><em>pimeys ja kirkkaus eivät katoa, ne saattavat hypätä syvyyksiin</em></strong>, kunhan olet valmis etsimään syvyyksistä, löydät jonain päivänä sen piilopaikan.</p>
+                        
+                        <p>Toivon, että sinulla ruudun edessä on myös oma tähtitaivaasi ja säilytät kallisarvoiset tähtesi.</p>
+                        
+                        <p><em>Tässä kiitän tekoälyä, joka teki ajatukseni mahdolliseksi<br>
+                        Odotan myös päivää, jolloin voin luoda tällaisia teoksia omilla käsilläni</em></p>
+                        
+                        <p><strong>Jos kohtaat ongelmia käytön aikana, ota yhteyttä minuun vapaasti</strong></p>
+                    `
+                }
+            },
+            fr: {
+                site: {
+                    title: "À propos du site",
+                    content: `
+                        <h3>Welcome to Zanes Startseite!🎉🎉</h3>
+                        <h3>Version 1.5</h3>
+                        <p>Nouvelle section "À propos" ajoutée avec des descriptions détaillées</p>
+                        
+                        <h3>Instructions d'utilisation</h3>
+                        <p>Ce site web a été construit pour les utilisateurs qui recherchent une expérience de navigation pure et peuvent <strong>efficacement</strong> rechercher sur plusieurs moteurs simultanément. L'objectif initial était de <strong>ignorer</strong> les recommandations personnalisées distrayantes sur les pages d'accueil des plateformes lors de la recherche de contenu sur différentes plateformes, améliorant ainsi l'efficacité de recherche et évitant les bulles d'information qui gaspillent la jeunesse.</p>
+                        
+                        <p>Tout en maintenant une expérience esthétique minimaliste et légère et une logique d'opération simple, le site web offre également aux utilisateurs un support multilingue - les utilisateurs peuvent basculer entre <strong>8</strong> langues différentes dans le coin supérieur droit. Pourquoi ces <strong>8</strong> langues ? Parce que l'auteur n'est actuellement intéressé que par ces langues.</p>
+                        
+                        <p>Bien que les opérations utilisateur pour les appareils mobiles aient été adaptées et optimisées, il est actuellement recommandé aux utilisateurs <strong>ordinateur/tablette</strong> d'utiliser cette page web, car l'expérience sur ordinateur est meilleure. Bon surf !</p>
+                        
+                        <h4>Index des fonctionnalités</h4>
+                        <ul>
+                            <li>Appuyez sur le bloc rond à droite de la barre de recherche pour basculer entre 6 moteurs principaux</li>
+                            <li>La section "Mes favoris" est un module prédéfini, vous pouvez cliquer sur le signe plus en haut à droite pour ajouter des favoris</li>
+                            <li>Lors de l'ajout de nouveaux favoris, le nom du site web peut être automatiquement reconnu et rempli après avoir collé l'URL</li>
+                            <li>Les favoris peuvent être glissés et triés en maintenant enfoncé, survolez le coin supérieur droit du favori pour le supprimer</li>
+                            <li>La section "Autres favoris" peut être supprimée et nommée, de nouvelles sections peuvent être ajoutées en bas de la page</li>
+                        </ul>
+                        
+                        <h3>Historique des versions</h3>
+                        <h4>Version 1.4</h4>
+                        <ul>
+                            <li>Nouveaux effets de frappe de titre et plusieurs devises différentes ajoutés</li>
+                            <li>Nouvelles animations de transition pour les menus après avoir cliqué sur "Plus" et les blocs ronds de moteur</li>
+                            <li>Nouvelle reconnaissance automatique de noms lors de l'ajout de nouveaux favoris</li>
+                            <li>Nouveau moteur de recherche "Douyin" ajouté</li>
+                            <li>Taille de popup agrandie de manière appropriée pour une apparence plus harmonieuse sur les appareils mobiles</li>
+                            <li>Apparence et couleur unifiées du symbole de suppression "×"</li>
+                            <li>Problème de débordement de texte trop long résolu</li>
+                            <li>Problème d'opérations mobiles touchant accidentellement les pages web résolu</li>
+                            <li>Problème de popups de suppression iOS n'utilisant pas l'interface web résolu</li>
+                        </ul>
+                        
+                        <h4>Version 1.3</h4>
+                        <ul>
+                            <li>Nouvelles icônes et animations de transition au survol pour les boutons "Rechercher" et "Ajouter"</li>
+                            <li>Nouvelle interface utilisateur pour tous les popups d'invite, unifiée avec le style de conception web</li>
+                            <li>Symbole de suppression "×" agrandi et remplacé par une couleur plus attrayante</li>
+                            <li>Lors du changement de langue, les descriptions de "Autres favoris" et des favoris prédéfinis changent également</li>
+                            <li>Problème de trop d'étoiles en arrière-plan résolu</li>
+                        </ul>
+                        
+                        <h4>Version 1.2</h4>
+                        <ul>
+                            <li>Nouvelles icônes et animations de transition au survol pour les boutons "Modifier" et "Supprimer"</li>
+                            <li>Nouvelle section "Plus" et sept nouvelles langues ajoutées</li>
+                            <li>Nouvelle interface utilisateur pour le menu déroulant après avoir cliqué sur le bloc rond du moteur de recherche</li>
+                        </ul>
+                        
+                        <h4>Version 1.1</h4>
+                        <ul>
+                            <li>Éléments de flou gaussien ajoutés à l'interface utilisateur globale</li>
+                            <li>Logique et précision de tri par glisser-déposer optimisées</li>
+                            <li>Mode jour original supprimé</li>
+                        </ul>
+                        
+                        <h4>Version 1.0</h4>
+                        <ul>
+                            <li>Nouvel arrière-plan "Ciel étoilé" ajouté, mieux adapté au tempérament de la page web</li>
+                            <li>Nouvelle fonctionnalité de tri par glisser-déposer des favoris</li>
+                            <li>Nouveaux boutons "Ajouter" et "Modifier" pour l'édition libre des favoris</li>
+                            <li>Nouvelle fonctionnalité "Ajouter une nouvelle section"</li>
+                        </ul>
+                    `
+                },
+                me: {
+                    title: "À propos de moi",
+                    content: `
+                        <h3>Bonjour ! Je suis Zane</h3>
+                        <p>Je suis un <strong>étudiant universitaire</strong> qui aime les <strong>langues</strong> et la <strong>programmation</strong>, mais comme vous pouvez le voir, je n'ai aucune base en développement web, donc tout le processus de développement de ce site web a été réalisé par <strong>l'IA</strong>.</p>
+                        
+                        <p>J'avais initialement configuré deux thèmes pour cette page web, mais j'ai toujours trouvé le thème de jour trop monotone et sans beauté, donc je l'ai simplement supprimé. Je préfère maintenant le ciel étoilé sombre. Ouvrir le site web est comme regarder le ciel étoilé - chaque scintillement des étoiles chasse la superficialité d'Internet, et entre les inspirations et expirations, entre les scintillements et les étincelles, ils retournent finalement à la nuit, au silence.</p>
+                        
+                        <p>À quoi ressemble mon ciel étoilé ? Il n'est pas aussi abstrait et exagéré que celui de van Gogh, ni aussi grandiose et vaste que celui de Cao Cao. Dans mon univers, chaque étoile naît dans la galaxie, chaque étoile a sa signification. Elle pourrait être un souvenir, un mot ou une personne. Certaines étoiles disparaissent avec la galaxie, d'autres assombrissent progressivement leur lumière. Je veux capturer la splendeur de ces étoiles, pour qu'elles ne disparaissent pas, car chaque étoile mérite d'être préservée, chaque souvenir est précieux.</p>
+                        
+                        <p>C'est aussi bien si vous n'avez pas pu capturer d'étoiles, <strong><em>l'obscurité et la luminosité ne sont pas perdues, elles peuvent sauter dans les profondeurs</em></strong>, tant que vous êtes prêt à chercher dans les profondeurs, vous trouverez un jour sa cachette.</p>
+                        
+                        <p>J'espère que vous devant l'écran avez aussi votre propre ciel étoilé et préservez vos étoiles précieuses.</p>
+                        
+                        <p><em>Ici je remercie l'IA qui a rendu mes pensées possibles<br>
+                        J'attends aussi le jour où je pourrai créer de telles œuvres de mes propres mains</em></p>
+                        
+                        <p><strong>Si vous rencontrez des problèmes lors de l'utilisation, n'hésitez pas à me contacter</strong></p>
+                    `
+                }
+            },
+            zh: {
+                site: {
+                    title: "关于网站",
+                    content: `
+                        <h3>Welcome to Zanes Startseite!🎉🎉</h3>
+                        <h3>版本 1.5</h3>
+                        <p>新增了"关于"并添加了"关于"里的描述</p>
+                        
+                        <h3>使用说明</h3>
+                        <p>本网站为追求纯净浏览体验的用户而打造，能够在同时多引擎下<strong>高效</strong>地进行搜索浏览。打造本网站的初衷是为了在不同平台搜索内容时，<strong>跳过</strong>平台主页中分散注意力的个性推荐，从而提高搜索效率，避免陷入信息茧房，误了青春。</p>
+                        
+                        <p>本网站在保持极简和轻盈的审美体验和简单的操作逻辑的同时，还为用户提供了多语言支持，用户可以在右上角切换<strong>8</strong>种不同的语言。为什么是这<strong>8</strong>门语言？因为作者目前仅对这些语言感兴趣。</p>
+                        
+                        <p>虽然对移动端的用户操作进行了适配和优化，但目前推荐<strong>电脑/平板端</strong>的用户使用本网页，在电脑端的体验会更好。祝冲浪顺利！</p>
+                        
+                        <h4>功能索引</h4>
+                        <ul>
+                            <li>轻击搜索栏右侧的圆块，可以进行6种主流引擎的切换</li>
+                            <li>"我的书签"分区为预设模块，可以点击右上方加号进行书签的添加</li>
+                            <li>在添加新书签时，粘贴网址后可自动识别网站名称并自动填充</li>
+                            <li>书签长按可拖拽轻松排序，鼠标悬停在书签右上角可以删除书签</li>
+                            <li>"其他书签"分区可删除，可命名，在页面最下方可以添加新分区</li>
+                        </ul>
+                        
+                        <h3>历史日志</h3>
+                        <h4>Version 1.4</h4>
+                        <ul>
+                            <li>新增了标题打字特效和几种不同的格言</li>
+                            <li>新增了点击"更多"和引擎圆块后菜单的过渡动画</li>
+                            <li>新增添加新书签时的名称自动识别功能</li>
+                            <li>新增"抖音"搜索引擎</li>
+                            <li>适当增大了弹窗的大小，使其在移动端上更加和谐自然</li>
+                            <li>统一了删除键中"×"的外观和颜色</li>
+                            <li>修复了文本过长溢出的问题</li>
+                            <li>修复了移动端操作容易误触网页的问题</li>
+                            <li>修复了IOS端删除弹窗不是网页UI的问题</li>
+                        </ul>
+                        
+                        <h4>Version 1.3</h4>
+                        <ul>
+                            <li>新增"搜索"键和"添加"键的图标和悬停过渡动画</li>
+                            <li>新增所有提示弹窗的UI，和网页设计风格统一</li>
+                            <li>放大了删除键中"×"，替换了更醒目的颜色</li>
+                            <li>切换语言时，"其他书签"和预设书签描述内容也会随之改变</li>
+                            <li>修复背景中的星星会变多的问题</li>
+                        </ul>
+                        
+                        <h4>Version 1.2</h4>
+                        <ul>
+                            <li>新增"编辑"键和"删除"键的图标和悬停过渡动画</li>
+                            <li>新增"更多"，并新增了七种新语言</li>
+                            <li>新增点击搜索引擎圆块后下拉菜单的UI</li>
+                        </ul>
+                        
+                        <h4>Version 1.1</h4>
+                        <ul>
+                            <li>为整体UI加入高斯模糊效果的元素</li>
+                            <li>优化拖拽排序的逻辑和准确性</li>
+                            <li>删除原来的白日模式</li>
+                        </ul>
+                        
+                        <h4>Version 1.0</h4>
+                        <ul>
+                            <li>新增"星空"背景，更加契合网页的气质</li>
+                            <li>新增拖拽书签进行排序的功能</li>
+                            <li>新增"添加"键"编辑"键，实现书签自由编辑</li>
+                            <li>新增"添加新分区"的功能</li>
+                        </ul>
+                    `
+                },
+                me: {
+                    title: "关于我",
+                    content: `
+                        <h3>你好！我是Zane</h3>
+                        <p>我是一名热爱<strong>语言</strong>和<strong>编程</strong>的<strong>大学生</strong>，但是如你所见，我毫无网页开发基础，所以开发本网站的全部过程都是由<strong>AI</strong>完成的。</p>
+                        
+                        <p>我原本给这个网页设置了两个主题，但是一直觉得白天的主题太单调并且毫无美感，就索性删掉了，我更喜欢现在黑夜星空。打开网站就如同仰望星空一般，每一颗星星的闪烁都拂去网络上的浮躁之气，一呼一吸，一闪一烁之间，他们最终归于黑夜，归于沉寂。</p>
+                        
+                        <p>我的星空是什么样的？它不如梵高的抽象浮夸，也不如曹操的宏大辽阔。在我的宇宙中，每一刻星星都被孕育在星河中，每一刻星星都有他的意义。他也许是一段记忆，也可以是一个单词，一个人。有的星星随着星河消逝，有的星星逐渐黯淡了自己的光芒。而我想要捕捉这些星星的光华，让他们不要消逝，因为每一颗星星都值得被保存，每一份记忆都弥足珍贵。</p>
+                        
+                        <p>要是没有捕捉到星星也没有关系，<strong><em>明晦非失，或跃渊穹</em></strong>，只要愿意在深处探寻，就总有一日会发现他的藏匿之处。</p>
+                        
+                        <p>希望屏幕前的你也有属于自己的那片星空，也留存着自己珍贵的星星。</p>
+                        
+                        <p><em>在这里感谢AI，让我心中的想法变为可能<br>
+                        我也期待有一天我能够亲手创作出这样的作品</em></p>
+                        
+                        <p><strong>如果你在使用中发现任何问题，欢迎联系我</strong></p>
+                    `
+                }
+            },
+            ja: {
+                site: {
+                    title: "サイトについて",
+                    content: `
+                        <h3>Welcome to Zanes Startseite!🎉🎉</h3>
+                        <h3>バージョン 1.5</h3>
+                        <p>「について」セクションを追加し、詳細な説明を追加しました</p>
+                        
+                        <h3>使用説明</h3>
+                        <p>このサイトは、純粋なブラウジング体験を求めるユーザーのために作られ、複数のエンジンで<strong>効率的</strong>に検索ブラウジングができます。このサイトを作った目的は、異なるプラットフォームでコンテンツを検索する際に、プラットフォームのホームページで注意を散らす個性化された推奨を<strong>スキップ</strong>し、検索効率を向上させ、情報の繭房に陥って青春を無駄にすることを避けるためです。</p>
+                        
+                        <p>サイトは、ミニマルで軽やかな審美体験とシンプルな操作ロジックを維持しながら、ユーザーに多言語サポートも提供しており、ユーザーは右上角で<strong>8</strong>つの異なる言語に切り替えることができます。なぜこの<strong>8</strong>つの言語なのか？それは作者が現在これらの言語にのみ興味があるからです。</p>
+                        
+                        <p>モバイル端末のユーザー操作に適応し最適化されていますが、現在は<strong>コンピューター/タブレット端末</strong>のユーザーにこのウェブページの使用を推奨しており、コンピューターでの体験がより良くなります。サーフィンをお楽しみください！</p>
+                        
+                        <h4>機能索引</h4>
+                        <ul>
+                            <li>検索バーの右側の円形ブロックをタップすると、6つの主流エンジンを切り替えることができます</li>
+                            <li>「マイブックマーク」セクションはプリセットモジュールで、右上のプラス記号をクリックしてブックマークを追加できます</li>
+                            <li>新しいブックマークを追加する際、URLを貼り付けるとウェブサイト名が自動認識され、自動入力されます</li>
+                            <li>ブックマークは長押しでドラッグして簡単に並べ替えでき、ブックマークの右上角にマウスを置くと削除できます</li>
+                            <li>「その他のブックマーク」セクションは削除可能で、名前を付けることができ、ページの最下部で新しいセクションを追加できます</li>
+                        </ul>
+                        
+                        <h3>バージョン履歴</h3>
+                        <h4>バージョン 1.4</h4>
+                        <ul>
+                            <li>タイトルタイピング効果といくつかの異なるモットーを追加</li>
+                            <li>「もっと」とエンジン円形ブロックをクリックした後のメニューの遷移アニメーションを追加</li>
+                            <li>新しいブックマークを追加する際の名前自動認識機能を追加</li>
+                            <li>「抖音」検索エンジンを追加</li>
+                            <li>モバイル端末でより調和のとれた自然な外観になるよう、ポップアップのサイズを適切に拡大</li>
+                            <li>削除キーの「×」の外観と色を統一</li>
+                            <li>テキストが長すぎてオーバーフローする問題を修正</li>
+                            <li>モバイル端末での操作が誤ってウェブページに触れる問題を修正</li>
+                            <li>iOS端末で削除ポップアップがウェブUIでない問題を修正</li>
+                        </ul>
+                        
+                        <h4>バージョン 1.3</h4>
+                        <ul>
+                            <li>「検索」キーと「追加」キーのアイコンとホバー遷移アニメーションを追加</li>
+                            <li>すべてのプロンプトポップアップのUIを追加し、ウェブデザインスタイルと統一</li>
+                            <li>削除キーの「×」を拡大し、より目立つ色に置き換え</li>
+                            <li>言語を切り替えると、「その他のブックマーク」とプリセットブックマークの説明内容も変更されます</li>
+                            <li>背景の星が多くなる問題を修正</li>
+                        </ul>
+                        
+                        <h4>バージョン 1.2</h4>
+                        <ul>
+                            <li>「編集」キーと「削除」キーのアイコンとホバー遷移アニメーションを追加</li>
+                            <li>「もっと」を追加し、7つの新しい言語を追加</li>
+                            <li>検索エンジン円形ブロックをクリックした後のドロップダウンメニューのUIを追加</li>
+                        </ul>
+                        
+                        <h4>バージョン 1.1</h4>
+                        <ul>
+                            <li>全体的なUIにガウスぼかし効果の要素を追加</li>
+                            <li>ドラッグ＆ドロップソートのロジックと精度を最適化</li>
+                            <li>元の昼間モードを削除</li>
+                        </ul>
+                        
+                        <h4>バージョン 1.0</h4>
+                        <ul>
+                            <li>「星空」背景を追加し、ウェブページの気質により適している</li>
+                            <li>ブックマークをドラッグして並べ替える機能を追加</li>
+                            <li>「追加」キー「編集」キーを追加し、ブックマークの自由編集を実現</li>
+                            <li>「新しいセクションを追加」機能を追加</li>
+                        </ul>
+                    `
+                },
+                me: {
+                    title: "私について",
+                    content: `
+                        <h3>こんにちは！私はZaneです</h3>
+                        <p>私は<strong>言語</strong>と<strong>プログラミング</strong>を愛する<strong>大学生</strong>ですが、ご覧の通り、ウェブ開発の基礎が全くないため、このサイトの開発プロセス全体は<strong>AI</strong>によって行われました。</p>
+                        
+                        <p>もともとこのウェブページに2つのテーマを設定していましたが、昼間のテーマが単調で美しさがないとずっと感じていたので、削除してしまいました。今の暗い星空の方が好きです。サイトを開くことは星空を眺めるようなもので、星の一つ一つのきらめきがインターネットの浅薄さを払いのけ、一呼吸、一瞬一瞬の間に、彼らは最終的に夜に、静寂に帰ります。</p>
+                        
+                        <p>私の星空はどんなものか？それはゴッホの抽象的な誇張でもなく、曹操の壮大で広大なものでもありません。私の宇宙では、すべての星が銀河で生まれ、すべての星に意味があります。それは記憶かもしれないし、単語や人かもしれません。ある星は銀河とともに消え去り、ある星は徐々に光を暗くします。私はこれらの星の輝きを捉えたいと思っています。消え去らないように、すべての星が保存される価値があり、すべての記憶が貴重だからです。</p>
+                        
+                        <p>星を捉えられなくても大丈夫です、<strong><em>明暗は失われず、深淵に躍るかもしれない</em></strong>、深く探求することを望む限り、いつかその隠れ場所を見つけるでしょう。</p>
+                        
+                        <p>画面の前のあなたも自分の星空を持ち、貴重な星を保存していることを願っています。</p>
+                        
+                        <p><em>ここでAIに感謝します、私の心の考えを可能にしてくれて<br>
+                        いつか自分の手でこのような作品を作れる日を楽しみにしています</em></p>
+                        
+                        <p><strong>使用中に問題が発生した場合は、お気軽にお問い合わせください</strong></p>
+                    `
+                }
+            }
+        };
+
+        function updateAboutContent() {
+            const langData = aboutContent[currentLanguage] || aboutContent.en;
+            const siteText = document.getElementById('aboutSiteText');
+            const meText = document.getElementById('aboutMeText');
+            
+            siteText.innerHTML = langData.site.content;
+            meText.innerHTML = langData.me.content;
+        }
+
+        // About tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutTabs = document.querySelectorAll('.about-tab');
+            const aboutTabContents = document.querySelectorAll('.about-tab-content');
+            const aboutTabHighlight = document.querySelector('.about-tab-highlight');
+            const aboutTabsContainer = document.querySelector('.about-tabs');
+            
+            aboutTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabName = tab.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    aboutTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Update tab content
+                    aboutTabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.getAttribute('data-tab') === tabName) {
+                            content.classList.add('active');
+                        }
+                    });
+                    
+                    // Update highlight position
+                    aboutTabHighlight.setAttribute('data-tab', tabName);
+                    
+                    // Show/hide contact me button based on active tab
+                    const contactMeBtn = document.getElementById('contactMeBtn');
+                    if (contactMeBtn) {
+                        if (tabName === 'me') {
+                            contactMeBtn.style.display = 'flex';
+                            contactMeBtn.style.opacity = '0';
+                            setTimeout(() => {
+                                contactMeBtn.style.opacity = '1';
+                            }, 10);
+                        } else {
+                            contactMeBtn.style.opacity = '0';
+                            setTimeout(() => {
+                                contactMeBtn.style.display = 'none';
+                            }, 300);
+                        }
+                    }
+                });
+            });
+
+            // Mouse tracking for highlight
+            let isHovering = false;
+            let currentActiveTab = 'site';
+
+            aboutTabsContainer.addEventListener('mouseenter', () => {
+                isHovering = true;
+            });
+
+            aboutTabsContainer.addEventListener('mouseleave', () => {
+                isHovering = false;
+                // Reset to current active tab position
+                aboutTabHighlight.setAttribute('data-tab', currentActiveTab);
+            });
+
+            aboutTabsContainer.addEventListener('mousemove', (e) => {
+                if (!isHovering) return;
+                
+                const rect = aboutTabsContainer.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const containerWidth = rect.width;
+                const tabWidth = containerWidth / 2;
+                
+                // Determine which tab the mouse is over
+                if (mouseX < tabWidth) {
+                    aboutTabHighlight.setAttribute('data-tab', 'site');
+                } else {
+                    aboutTabHighlight.setAttribute('data-tab', 'me');
+                }
+            });
+
+            // Update current active tab when clicking
+            aboutTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentActiveTab = tab.getAttribute('data-tab');
+                });
+            });
+        });
+
         // Language Menu Functionality
         const languageBtn = document.getElementById('languageBtn');
         const languageDropdown = document.getElementById('languageDropdown');
+        const languageSubmenu = document.getElementById('languageSubmenu');
         let languageOpen = false;
+        let submenuOpen = false;
         
         languageBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             languageOpen = !languageOpen;
             toggleDropdown(languageDropdown, languageOpen);
+            
+            // Close submenu when main dropdown closes
+            if (!languageOpen) {
+                toggleDropdown(languageSubmenu, false);
+                submenuOpen = false;
+            }
             
             // Close other dropdown
             if (languageOpen) {
@@ -2650,9 +3885,28 @@
             if (!e.target.closest('.search-selector') && !e.target.closest('.language-menu')) {
                 toggleDropdown(searchEngineDropdown, false);
                 toggleDropdown(languageDropdown, false);
+                toggleDropdown(languageSubmenu, false);
                 searchEngineOpen = false;
                 languageOpen = false;
+                submenuOpen = false;
             }
+        });
+
+        // Handle dropdown options
+        document.querySelectorAll('.dropdown-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const action = e.target.getAttribute('data-action');
+                
+                if (action === 'language') {
+                    submenuOpen = !submenuOpen;
+                    toggleDropdown(languageSubmenu, submenuOpen);
+                } else if (action === 'about') {
+                    openAboutModal();
+                    toggleDropdown(languageDropdown, false);
+                    languageOpen = false;
+                }
+            });
         });
 
         // Translations dictionary
@@ -2682,6 +3936,11 @@
                 editBtn: "✏️",
                 deleteBtn: "🗑️",
                 moreBtn: "Mehr",
+                languageBtn: "Sprache",
+                aboutBtn: "Über",
+                closeBtn: "Schließen",
+                aboutSiteTab: "Über die Website",
+                aboutMeTab: "Über den Autor",
                 editPrompt: "Klicken Sie zum Bearbeiten",
                 deletePrompt: "Klicken Sie zum Löschen",
                 editWarning: "Achtung: Änderungen können nicht rückgängig gemacht werden",
@@ -2695,8 +3954,8 @@
                 typewriterPhrases: [
                     "Zanes Startseite",
                     "Jeder Tag ist ein neuer Commit.",
-                    "Nur wer sich traut, kann sich verändern.",
-                    "Nicht jeder Fehler ist ein Rückschritt."
+                    "Sterne hören nie auf - sie finden neue Wege.",
+                    "Was unsichtbar wird, lebt anders weiter."
                 ]
             },
             en: {
@@ -2724,6 +3983,11 @@
                 editBtn: "✏️",
                 deleteBtn: "🗑️",
                 moreBtn: "More",
+                languageBtn: "Language",
+                aboutBtn: "About",
+                closeBtn: "Close",
+                aboutSiteTab: "About the Site",
+                aboutMeTab: "About the Author",
                 editPrompt: "Click to edit",
                 deletePrompt: "Click to delete",
                 editWarning: "Warning: Changes cannot be undone",
@@ -2737,8 +4001,8 @@
                 typewriterPhrases: [
                     "Zane's Startpage",
                     "Every day is a new commit.",
-                    "Only those who dare can change.",
-                    "Not every error is a setback."
+                    "Stars never die — they transform.",
+                    "The unseen persists differently."
                 ]
             },
             nl: {
@@ -2766,6 +4030,11 @@
                 editBtn: "✏️",
                 deleteBtn: "🗑️",
                 moreBtn: "Meer",
+                languageBtn: "Taal",
+                aboutBtn: "Over",
+                closeBtn: "Sluiten",
+                aboutSiteTab: "Over de site",
+                aboutMeTab: "Over de auteur",
                 editPrompt: "Klik om te bewerken",
                 deletePrompt: "Klik om te verwijderen",
                 editWarning: "Waarschuwing: Wijzigingen kunnen niet ongedaan worden gemaakt",
@@ -2778,9 +4047,9 @@
                 youtubeDesc: "Videoplatform",
                 typewriterPhrases: [
                     "Zane's Startpagina",
-                    "Elke dag is een nieuwe commit",
-                    "Alleen wie durft, kan veranderen",
-                    "Niet elke fout is een tegenslag"
+                    "Elke dag is een nieuwe commit.",
+                    "Sterren vergaan niet - ze veranderen.",
+                    "Onzichtbaar betekent niet weg."
                 ]
             },
             gsw: {
@@ -2808,6 +4077,11 @@
                 editBtn: "✏️",
                 deleteBtn: "🗑️",
                 moreBtn: "Meh",
+                languageBtn: "Sproch",
+                aboutBtn: "Über",
+                closeBtn: "Schließe",
+                aboutSiteTab: "Über d Website",
+                aboutMeTab: "Über de Autor",
                 editPrompt: "Klick zum Bearbeite",
                 deletePrompt: "Klick zum Lösche",
                 editWarning: "Achtig: Änderige chönd nid rückgängig gmacht werde",
@@ -2820,9 +4094,9 @@
                 youtubeDesc: "Video-Plattform",
                 typewriterPhrases: [
                     "Zanes Startsiite",
-                    "Jede Tag isch en neue Commit",
-                    "Nur wer sich traut, cha sich verändere",
-                    "Nid jede Fehler isch es Zrugg"
+                    "Jede Tag isch en neue Commit.",
+                    "Schterne höret nie uf - si finded nüüi Wäg.",
+                    "Was unsichtbar wird, lebt anders witere."
                 ]
             },
             fi: {
@@ -2850,6 +4124,11 @@
                 editBtn: "✏️",
                 deleteBtn: "🗑️",
                 moreBtn: "Lisää",
+                languageBtn: "Kieli",
+                aboutBtn: "Tietoja",
+                closeBtn: "Sulje",
+                aboutSiteTab: "Sivustosta",
+                aboutMeTab: "Kirjoittajasta",
                 editPrompt: "Klikkaa muokataksesi",
                 deletePrompt: "Klikkaa poistaaksesi",
                 editWarning: "Varoitus: Muutoksia ei voi perua",
@@ -2862,9 +4141,9 @@
                 youtubeDesc: "Videopalvelu",
                 typewriterPhrases: [
                     "Zanen Aloitussivu",
-                    "Jokainen päivä on uusi commit",
-                    "Vain ne, jotka uskaltavat, voivat muuttua",
-                    "Ei jokainen virhe ole takapakki"
+                    "Jokainen päivä on uusi commit.",
+                    "Tähdet eivät koskaan lopu - ne löytävät uusia teitä.",
+                    "Mikä katoaa näkyvistä, elää edelleen toisin."
                 ]
             },
             fr: {
@@ -2892,6 +4171,11 @@
                 editBtn: "✏️",
                 deleteBtn: "🗑️",
                 moreBtn: "Plus",
+                languageBtn: "Langue",
+                aboutBtn: "À propos",
+                closeBtn: "Fermer",
+                aboutSiteTab: "À propos du site",
+                aboutMeTab: "À propos de l'auteur",
                 editPrompt: "Cliquez pour modifier",
                 deletePrompt: "Cliquez pour supprimer",
                 editWarning: "Attention: Les modifications ne peuvent pas être annulées",
@@ -2904,9 +4188,9 @@
                 youtubeDesc: "Plateforme vidéo",
                 typewriterPhrases: [
                     "Page d'accueil de Zane",
-                    "Chaque jour est un nouveau commit",
-                    "Seuls ceux qui osent peuvent changer",
-                    "Chaque erreur n'est pas un échec"
+                    "Chaque jour est un nouveau commit.",
+                    "Les étoiles ne finissent pas - elles se transforment.",
+                    "L'invisible persiste autrement."
                 ]
             },
             zh: {
@@ -2934,6 +4218,11 @@
                 editBtn: "✏️",
                 deleteBtn: "🗑️",
                 moreBtn: "更多",
+                languageBtn: "语言",
+                aboutBtn: "关于",
+                closeBtn: "关闭",
+                aboutSiteTab: "关于网站",
+                aboutMeTab: "关于作者",
                 editPrompt: "点击编辑",
                 deletePrompt: "点击删除",
                 editWarning: "警告：更改无法撤销",
@@ -2947,8 +4236,8 @@
                 typewriterPhrases: [
                     "Zane的标签页",
                     "「苟日新，日日新」",
-                    "「变者非疵，实乃天工」",
-                    "「过者非退，或跃在渊」"
+                    "「星流非过，与化成工」",
+                    "「明晦非失，或跃渊穹」"
                 ]
             },
             ja: {
@@ -2976,6 +4265,11 @@
                 editBtn: "✏️",
                 deleteBtn: "🗑️",
                 moreBtn: "もっと",
+                languageBtn: "言語",
+                aboutBtn: "について",
+                closeBtn: "閉じる",
+                aboutSiteTab: "サイトについて",
+                aboutMeTab: "作者について",
                 editPrompt: "クリックして編集",
                 deletePrompt: "クリックして削除",
                 editWarning: "警告：変更は元に戻せません",
@@ -2989,8 +4283,8 @@
                 typewriterPhrases: [
                     "Zaneのスタートページ",
                     "「日々是新たなコミット」",
-                    "「変化は不具合ではなく、仕様です」",
-                    "「エラーもまた、進化の一歩」"
+                    "「星は終わらず、転生する」",
+                    "「見えぬものも途絶えず」"
                 ]
             }
         };
@@ -3017,9 +4311,17 @@
                     // Force immediate UI update
                     updateUIText();
                     
-                    // Close dropdown
+                    // Update About modal content if it's open
+                    const aboutModal = document.getElementById('aboutModal');
+                    if (aboutModal.classList.contains('show')) {
+                        updateAboutContent();
+                    }
+                    
+                    // Close dropdowns
                     toggleDropdown(languageDropdown, false);
+                    toggleDropdown(languageSubmenu, false);
                     languageOpen = false;
+                    submenuOpen = false;
                 }
             });
         });
@@ -3063,18 +4365,50 @@
             // Update language button
             document.getElementById('languageBtn').textContent = langData.moreBtn;
             
+            // Update dropdown options
+            document.querySelector('[data-action="language"]').textContent = langData.languageBtn;
+            document.querySelector('[data-action="about"]').textContent = langData.aboutBtn;
+            
             // Update modal texts
-            document.querySelector('#addBookmarkModal h3').textContent = langData.addBookmarkTitle;
-            document.querySelector('#addSectionModal h3').textContent = langData.createSection;
-            document.querySelector('#renameSectionModal h3').textContent = langData.renameSection;
+            const addBookmarkTitle = document.getElementById('addBookmarkTitle');
+            const createSectionTitle = document.getElementById('createSectionTitle');
+            const renameSectionTitle = document.getElementById('renameSectionTitle');
+            
+            if (addBookmarkTitle) addBookmarkTitle.textContent = langData.addBookmarkTitle;
+            if (createSectionTitle) createSectionTitle.textContent = langData.createSection;
+            if (renameSectionTitle) renameSectionTitle.textContent = langData.renameSection;
+            
+            // Update About modal text
+            document.querySelector('#aboutCloseBtn').textContent = langData.closeBtn;
+            document.querySelector('#aboutSiteTab').textContent = langData.aboutSiteTab;
+            document.querySelector('#aboutMeTab').textContent = langData.aboutMeTab;
             
             // Update button texts
             document.querySelectorAll('.cancel').forEach(btn => {
                 btn.textContent = langData.cancel;
             });
-            document.querySelector('#addBookmarkModal button:not(.cancel)').textContent = langData.add;
-            document.querySelector('#addSectionModal button:not(.cancel)').textContent = langData.create;
-            document.querySelector('#renameSectionModal button:not(.cancel)').textContent = langData.rename;
+            
+            // Update specific modal buttons
+            const bookmarkCancelBtn = document.getElementById('bookmarkCancelBtn');
+            const sectionCancelBtn = document.getElementById('sectionCancelBtn');
+            const renameCancelBtn = document.getElementById('renameCancelBtn');
+            const alertOkBtn = document.getElementById('alertOkBtn');
+            const confirmCancelBtn = document.getElementById('confirmCancelBtn');
+            
+            if (bookmarkCancelBtn) bookmarkCancelBtn.textContent = langData.cancel;
+            if (sectionCancelBtn) sectionCancelBtn.textContent = langData.cancel;
+            if (renameCancelBtn) renameCancelBtn.textContent = langData.cancel;
+            if (alertOkBtn) alertOkBtn.textContent = 'OK'; // OK is universal
+            if (confirmCancelBtn) confirmCancelBtn.textContent = langData.cancel;
+            
+            // Update action buttons
+            const addBookmarkBtn = document.getElementById('addBookmarkBtn');
+            const addSectionBtn = document.getElementById('addSectionBtn');
+            const confirmRenameBtn = document.getElementById('confirmRenameBtn');
+            
+            if (addBookmarkBtn) addBookmarkBtn.textContent = langData.add;
+            if (addSectionBtn) addSectionBtn.textContent = langData.create;
+            if (confirmRenameBtn) confirmRenameBtn.textContent = langData.rename;
             
             // Update placeholders
             document.getElementById('bookmarkName').placeholder = langData.bookmarkName;
@@ -3215,6 +4549,32 @@
             // Setup title fetching for bookmark modal
             setupTitleFetching();
             
+            // Auto-show about modal for first-time visitors or when content is updated
+            const currentVersion = '1.5'; // Current version of the about content
+            const lastSeenVersion = localStorage.getItem('lastSeenAboutVersion');
+            
+            if (!lastSeenVersion || lastSeenVersion !== currentVersion) {
+                // First time visitor or content has been updated
+                openAboutModal();
+                // Set the about tab to "site" (about website) by default
+                const aboutSiteTab = document.getElementById('aboutSiteTab');
+                if (aboutSiteTab) {
+                    aboutSiteTab.click();
+                }
+                
+                // Store the current version as seen
+                localStorage.setItem('lastSeenAboutVersion', currentVersion);
+            }
+            
+            // Add keyboard shortcut to reset about modal state (for testing)
+            // Press Ctrl+Shift+A to reset the about modal state
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                    localStorage.removeItem('lastSeenAboutVersion');
+                    alert('About modal state reset. Refresh the page to see the about modal again.');
+                }
+            });
+            
             // Modal click-outside-to-close
             document.getElementById('addBookmarkModal').addEventListener('click', function(e) {
                 if (e.target === this) {
@@ -3245,6 +4605,12 @@
                     closeConfirmModal();
                 }
             });
+    
+            document.getElementById('aboutModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeAboutModal();
+                }
+            });
         });
 
         // Keyboard shortcuts
@@ -3265,6 +4631,7 @@
                 closeRenameModal();
                 closeAlertModal();
                 closeConfirmModal();
+                closeAboutModal();
             }
         });
 
@@ -3283,11 +4650,12 @@
                         const modal = this.closest('.modal');
                         if (modal) {
                             const modalId = modal.id;
-                            if (modalId === 'addBookmarkModal') closeBookmarkModal();
-                            else if (modalId === 'addSectionModal') closeSectionModal();
-                            else if (modalId === 'renameSectionModal') closeRenameModal();
-                            else if (modalId === 'alertModal') closeAlertModal();
-                            else if (modalId === 'confirmModal') closeConfirmModal();
+                                                    if (modalId === 'addBookmarkModal') closeBookmarkModal();
+                        else if (modalId === 'addSectionModal') closeSectionModal();
+                        else if (modalId === 'renameSectionModal') closeRenameModal();
+                        else if (modalId === 'alertModal') closeAlertModal();
+                        else if (modalId === 'confirmModal') closeConfirmModal();
+                        else if (modalId === 'aboutModal') closeAboutModal();
                         }
                     }
                 });
