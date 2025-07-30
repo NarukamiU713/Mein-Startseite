@@ -1658,7 +1658,7 @@
             <input type="text" id="sectionName" placeholder="Sectienaam">
             <div class="modal-buttons">
                 <button id="sectionCancelBtn" class="cancel" onclick="closeSectionModal()">Annuleren</button>
-                <button id="addSectionBtn" onclick="addSection()">Maken</button>
+                <button id="createSectionBtn" onclick="addSection()">Maken</button>
             </div>
         </div>
     </div>
@@ -4403,11 +4403,11 @@
             
             // Update action buttons
             const addBookmarkBtn = document.getElementById('addBookmarkBtn');
-            const addSectionBtn = document.getElementById('addSectionBtn');
+            const createSectionBtn = document.getElementById('createSectionBtn');
             const confirmRenameBtn = document.getElementById('confirmRenameBtn');
             
             if (addBookmarkBtn) addBookmarkBtn.textContent = langData.add;
-            if (addSectionBtn) addSectionBtn.textContent = langData.create;
+            if (createSectionBtn) createSectionBtn.textContent = langData.create;
             if (confirmRenameBtn) confirmRenameBtn.textContent = langData.rename;
             
             // Update placeholders
